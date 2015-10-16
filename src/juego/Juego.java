@@ -1,11 +1,11 @@
 package juego;
 
 import personajes.felix.FelixJR;
-import Default.Niceland;
-import Personajes.Ladrillo;
-import Personajes.Pajaro;
-import Personajes.Pastel;
-import Personajes.Ralph;
+import juego.Niceland;
+import personajes.Ladrillo;
+import personajes.Pajaro;
+import personajes.Pastel;
+import personajes.Ralph;
 
 public class Juego {
 	public int nivel;

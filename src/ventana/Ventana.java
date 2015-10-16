@@ -1,0 +1,8 @@
+package ventana;
+
+
+public abstract class Ventana {
+		Panel[] paneles;
+		
+		public abstract boolean arreglarVentana();
+}

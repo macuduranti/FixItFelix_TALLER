@@ -1,9 +1,9 @@
 package personajes;
 
-public class Ralph extends personaje {
-	private enum direccion {
-		IZQUIERDA, DERECHA
-	};
+import personajes.Personaje;
+import juego.Posicion;
+
+public class Ralph extends Personaje {
 
 	// Constructor de Ralph
 	public Ralph() {

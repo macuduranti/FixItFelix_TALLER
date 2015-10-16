@@ -1,10 +1,9 @@
 package personajes.felix;
 
-import personajes.Personaje;
+import personajes.Personaje; 
 
 
 public class FelixJR extends Personaje {
-	
 	public EstadoDeFelix estado;
 	
 	//Constructor de FelixJR

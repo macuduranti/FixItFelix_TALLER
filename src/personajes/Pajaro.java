@@ -1,13 +1,14 @@
 package personajes;
 
-import Personajes.Juego;
-import Personajes.personaje;
+import personajes.Personaje;
+import juego.direccion.*;
 
-public class Pajaro extends personaje {
-	private static final double velocidad; // Debe usarse para el mover
+public class Pajaro extends Personaje {
+	private static final double velocidad=20; // Debe usarse para el mover // Hay que darle un valor
 	private static boolean enJuego;
-	private enum direccion {DERECHA, IZQUIERDA
-		
+	public Direccion direccion;
+	
+	/*
 	public obtnerProximaPosicion(Posicion p)
 	return p.getX -1...
 	
@@ -17,7 +18,7 @@ public class Pajaro extends personaje {
 	
 	};
 
-	direccion d;
+	direccion d;*/ // DE VANESSA
 	//----------------CREAR-------------------
 	public Pajaro (){
 		setEnJuego(true);//Pone un nuevo pajaro

@@ -1,4 +1,4 @@
-package ventana;
+package ventana.panel;
 
 public class Sano extends EstadoPanel{
 

@@ -1,4 +1,4 @@
-package ventana;
+package ventana.panel;
 
 public class ParcRoto extends EstadoPanel{
 

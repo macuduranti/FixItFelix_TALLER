@@ -8,10 +8,10 @@ public abstract class Personaje {
 	private static Posicion posicion;
 	
 	//Metodos globales
-	public static void mover () {
+	public void mover () {
 	}
 
-	public static void Atender(){		
+	public void Atender(){		
 	}
 
 	public int getX() {
@@ -26,7 +26,7 @@ public abstract class Personaje {
 		return posicion.getY();
 	}
 
-	public static void setY(int y) {
+	public void setY(int y) {
 		posicion.setY(y);
 	}
 }

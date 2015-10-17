@@ -5,6 +5,7 @@ import juego.Posicion;
 
 public class Ralph extends Personaje {
 
+	
 	// Constructor de Ralph
 	public Ralph() {
 		setX(0);

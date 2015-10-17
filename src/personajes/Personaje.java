@@ -17,6 +17,7 @@ public abstract class Personaje {
 
 	public void moverDerecha() {
 		this.setX(this.getX() + 1);
+	}
 
 	public void moverIzquierda() {
 		this.setX(this.getX() - 1);

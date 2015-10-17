@@ -1,35 +1,49 @@
 package personajes;
 
-import Personajes.Juego;
-import Personajes.personaje;
+import personajes.Personaje;
 
-public class Pastel extends personaje {
+
+public class Pastel extends Personaje {
 
 	private static int tiempo;
 	private static boolean enJuego;
 	private static double aleatorio;
 	
-	public Pastel(){
+	public Pastel(int seccion){
 		setEnJuego(true);
 		setTiempo(10);
 		setAleatorio(Math.random()*100);
-		if (aleatorio > 66)
-			Pastel.setX(2);
-		if (aleatorio < 33)
-			Pastel.setX(0);
-		else
-			Pastel.setX(1);
+		if (aleatorio > 80){
+			this.setX(0);
+			System.out.print("Un nicelander dejo un pastel en la columna 1");}
+		if (aleatorio > 60 && aleatorio < 80){
+			this.setX(1);
+			System.out.print("Un nicelander dejo un pastel en la columna 2");}
+		if (aleatorio > 40 && aleatorio < 60){
+			this.setX(2);
+			System.out.print("Un nicelander dejo un pastel en la columna 3");}
+		if (aleatorio > 20 && aleatorio < 40){
+			this.setX(3);
+			System.out.print("Un nicelander dejo un pastel en la columna 4");}
+		if (aleatorio < 20){
+			this.setX(4);
+			System.out.print("Un nicelander dejo un pastel en la columna 5");}
+		
+		
 		setAleatorio(Math.random()*100);
-		if (aleatorio > 80)
-			Pastel.setY(4);
-		if (aleatorio > 60 && aleatorio < 80)
-			Pastel.setY(3);
-		if (aleatorio > 40 && aleatorio < 60)
-			Pastel.setY(2);
-		if (aleatorio > 20 && aleatorio < 40)
-			Pastel.setY(1);
-		if (aleatorio < 20)
-			Pastel.setY(0);
+		if (aleatorio > 66){
+			this.setY(2 + seccion*3);
+			System.out.println(" y la fila 3!!");
+		}
+		if (aleatorio < 33){
+			this.setY(1 + seccion*3);
+			System.out.println(" y la fila 2!!");
+		}
+		else{
+			this.setY(0 + seccion*3);
+			System.out.println(" y la fila 1!!");
+		}
+		System.out.println("Tienes 10 segundos antes de que desaparezca!!");
 	}
 	
 	
@@ -66,7 +80,7 @@ public class Pastel extends personaje {
 		}
 		else{
 			setAleatorio(Math.random()*100); //Le da un numero double de 1 a 100
-			if (Juego.getNivel() == 1){
+			if getAleatorio() < 20*(Math.pow(1.15, nivel-1))){
 				if (getAleatorio() > 70);
 					Pastel pastel1 = new Pastel();
 			}

@@ -1,14 +1,48 @@
 package juego;
 
 import ventana.*;
+import ventana.panel.Sano;
+import java.util.Random;
 
 public class Niceland {
 
 	public Ventana[][] edificio = new Ventana[5][9];
 
-	public Niceland() {
+	public void generarNiceland(int nivel) {
 		this.edificio[0][2] = new PlantaBaja();
+		for (int i = 0; i < 4; i++) {
+			this.edificio[0][2].paneles[i].setEstado(new Sano());
+		}
 		this.edificio[1][2] = new PrimerPiso();
+		for (int i = 0; i < 8; i++) {
+			this.edificio[1][2].paneles[i].setEstado(new Sano());
+		}
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 9; i++) {
+				if ((i != 0 && j != 2) && (i != 1 && j != 2)) {
+					if (((int) random.nextDouble() * 100) < 15) {
+						this.edificio[i][j] = new ConHojas();
+						if (((int) random.nextDouble() * 100) < (20 * (Math.pow(1.15, nivel - 1)))) {
+							((ConHojas) this.edificio[i][j]).setAbierta(true);
+						} else
+							((ConHojas) this.edificio[i][j]).setAbierta(false);
+					} else {
+						this.edificio[i][j] = new DosPaneles();
+						((DosPaneles) this.edificio[i][j]).paneles[0].setEstado(new Sano());
+						((DosPaneles) this.edificio[i][j]).paneles[1].setEstado(new Sano());
+						((DosPaneles) this.edificio[i][j]).setMoldura(false);
+						((DosPaneles) this.edificio[i][j]).setMacetero(false);
+						if (((int) random.nextDouble() * 100) < (10 * (Math.pow(1.15, nivel - 1)))) {
+							((DosPaneles) this.edificio[i][j]).setMoldura(true);
+						}
+						if (((int) random.nextDouble() * 100) < (10 * (Math.pow(1.15, nivel - 1)))) {
+							((DosPaneles) this.edificio[i][j]).setMacetero(true);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public boolean mePuedoMover(Posicion act, Posicion prox, int seccion) {

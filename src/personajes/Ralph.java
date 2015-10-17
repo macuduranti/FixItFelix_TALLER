@@ -1,20 +1,60 @@
 package personajes;
 
-import personajes.Personaje;
 import juego.Posicion;
 
 public class Ralph extends Personaje {
 
+	private double Aleatorio;
+	private int CantidadLadrillos;
+
 	
 	// Constructor de Ralph
 	public Ralph() {
-		setX(0);
-		setY(0);
-		direccion d;
-		d = DERECHA;
+		setX(2);
+		setY(2);
 	}
 
-	public static void Romper(int GolpesNecesarios, Ventana[][] edificio) {
+	public void mover(int nivel){
+		if(getX() == 0){
+			Ralph.moverDerecha();
+			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) //SI NO HAY LADRILLO EN JUEGO Y RALPH TIENE PARA TIRAR
+				if(SortearLadrillo(nivel))
+					Ladrillo ladrillo = new ladrillo(getX(), getY()); //Deberia ver como ladrillo es parte de ralph
+			return;
+		}
+		if (getX() == 4){
+			setX(getX() -1);
+			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
+				if(SortearLadrillo(nivel))
+					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
+			return;	// Cuida de que no se caiga
+		}
+		setAleatorio(Math.random() *100);
+		if (getAleatorio() < 50)
+			setX(getX()+1);
+			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
+				if(SortearLadrillo(nivel))
+					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
+		else
+			setX(getX()-1);
+			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
+				if(SortearLadrillo(nivel))
+					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
+	}
+	
+	
+	
+	public boolean SortearLadrillo(int nivel){
+		setAleatorio(Math.random()*100);
+		if(getAleatorio() < 20*(Math.pow(1.15, nivel-1))){
+			return true;
+		}else return false;
+	}
+	
+	 
+	
+	
+	public static void Romper() { //FALTA VER!!
 		int i, j;
 		double random;
 		for (i = 0; i < 5; i++) {
@@ -36,14 +76,21 @@ public class Ralph extends Personaje {
 		}
 	}
 
-	public static void Mover(){
-	if (d == DERECHA)
-		Ralph.setX(getX() + 1);
-	if (d == IZQUIERDA)
-		Ralph.setX(getX() - 1);
-	if (Ralph.getX() == 4)
-		d == IZQUIERDA
-	if (Ralph.getX() == 0)
-		d == DERECHA
-}
+	public double getAleatorio() {
+		return Aleatorio;
+	}
+
+	public void setAleatorio(double aleatorio) {
+		Aleatorio = aleatorio;
+	}
+
+	public int getCantidadLadrillos() {
+		return CantidadLadrillos;
+	}
+
+	public void setCantidadLadrillos(int cantidadLadrillos) {
+		CantidadLadrillos = cantidadLadrillos;
+	}
+
+
 }

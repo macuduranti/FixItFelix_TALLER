@@ -3,6 +3,7 @@ package personajes;
 import juego.Posicion;
 
 public abstract class Personaje {
+<<<<<<< Updated upstream
 
 	private Posicion posicion;
 
@@ -17,6 +18,14 @@ public abstract class Personaje {
 
 	public void moverDerecha() {
 		this.setX(this.getX() + 1);
+=======
+	
+	private static Posicion posicion;
+	
+	//Metodos globales
+	public static void mover (Direccion d) {
+		
+>>>>>>> Stashed changes
 	}
 
 	public void moverIzquierda() {

@@ -1,3 +1,9 @@
 
 *.class
 /bin/
+
+src/personajes/EstadoRalph.java
+
+src/personajes/Ladrillo.java
+
+src/personajes/Ladrillo.java

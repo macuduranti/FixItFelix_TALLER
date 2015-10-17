@@ -2,7 +2,7 @@ package personajes;
 
 
 public class Pajaro extends Personaje {
-	private boolean enJuego;
+	private static boolean enJuego;
 	private enum direccion {DERECHA, IZQUIERDA}
 	private double aleatorio;
 		
@@ -23,13 +23,13 @@ public class Pajaro extends Personaje {
 		
 		setAleatorio(Math.random()*100);//Sortea en que fila sale
 		if (getAleatorio() < 33)
-			this.setY(2 + (seccion * 3));
+			Pajaro.setY(2 + (seccion * 3));
 			System.out.println(" en el piso 3");
 		if (getAleatorio() > 33 && getAleatorio() < 66)
-			this.setY(1 + (seccion * 3));
+			Pajaro.setY(1 + (seccion * 3));
 			System.out.println(" en el piso 2");
 		if (getAleatorio() > 66 && getAleatorio() < 100)
-			this.setY(0 + (seccion * 3));
+			Pajaro.setY(0 + (seccion * 3));
 			System.out.println(" en el piso 1");
 		}
 
@@ -47,8 +47,8 @@ public class Pajaro extends Personaje {
 
 	//-------------MOVER---------------
 	
-	public void mover(){
-		if (d == direccion.DERECHA){ //PREGUNTAR USO DE ENUMERATIVO PARA IF (!!!)
+	public  void mover(){
+		if (d == direccion.DERECHA){ 
 			if (getX() < 4)
 				setX(getX() + 1);
 			if (getX() == 4)
@@ -61,13 +61,26 @@ public class Pajaro extends Personaje {
 		}
 	}
 	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public boolean isEnJuego() {
 		return enJuego;
 	}
 
-	public void setEnJuego(boolean enJuego) {
-		this.enJuego = enJuego;
+	public static void setEnJuego(boolean enJuego) {
+		enJuego = enJuego;
 	}
 
 	public double getAleatorio() {

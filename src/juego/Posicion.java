@@ -5,6 +5,11 @@ public class Posicion {
 	int x;
 	int y;
 	
+	public Posicion (int x,int y){
+		this.setX(x);
+		this.setY(y);
+	}
+	
 	public int getX() {
 		return x;
 	}

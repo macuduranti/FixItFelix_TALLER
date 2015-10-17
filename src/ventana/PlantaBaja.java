@@ -1,6 +1,7 @@
 package ventana;
 
-public class PlantaBaja extends Ventana{
+public class PlantaBaja extends Ventana {
+	@Override
 	public boolean arreglarVentana() {// Devuelve boolean si pudo arreglar para
 		// hacer la animacion o no, si devuelve
 		// true podria incrementar una variable
@@ -9,34 +10,19 @@ public class PlantaBaja extends Ventana{
 		// arreglar (generada cuando ralph
 		// rompe) para ver si se paso el nivel o
 		// no
-		if (!this.paneles[0].isSano()) {
-			if (this.paneles[0].isParcRoto())
-				return true; // y Cambiar a Sano
-			else
-				return true; // y Cambiar a ParcRoto
-
-		} else {
-			if (!this.paneles[1].isSano()) {
-				if (this.paneles[1].isParcRoto())
-					return true; // y Cambiar a Sano
-				else
-					return true; // y Cambiar a ParcRoto
-			}else{
-				if (!this.paneles[2].isSano()) {
-					if (this.paneles[2].isParcRoto())
-						return true; // y Cambiar a Sano
-					else
-						return true; // y Cambiar a ParcRoto
-				}else{
-					if (!this.paneles[3].isSano()) {
-						if (this.paneles[3].isParcRoto())
-							return true; // y Cambiar a Sano
-						else
-							return true; // y Cambiar a ParcRoto
-					}
-				}
-			}
-		}
-		return false; // si los dos son sanos devuelve false, no hace animacion
+		boolean arregle = this.paneles[0].arreglar();
+		if (arregle)
+			return arregle;
+		else
+			arregle = this.paneles[1].arreglar();
+		if (arregle)
+			return arregle;
+		else
+			arregle = this.paneles[2].arreglar();
+		if (arregle)
+			return arregle;
+		else
+			arregle = this.paneles[3].arreglar();
+		return arregle;
 	}
 }

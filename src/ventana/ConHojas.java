@@ -1,13 +1,20 @@
 package ventana;
 
-public class ConHojas {
-	public static boolean abierta;
-
-	public static boolean isAbierta() {
+public class ConHojas extends Ventana{
+	public boolean abierta;
+	
+	
+	public boolean isAbierta() {
 		return abierta;
 	}
 	
-	public static void setAbierta(boolean abierta) {
-		ConHojas.abierta = abierta;
+	public void setAbierta(boolean abierta) {
+		this.abierta = abierta;
 	}
+
+	@Override
+	public boolean arreglarVentana() {
+		return false;
+	}
+	
 }

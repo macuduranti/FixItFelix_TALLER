@@ -16,7 +16,7 @@ public class Ralph extends Personaje {
 
 	public void mover(int nivel){
 		if(getX() == 0){
-			Ralph.moverDerecha();
+			this.moverDerecha();
 			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) //SI NO HAY LADRILLO EN JUEGO Y RALPH TIENE PARA TIRAR
 				if(SortearLadrillo(nivel))
 					Ladrillo ladrillo = new ladrillo(getX(), getY()); //Deberia ver como ladrillo es parte de ralph

@@ -1,6 +1,6 @@
 package juego;
 
-public class Puntaje {
+public class Puntaje implements Comparable<Puntaje>{
 	public int puntos;
 	public String nombre;
 	
@@ -17,4 +17,14 @@ public class Puntaje {
 		this.nombre = nombre;
 	}
 	
+    @Override
+    public int compareTo(Puntaje p) {
+        if (puntos < p.puntos) {
+            return -1;
+        }
+        if (puntos > p.puntos) {
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -32,4 +32,7 @@ public class Panel {
 		
 	}
 
+	public boolean romper() {
+		return this.estado.puedoRomper(this);
+	}
 }

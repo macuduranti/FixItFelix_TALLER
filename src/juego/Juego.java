@@ -1,6 +1,7 @@
 package juego;
 
 import personajes.felix.FelixJR;
+import java.util.Arrays;
 import juego.Niceland;
 import personajes.Ladrillo;
 import personajes.Pajaro;
@@ -25,21 +26,11 @@ public class Juego {
 		Juego.instance = instance;
 	}
 
-	/*
-	 * public Juego(String nombre) { this.setNivel(1); this.setVidas(vidasMax);
-	 * this.jugadorActual.setPuntos(0); this.jugadorActual.setNombre(nombre);
-	 * 
-	 * }
-	 */
 	public void nuevoJuego() {
-		// Juego juego = new Juego(nombre); // Si tiene que ser por constructor
-		/**/
 		this.setNivel(1);
 		this.setSeccion(0);
 		this.setVidas(3);
 		this.setJugadorActual(0);
-		this.setJugadorActual("anonimo");
-		/**/
 
 		while (this.getVidas() > 0 && this.getNivel() <= 10) {
 			if (jugarNivel()) {
@@ -53,29 +44,9 @@ public class Juego {
 		// Game over
 		// Lee el nombre en nombre
 		String nombre = "Lo que lea";
-		// Lo de aca abajo es para fijarse si entra en el top 5 HAY QUE
-		// CAMBIARLO POR Arrays.Sort
-		if (this.getJugadorActual().getPuntos() > this.getPuntajesMax()[4].getPuntos()) {
-			if (this.getJugadorActual().getPuntos() > this.getPuntajesMax()[3].getPuntos()) {
-				if (this.getJugadorActual().getPuntos() > this.getPuntajesMax()[2].getPuntos()) {
-					if (this.getJugadorActual().getPuntos() > this.getPuntajesMax()[1].getPuntos()) {
-						if (this.getJugadorActual().getPuntos() > this.getPuntajesMax()[0].getPuntos()) {
-							this.getPuntajesMax()[0].setNombre(nombre);// Esta
-																		// mal
-																		// hecho,
-																		// faltan
-																		// para
-																		// cada
-																		// posicion,
-																		// y
-																		// correr
-																		// blabla
-						}
-					}
-				}
-			}
-		}
-		// Mostrar puntajes
+		this.setJugadorActual(nombre);
+		this.getPuntajesMax()[5] = this.getJugadorActual();
+		Arrays.sort(this.getPuntajesMax());
 
 	}
 
@@ -85,7 +56,7 @@ public class Juego {
 		int cantSeccion = ralph.romper(this.getNivel());
 		this.setSeccion(0);
 		FelixJR felix = new FelixJR();
-		while (seccion < 3) { // Cuando seccion llegue a tres, pasa de nivel
+		while (this.getSeccion() < 3) { // Cuando seccion llegue a tres, pasa de nivel
 			if (this.getVidas() > 0) {
 				pajaro.atender(nivel,seccion); // La seccion se manda con this.getSeccion();
 				pastel.atender(nivel,seccion);

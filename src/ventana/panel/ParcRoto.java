@@ -8,5 +8,11 @@ public class ParcRoto extends EstadoPanel{
 		return true;
 	}
 
+	@Override
+	public boolean puedoRomper(Panel panel) {
+		panel.setEstado(new Roto());
+		return true;
+	}
+
 	
 }

@@ -2,9 +2,9 @@ package personajes;
 
 import java.util.Random;
 
+import juego.Niceland;
 import juego.Posicion;
-import ventana.ConHojas;
-import ventana.DosPaneles;
+import ventana.*;
 import ventana.panel.Sano;
 
 public class Ralph extends Personaje {
@@ -12,7 +12,6 @@ public class Ralph extends Personaje {
 	private double Aleatorio;
 	private int CantidadLadrillos;
 
-	
 	// Constructor de Ralph
 	public Ralph() {
 		setX(2);
@@ -46,46 +45,52 @@ public class Ralph extends Personaje {
 				if(SortearLadrillo(nivel))
 					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
 	}
-	
-	
-	
-	public boolean SortearLadrillo(int nivel){
-		setAleatorio(Math.random()*100);
-		if(getAleatorio() < 20*(Math.pow(1.15, nivel-1))){
+
+	public boolean SortearLadrillo(int nivel) {
+		setAleatorio(Math.random() * 100);
+		if (getAleatorio() < 20 * (Math.pow(1.15, nivel - 1))) {
 			return true;
-		}else return false;
+		} else
+			return false;
 	}
-	
-	 
-	
-	
-	public int romper(int nivel) { //FALTA VER!!
-		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
+
+	public int romper(int nivel) {
 		Random random = new Random();
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 9; i++) {
-				if ((i != 0 && j != 2) && (i != 1 && j != 2)) {
-				
+		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
+		int cantAux = cantSeccion;
+		while (cantAux != 0) { // Rompe la primer seccion
+			int rndx = (int) random.nextDouble() * 5;
+			int rndy = (int) random.nextDouble() * 3;
+			if (!(Niceland.getInstance().edificio[rndx][rndy] instanceof ConHojas)) {
+				if (Niceland.getInstance().edificio[rndx][rndy] instanceof DosPaneles) {
+					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 1].romper()) {
+						cantAux--;
+					}
+				} else if (Niceland.getInstance().edificio[rndx][rndy] instanceof PlantaBaja) {
+					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 3].romper()) {
+						cantAux--;
+					}
+				} else if (Niceland.getInstance().edificio[rndx][rndy] instanceof PrimerPiso) {
+					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 7].romper()) {
+						cantAux--;
+					}
 				}
 			}
 		}
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 3; j++) {
-				random = Math.random() * 100; // VERIFICAR SI SE LE PUEDE
-												// ASIGNAR ASI UN VALOR RANDOM
-				if (random > 80) {
-					edificio[i][j].setEstado(2);
-					GolpesNecesarios = GolpesNecesarios + 2;
-				}
-				if (random < 80 && random > 50) {
-					edificio[i][j].setEstado(1);
-					GolpesNecesarios = GolpesNecesarios + 1;
-				}
-				if (random < 50) {
-					edificio[i][j].setEstado(0);
+		cantAux = cantSeccion;
+		for (int i = 1; i <= 2; i++) {
+			while (cantAux != 0) { // Rompe la segunda y tercer seccion
+				int rndx = (int) random.nextDouble() * 5;
+				int rndy = (int) random.nextDouble() * (3*i) + ((3*i+1)-1);
+				if (Niceland.getInstance().edificio[rndx][rndy] instanceof DosPaneles) {
+					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 1].romper()) {
+						cantAux--;
+					}
 				}
 			}
+			cantAux = cantSeccion;
 		}
+		return cantSeccion;
 	}
 
 	public double getAleatorio() {
@@ -104,5 +109,10 @@ public class Ralph extends Personaje {
 		CantidadLadrillos = cantidadLadrillos;
 	}
 
+	@Override
+	public void Atender() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

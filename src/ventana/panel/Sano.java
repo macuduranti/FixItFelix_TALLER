@@ -6,5 +6,11 @@ public class Sano extends EstadoPanel{
 	public boolean puedoArreglar(Panel panel) {
 		return false;
 	}
+	
+	@Override
+	public boolean puedoRomper(Panel panel) {
+		panel.setEstado(new ParcRoto());
+		return true;
+	}
 
 }

@@ -1,6 +1,11 @@
 package personajes;
 
+import java.util.Random;
+
 import juego.Posicion;
+import ventana.ConHojas;
+import ventana.DosPaneles;
+import ventana.panel.Sano;
 
 public class Ralph extends Personaje {
 
@@ -54,11 +59,18 @@ public class Ralph extends Personaje {
 	 
 	
 	
-	public static void Romper() { //FALTA VER!!
-		int i, j;
-		double random;
-		for (i = 0; i < 5; i++) {
-			for (j = 0; j < 3; j++) {
+	public int romper(int nivel) { //FALTA VER!!
+		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 9; i++) {
+				if ((i != 0 && j != 2) && (i != 1 && j != 2)) {
+				
+				}
+			}
+		}
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 3; j++) {
 				random = Math.random() * 100; // VERIFICAR SI SE LE PUEDE
 												// ASIGNAR ASI UN VALOR RANDOM
 				if (random > 80) {

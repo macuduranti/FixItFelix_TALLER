@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Niceland {
 
+	private static Niceland instance = new Niceland();
 	public Ventana[][] edificio = new Ventana[5][9];
 
 	public void generarNiceland(int nivel) {
@@ -86,5 +87,13 @@ public class Niceland {
 				return true;
 		}
 		return false;
+	}
+
+	public static Niceland getInstance() {
+		return instance;
+	}
+
+	public static void setInstance(Niceland instance) {
+		Niceland.instance = instance;
 	}
 }

@@ -15,9 +15,9 @@ public class Ladrillo extends Personaje {
 	
 		
 		
-		public static void Mover(){
-			 if(getY() < 4)
-				 setY(getY() + 1);	 
+		public void Mover(){
+			 if(getY() > 0)
+				 this.moverAbajo();	 
 			 else{
 				 setEnJuego(false); //Llego al final y hay que sacarlo del juego
 			 }
@@ -40,5 +40,13 @@ public class Ladrillo extends Personaje {
 
 		public static void setEnJuego(boolean enJuego) {
 			Ladrillo.enJuego = enJuego;
+		}
+
+
+
+		@Override
+		public void Atender() {
+			// TODO Auto-generated method stub
+			
 		}
 }

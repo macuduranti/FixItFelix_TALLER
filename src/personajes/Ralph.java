@@ -27,7 +27,7 @@ public class Ralph extends Personaje {
 			return;
 		}
 		if (getX() == 4){
-			setX(getX() -1);
+			this.moverIzquierda();
 			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
 				if(SortearLadrillo(nivel))
 					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
@@ -35,12 +35,12 @@ public class Ralph extends Personaje {
 		}
 		setAleatorio(Math.random() *100);
 		if (getAleatorio() < 50)
-			setX(getX()+1);
+			this.moverDerecha();
 			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
 				if(SortearLadrillo(nivel))
 					Ladrillo ladrillo = new ladrillo(getX(), getY()); 
 		else
-			setX(getX()-1);
+			this.moverIzquierda();
 			if (!Ladrillo.isEnJuego() && getCantidadLadrillos() > 0) 
 				if(SortearLadrillo(nivel))
 					Ladrillo ladrillo = new ladrillo(getX(), getY()); 

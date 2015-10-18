@@ -15,7 +15,7 @@ public class Ladrillo extends Personaje {
 	
 		
 		
-		public void Mover(){
+		public void mover(){
 			 if(getY() > 0)
 				 this.moverAbajo();	 
 			 else{
@@ -45,7 +45,13 @@ public class Ladrillo extends Personaje {
 
 
 		@Override
-		public void Atender() {
+		public void atender (int nivel) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void proxSeccion (int seccion) {
 			// TODO Auto-generated method stub
 			
 		}

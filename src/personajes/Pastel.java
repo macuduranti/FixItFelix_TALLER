@@ -71,8 +71,8 @@ public class Pastel extends Personaje {
 		Pastel.aleatorio = aleatorio;
 	}
 		
-
-	public static void Atender(int nivel) {
+	@Override
+	public void atender(int nivel) {
 		if(enJuego){
 			setTiempo(getTiempo() -1);
 			if (getTiempo() == 0)
@@ -94,6 +94,14 @@ public class Pastel extends Personaje {
 			}
 		}
 	}
+	
+	@Override
+	public void proxSeccion(int seccion) {
+		if (this.isEnJuego()){
+			Pastel.setEnJuego(false);
+		}
+	}
+	
 	}
 	
 

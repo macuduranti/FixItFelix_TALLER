@@ -10,14 +10,22 @@ public class FelixJR extends Personaje {
 
 	// Constructor de FelixJR
 	public FelixJR() {
-
+		this.setEstado(new Normal());
 	}
-
-	public static void Atender(int nivel) {
-		// TODO Auto-generated method stub
-
+	
+	public boolean colision (Personaje p){
+		if (this.getX() == p.getX() && this.getY() == p.getY()){
+			return true;
+		}else return false;
 	}
-
+	
+	@Override
+	public void proxSeccion(int seccion){
+		while (this.getY()<(3*seccion)){
+			this.moverArriba();
+		}
+	}
+	
 	@Override
 	public void moverArriba() {
 		Posicion prox = new Posicion(this.getX(), this.getY() + 1);
@@ -78,10 +86,9 @@ public class FelixJR extends Personaje {
 		} else
 			return false;
 	}
-
+	
 	@Override
-	public void Atender() {
-		// TODO Auto-generated method stub
+	public void atender(int nivel) {
 		
 	}
 }

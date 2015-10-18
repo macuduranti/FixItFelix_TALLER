@@ -60,20 +60,6 @@ public class Pajaro extends Personaje {
 				setEnJuego(false);
 		}
 	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	public boolean isEnJuego() {
 		return enJuego;
@@ -93,8 +79,14 @@ public class Pajaro extends Personaje {
 	}
 
 	@Override
-	public void Atender() {
+	public void atender(int nivel) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void proxSeccion(int seccion) {
+		Pajaro.setEnJuego(false);
 		
 	}
 

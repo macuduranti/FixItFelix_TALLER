@@ -1,12 +1,13 @@
 package juego;
 
-import personajes.felix.FelixJR;
+import personajes.*;
+import personajes.felix.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import juego.Niceland;
-import personajes.Ladrillo;
-import personajes.Pajaro;
-import personajes.Pastel;
-import personajes.Ralph;
 
 public class Juego {
 	private static Juego instance = new Juego();
@@ -15,8 +16,8 @@ public class Juego {
 	public Puntaje jugadorActual;
 	public int vidas;
 	private static int vidasMax = 3;
-	public static int GolpesNecesarios;
 	public Puntaje[] puntajesMax;
+	public List<Personaje> listaElementos = new ArrayList<Personaje>();
 
 	public static Juego getInstance() {
 		return instance;
@@ -55,13 +56,23 @@ public class Juego {
 		Ralph ralph = new Ralph ();
 		int cantSeccion = ralph.romper(this.getNivel());
 		this.setSeccion(0);
+		int cantArreglado = 0;
 		FelixJR felix = new FelixJR();
 		while (this.getSeccion() < 3) { // Cuando seccion llegue a tres, pasa de nivel
 			if (this.getVidas() > 0) {
 				pajaro.atender(nivel,seccion); // La seccion se manda con this.getSeccion();
-				pastel.atender(nivel,seccion);
+				pastel.atender(nivel,seccion)
+				if (sortearPajaro()){ // Creo que tendria que ser algo asi
+					Pajaro pajaro = new Pajaro(this.getSeccion());
+				}
 				ralph.atender();
-				felix.atender(nivel); // Aca se fijaria si choca con algo
+				for (Personaje p : listaElementos) { // Se fija si choca con ladrillo pajaro o pastel
+					if ((p instanceof Pajaro || p instanceof Ladrillo) && felix.colision(p))
+						felix.setEstado(new Muerto());
+					else 
+						if (p instanceof Pastel && felix.colision(p))
+							felix.setEstado(new Inmune());
+				}
 				if (felix.isMuerto()){
 					this.setVidas(this.getVidas()-1);
 					pajaro.Reset;
@@ -71,10 +82,9 @@ public class Juego {
 				}
 				if (cantArreglado == cantSeccion){// El cantArreglado, seria un valor que cada vez que arreglas aumenta
 					this.setSeccion(this.getSeccion()++);
-					pajaro.nextSec;
-					pastel.nextSec;
-					ralph.nextSec;
-					felix.nextSec;
+					ralph.proxSeccion(this.getSeccion());
+					felix.proxSeccion(this.getSeccion());
+					cantArreglado = 0;
 					// Estos metodos lo que hacen es mover todo a la siguiente seccion
 				}
 			} else return false; // Si no tiene mas vidas 

@@ -110,9 +110,16 @@ public class Ralph extends Personaje {
 	}
 
 	@Override
-	public void Atender() {
+	public void atender(int nivel) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void proxSeccion(int seccion) {
+		while (this.getY()<(3*(seccion+1)-1)){
+			this.moverArriba();
+		}
 	}
 
 }

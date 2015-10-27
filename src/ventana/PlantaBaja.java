@@ -1,5 +1,7 @@
 package ventana;
 
+import java.util.Random;
+
 public class PlantaBaja extends Ventana {
 	@Override
 	public boolean arreglarVentana() {// Devuelve boolean si pudo arreglar para
@@ -24,5 +26,11 @@ public class PlantaBaja extends Ventana {
 		else
 			arregle = this.paneles[3].arreglar();
 		return arregle;
+	}
+
+	@Override
+	public boolean romperVentana() {
+		Random random = new Random();
+		return this.paneles[(int) random.nextDouble() * 3].romper();
 	}
 }

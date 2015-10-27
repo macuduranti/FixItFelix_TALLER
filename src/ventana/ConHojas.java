@@ -16,5 +16,10 @@ public class ConHojas extends Ventana{
 	public boolean arreglarVentana() {
 		return false;
 	}
+
+	@Override
+	public boolean romperVentana() {
+		return false;
+	}
 	
 }

@@ -58,34 +58,12 @@ public class Ralph extends Personaje {
 		Random random = new Random();
 		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
 		int cantAux = cantSeccion;
-		while (cantAux != 0) { // Rompe la primer seccion
-			int rndx = (int) random.nextDouble() * 5;
-			int rndy = (int) random.nextDouble() * 3;
-			if (!(Niceland.getInstance().edificio[rndx][rndy] instanceof ConHojas)) {
-				if (Niceland.getInstance().edificio[rndx][rndy] instanceof DosPaneles) {
-					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 1].romper()) {
-						cantAux--;
-					}
-				} else if (Niceland.getInstance().edificio[rndx][rndy] instanceof PlantaBaja) {
-					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 3].romper()) {
-						cantAux--;
-					}
-				} else if (Niceland.getInstance().edificio[rndx][rndy] instanceof PrimerPiso) {
-					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 7].romper()) {
-						cantAux--;
-					}
-				}
-			}
-		}
-		cantAux = cantSeccion;
-		for (int i = 1; i <= 2; i++) {
-			while (cantAux != 0) { // Rompe la segunda y tercer seccion
+		for (int i = 0; i <= 2; i++) {
+			while (cantAux != 0) { // Rompe cada seccion
 				int rndx = (int) random.nextDouble() * 5;
 				int rndy = (int) random.nextDouble() * (3*i) + ((3*i+1)-1);
-				if (Niceland.getInstance().edificio[rndx][rndy] instanceof DosPaneles) {
-					if (Niceland.getInstance().edificio[rndx][rndy].paneles[(int) random.nextDouble() * 1].romper()) {
+				if (Niceland.getInstance().edificio[rndx][rndy].romperVentana()) {
 						cantAux--;
-					}
 				}
 			}
 			cantAux = cantSeccion;

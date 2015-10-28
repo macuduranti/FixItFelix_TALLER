@@ -1,5 +1,5 @@
 package juego;
-
+// PRUEBA
 import personajes.*;
 import personajes.felix.*;
 import java.util.ArrayList;
@@ -32,7 +32,6 @@ public class Juego {
 		this.setSeccion(0);
 		this.setVidas(3);
 		this.setJugadorActual(0);
-
 		while (this.getVidas() > 0 && this.getNivel() <= 10) {
 			if (jugarNivel()) {
 				this.setNivel(this.getNivel() + 1);

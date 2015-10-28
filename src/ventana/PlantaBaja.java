@@ -2,6 +2,8 @@ package ventana;
 
 import java.util.Random;
 
+import juego.Direccion;
+
 public class PlantaBaja extends Ventana {
 	@Override
 	public boolean arreglarVentana() {// Devuelve boolean si pudo arreglar para
@@ -32,5 +34,15 @@ public class PlantaBaja extends Ventana {
 	public boolean romperVentana() {
 		Random random = new Random();
 		return this.paneles[(int) random.nextDouble() * 3].romper();
+	}
+
+	@Override
+	public boolean puedoPasarDesde(Direccion d) {
+		return true;
+	}
+
+	@Override
+	public boolean puedoPasarHacia(Direccion d) {
+		return true;
 	}
 }

@@ -1,5 +1,4 @@
 package juego;
-// PRUEBA
 import personajes.*;
 import personajes.felix.*;
 import java.util.ArrayList;

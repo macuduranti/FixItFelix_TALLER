@@ -2,6 +2,8 @@ package ventana;
 
 import java.util.Random;
 
+import juego.Direccion;
+
 public class DosPaneles extends Ventana {
 	public boolean macetero;
 	public boolean moldura;
@@ -43,4 +45,32 @@ public class DosPaneles extends Ventana {
 		Random random = new Random();
 		return this.paneles[(int) random.nextDouble() * 1].romper();
 	}
+
+	@Override
+	public boolean puedoPasarDesde(Direccion d) { // Se debe llamar con la proxima
+		if (d == Direccion.ABAJO){
+			if (this.hasMacetero())
+				return false;
+		}else if (d == Direccion.ARRIBA) {
+			if (this.hasMoldura()){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean puedoPasarHacia(Direccion d) { // Se debe llamar con la actual
+		if (d == Direccion.ABAJO){
+			if (this.hasMacetero())
+				return false;
+		}else if (d == Direccion.ARRIBA) {
+			if (this.hasMoldura()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
 }

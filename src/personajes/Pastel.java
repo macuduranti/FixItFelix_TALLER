@@ -1,107 +1,59 @@
 package personajes;
 
+import juego.Juego;
 import personajes.Personaje;
-
 
 public class Pastel extends Personaje {
 
-	private static int tiempo;
-	private static boolean enJuego;
-	private static double aleatorio;
-	
-	public Pastel(int seccion){
-		setEnJuego(true);
-		setTiempo(10);
-		setAleatorio(Math.random()*100);
-		if (aleatorio > 80){
-			this.setX(0);
-			System.out.print("Un nicelander dejo un pastel en la columna 1");}
-		if (aleatorio > 60 && aleatorio < 80){
-			this.setX(1);
-			System.out.print("Un nicelander dejo un pastel en la columna 2");}
-		if (aleatorio > 40 && aleatorio < 60){
-			this.setX(2);
-			System.out.print("Un nicelander dejo un pastel en la columna 3");}
-		if (aleatorio > 20 && aleatorio < 40){
-			this.setX(3);
-			System.out.print("Un nicelander dejo un pastel en la columna 4");}
-		if (aleatorio < 20){
-			this.setX(4);
-			System.out.print("Un nicelander dejo un pastel en la columna 5");}
-		
-		
-		setAleatorio(Math.random()*100);
-		if (aleatorio > 66){
-			this.setY(2 + seccion*3);
-			System.out.println(" y la fila 3!!");
-		}
-		if (aleatorio < 33){
-			this.setY(1 + seccion*3);
-			System.out.println(" y la fila 2!!");
-		}
-		else{
-			this.setY(0 + seccion*3);
-			System.out.println(" y la fila 1!!");
-		}
-		System.out.println("Tienes 10 segundos antes de que desaparezca!!");
-	}
-	
-	
-	public static int getTiempo() {
-		return tiempo;
-	}
+	private boolean enJuego;
+	private int tiempo = (100 * Juego.getInstance().getNivel());
+	private int posLista;
 
-	public static void setTiempo(int tiempo) {
-		Pastel.tiempo = tiempo;
+	public Pastel(int x, int y) {
+		this.setEnJuego(true);
+		this.setX(x);
+		this.setY(y);
 	}
 
 	public boolean isEnJuego() {
-		return enJuego;
+		return this.enJuego;
 	}
 
-	public static void setEnJuego(boolean enJuego) {
-		Pastel.enJuego = enJuego;
-	}
-	
-	public static double getAleatorio() {
-		return aleatorio;
+	public void setEnJuego(boolean enJuego) {
+		this.enJuego = enJuego;
 	}
 
-	public static void setAleatorio(double aleatorio) {
-		Pastel.aleatorio = aleatorio;
-	}
-		
 	@Override
-	public void atender(int nivel) {
-		if(enJuego){
-			setTiempo(getTiempo() -1);
+	public void atender() {
+			this.setTiempo(getTiempo() - 1);
 			if (getTiempo() == 0)
-				setEnJuego(false); //Si hay pastel en juego decrementa un segundo el tiempo y si el tiempo llega a cero lo saca
-		}
-		else{
-			setAleatorio(Math.random()*100); //Le da un numero double de 1 a 100
-			if getAleatorio() < 20*(Math.pow(1.15, nivel-1))){
-				if (getAleatorio() > 70);
-					Pastel pastel1 = new Pastel();
-			}
-			if (Juego.getNivel() == 2){
-				if (getAleatorio() > 75);
-					Pastel pastel1 = new Pastel();
-			}
-			if (Juego.getNivel() == 3){
-				if (getAleatorio() > 80);
-					Pastel pastel1 = new Pastel();
-			}
-		}
+				this.eliminar();
 	}
-	
-	@Override
-	public void proxSeccion(int seccion) {
-		if (this.isEnJuego()){
-			Pastel.setEnJuego(false);
-		}
-	}
-	
-	}
-	
 
+	@Override
+	public void proxSeccion() {
+		this.eliminar();
+	}
+
+	public void eliminar() {
+		this.setEnJuego(false);
+		Juego.getInstance().listaPasteles.remove(this.getPosLista());
+	}
+
+	public int getPosLista() {
+		return posLista;
+	}
+
+	public void setPosLista(int posLista) {
+		this.posLista = posLista;
+	}
+
+	public int getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
+	}
+
+}

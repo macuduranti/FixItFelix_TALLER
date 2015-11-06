@@ -1,5 +1,5 @@
 package personajes.felix;
 
-public abstract class EstadoDeFelix {
-
+public enum EstadoDeFelix {
+	INMUNE, MUERTO, NORMAL
 }

@@ -1,6 +1,10 @@
 package juego;
 import personajes.*;
 import personajes.felix.*;
+import personajes.ralph.Ladrillo;
+import personajes.ralph.Ralph;
+import ventana.DosPaneles;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,14 +14,23 @@ import juego.Niceland;
 
 public class Juego {
 	private static Juego instance = new Juego();
+	
+	private static FelixJR felix = new FelixJR();
+	private static Ralph ralph = new Ralph ();
+	
 	public int nivel;
 	public int seccion;
 	public Puntaje jugadorActual;
 	public int vidas;
-	private static int vidasMax = 3;
+	private final int vidasMax = 3;
 	public Puntaje[] puntajesMax;
 	public List<Personaje> listaElementos = new ArrayList<Personaje>();
-
+	
+	public List<Ladrillo> listaLadrillos = new ArrayList<Ladrillo>();
+	public List<Pajaro> listaPajaros = new ArrayList<Pajaro>();
+	public List<Pastel> listaPasteles = new ArrayList<Pastel>();
+	public List<Nicelander> listaNicelanders = new ArrayList<Nicelander>();
+	
 	public static Juego getInstance() {
 		return instance;
 	}
@@ -49,39 +62,92 @@ public class Juego {
 
 	}
 
+	/*
+	 * 
+	 * 
+	 * FALTA IMPLEMENTAR BIEN PASTELES Y NICELANDERS
+	 * 
+	 * 
+	 */
+	
 	private boolean jugarNivel() {
 		Niceland.getInstance().generarNiceland(this.getNivel());
-		Ralph ralph = new Ralph ();
 		int cantSeccion = ralph.romper(this.getNivel());
 		this.setSeccion(0);
 		int cantArreglado = 0;
-		FelixJR felix = new FelixJR();
+
 		while (this.getSeccion() < 3) { // Cuando seccion llegue a tres, pasa de nivel
 			if (this.getVidas() > 0) {
-				pajaro.atender(nivel,seccion); // La seccion se manda con this.getSeccion();
-				pastel.atender(nivel,seccion)
-				if (sortearPajaro()){ // Creo que tendria que ser algo asi
-					Pajaro pajaro = new Pajaro(this.getSeccion());
-				}
 				ralph.atender();
-				for (Personaje p : listaElementos) { // Se fija si choca con ladrillo pajaro o pastel
-					if ((p instanceof Pajaro || p instanceof Ladrillo) && felix.colision(p))
-						felix.setEstado(new Muerto());
-					else 
-						if (p instanceof Pastel && felix.colision(p))
-							felix.setEstado(new Inmune());
+				
+				// Sortea si sale un pajaro y lo agrega a la lista de pajaros
+				if (sortearPajaro()){
+					Pajaro pajaro = new Pajaro();
+					listaPajaros.add(pajaro);
+					pajaro.setPosLista(listaPajaros.size());
 				}
+				// Sortea si salen ladrillos y agrega 3 a la lista de ladrillos
+				if (sortearLadrillo()){
+					Ladrillo ladrillo = new Ladrillo(ralph.getX(),ralph.getY());
+					listaLadrillos.add(ladrillo);
+					ladrillo.setPosLista(listaLadrillos.size());
+					Ladrillo ladrillo2 = new Ladrillo(ralph.getX(),ralph.getY());
+					listaLadrillos.add(ladrillo2);
+					ladrillo2.setPosLista(listaLadrillos.size());
+					Ladrillo ladrillo3 = new Ladrillo(ralph.getX(),ralph.getY());
+					listaLadrillos.add(ladrillo3);
+					ladrillo3.setPosLista(listaLadrillos.size());
+					ralph.setCantidadLadrillos(ralph.getCantidadLadrillos()-3);
+				}
+				
+				// Chequea colisiones de los pajaros con felix y los atiende??
+				for (Pajaro pajaro : listaPajaros) {
+					pajaro.atender();
+					if (felix.colision(pajaro)){
+						felix.setEstado(EstadoDeFelix.MUERTO);
+						pajaro.eliminar();
+					}
+				}
+				// Chequea colisiones de los ladrillos con felix y los atiende??
+				for (Ladrillo ladrillo : listaLadrillos) {
+					ladrillo.atender();
+					if (felix.colision(ladrillo)){
+						felix.setEstado(EstadoDeFelix.MUERTO);
+						ladrillo.eliminar();
+					}
+				}
+				
+				// Chequea colisiones de los ladrillos con felix y los atiende??
+				for (Pastel pastel : listaPasteles) {
+					pastel.atender();
+					if (felix.colision(pastel)){
+						felix.setEstado(EstadoDeFelix.INMUNE);
+						pastel.eliminar();
+					}
+				}
+				
 				if (felix.isMuerto()){
 					this.setVidas(this.getVidas()-1);
-					pajaro.Reset;
-					pastel.Reset;
-					ralph.Reset;
-					felix.Reset;
+					for (Pajaro pajaro : listaPajaros) {
+						pajaro.eliminar();
+					}
+					for (Ladrillo ladrillo : listaLadrillos) {
+						ladrillo.eliminar();
+					}
+					// Los pasteles no desaparecen si moris
+					ralph.reset(); // Ralph deberia dejar de tirar ladrillos y reirse jej
+					felix.reset(); // Felix deberia esperar un rato en estado muerto
 				}
 				if (cantArreglado == cantSeccion){// El cantArreglado, seria un valor que cada vez que arreglas aumenta
-					this.setSeccion(this.getSeccion()++);
-					ralph.proxSeccion(this.getSeccion());
-					felix.proxSeccion(this.getSeccion());
+					this.setSeccion(this.getSeccion()+1);
+					ralph.proxSeccion();
+					felix.proxSeccion();
+					for (Pajaro pajaro : listaPajaros) {
+						pajaro.proxSeccion();
+					}
+					for (Ladrillo ladrillo : listaLadrillos) {
+						ladrillo.proxSeccion();
+					}
 					cantArreglado = 0;
 					// Estos metodos lo que hacen es mover todo a la siguiente seccion
 				}
@@ -134,6 +200,33 @@ public class Juego {
 		return puntajesMax;
 	}
 
+	public boolean sortearPajaro() {
+		Random random = new Random ();
+		if (seccion != 0) { // En la primer seccion no salen pajaros
+			if ( (int) random.nextDouble()*10 > 7)
+				// Sortea que salga un pajaro (30% de posibilidades)
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean sortearLadrillo() {
+		return ralph.sortearLadrillo();
+	}
+	
+	public boolean sortearNicelander(){ // Esta medio gede deberia ser distinto creo
+		Random random = new Random ();
+		int rndx = (int) random.nextDouble() * 5;
+		int rndy = (int) random.nextDouble() * (3 * Juego.getInstance().getSeccion()) + ((3 * Juego.getInstance().getSeccion() + 1) - 1);
+		if (Niceland.getInstance().edificio[rndx][rndy] instanceof DosPaneles && Niceland.getInstance().edificio[rndx][rndy].paneles[1].isSano()){
+			if ((int) random.nextDouble()*5 == 1){
+				System.out.println("Aparecio un nicelander en la ventana ["+rndx+"]["+rndy+"]");
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void setPuntajesMax(Puntaje[] puntajesMax) {
 		this.puntajesMax = puntajesMax;
 	}

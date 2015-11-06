@@ -1,17 +1,20 @@
 package personajes;
 
+import java.util.Random;
+
+import juego.Juego;
 
 public class Pajaro extends Personaje {
-	private static boolean enJuego;
+	private boolean enJuego;
 	private enum direccion {DERECHA, IZQUIERDA}
-	private double aleatorio;
+	private int posLista;
 		
 	direccion d;
 	//----------------CREAR-------------------
-	public Pajaro (int seccion){
+	public Pajaro (){
 		setEnJuego(true);	//Pone un nuevo pajaro
-		setAleatorio(Math.random()*100);	//Sortea para ver si sale de la izquierda o la derecha
-		if (getAleatorio() < 50){
+		Random random = new Random();	//Sortea para ver si sale de la izquierda o la derecha
+		if ((int) random.nextDouble()*10 > 5){
 			setX(0);	//Pajaro empieza en la izquierda
 			d = direccion.DERECHA;
 			System.out.print("Salio un pajaro desde la izquierda");
@@ -21,24 +24,31 @@ public class Pajaro extends Personaje {
 			System.out.print("Salio un pajaro desde la derecha");
 		}
 		
-		setAleatorio(Math.random()*100);//Sortea en que fila sale
-		if (getAleatorio() < 33)
-			this.setY(2 + (seccion * 3));
+		int rnd = (int) random.nextDouble()*3;//Sortea en que fila sale
+		switch (rnd) {
+		case 0:
+			this.setY(2 + (Juego.getInstance().getSeccion() * 3));
 			System.out.println(" en el piso 3");
-		if (getAleatorio() > 33 && getAleatorio() < 66)
-			this.setY(1 + (seccion * 3));
+			break;
+		case 1:
+			this.setY(1 + (Juego.getInstance().getSeccion() * 3));
 			System.out.println(" en el piso 2");
-		if (getAleatorio() > 66 && getAleatorio() < 100)
-			this.setY(0 + (seccion * 3));
+			break;
+		case 2:
+			this.setY(0 + (Juego.getInstance().getSeccion() * 3));
 			System.out.println(" en el piso 1");
+			break;
+		default:
+			break;
+		}
 		}
 
 	//--------------SORTEAR-----------------
-	
+@Deprecated
 	public boolean sortear(int nivel, int seccion){	
+		Random random = new Random();
 		if(seccion != 0){ 	//En la primer seccion no salen pajaros
-			setAleatorio(Math.random()*100); //Le da un numero double de 1 a 100
-			if (getAleatorio() > 70);//Sortea que salga un pajaro (30% de posibilidades)
+			if ((int) random.nextDouble()*100 > 70);//Sortea que salga un pajaro (30% de posibilidades)
 					return true;
 		}
 		return false;
@@ -62,32 +72,34 @@ public class Pajaro extends Personaje {
 	}
 
 	public boolean isEnJuego() {
-		return enJuego;
+		return this.enJuego;
 	}
 
-	public static void setEnJuego(boolean juego) {
-		enJuego = juego;
-	}
-
-	public double getAleatorio() {
-		return aleatorio;
-	}
-
-
-	public void setAleatorio(double aleatorio) {
-		this.aleatorio = aleatorio;
+	public void setEnJuego(boolean juego) {
+		this.enJuego = juego;
 	}
 
 	@Override
-	public void atender(int nivel) {
+	public void atender() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void proxSeccion(int seccion) {
-		Pajaro.setEnJuego(false);
-		
+	public void proxSeccion() {
+		this.eliminar();		
+	}
+	
+	public void eliminar(){
+		this.setEnJuego(false);
+		Juego.getInstance().listaPajaros.remove(this.getPosLista());
+	}
+
+	public int getPosLista() {
+		return posLista;
+	}
+
+	public void setPosLista(int posLista) {
+		this.posLista = posLista;
 	}
 
 }

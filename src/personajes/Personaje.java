@@ -23,9 +23,9 @@ public abstract class Personaje {
 		this.setX(this.getX() - 1);
 	}
 
-	public abstract void atender(int nivel);
+	public abstract void atender();
 	
-	public abstract void proxSeccion(int seccion);
+	public abstract void proxSeccion();
 
 	public int getX() {
 		return posicion.getX();

@@ -1,7 +1,7 @@
 package personajes;
 
 
-public class Nicelanders extends Personaje {
+public class Nicelander extends Personaje {
 	
 	//Atributos
 	// ??
@@ -14,5 +14,16 @@ public class Nicelanders extends Personaje {
 
 	public void dejarPastel(){
 		//"Nuevo pastel en la ventana de coordenada X,Y"
+	}
+
+	@Override
+	public void atender() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void proxSeccion() {
+		// TODO Auto-generated method stub
+		
 	}
 }

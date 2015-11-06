@@ -10,7 +10,9 @@ public class FelixJR extends Personaje {
 
 	// Constructor de FelixJR
 	public FelixJR() {
-		this.setEstado(new Normal());
+		this.setEstado(EstadoDeFelix.NORMAL);
+		this.setX(2);
+		this.setY(0);
 	}
 	
 	public boolean colision (Personaje p){
@@ -20,9 +22,9 @@ public class FelixJR extends Personaje {
 	}
 	
 	@Override
-	public void proxSeccion(int seccion){
-		while (this.getY()<(3*seccion)){
-			this.moverArriba();
+	public void proxSeccion(){
+		while (this.getY()<(3*Juego.getInstance().getSeccion())){
+			super.moverArriba();
 		}
 	}
 	
@@ -65,30 +67,34 @@ public class FelixJR extends Personaje {
 	public void setEstado(EstadoDeFelix estado) {
 		this.estado = estado;
 	}
-
+	
 	public boolean isMuerto() {
-		if (this.getEstado() instanceof Muerto) {
+		if (this.getEstado() == EstadoDeFelix.MUERTO) {
 			return true;
 		} else
 			return false;
 	}
 
 	public boolean isNormal() {
-		if (this.getEstado() instanceof Normal) {
+		if (this.getEstado() == EstadoDeFelix.NORMAL) {
 			return true;
 		} else
 			return false;
 	}
 
 	public boolean isInmune() {
-		if (this.getEstado() instanceof Inmune) {
+		if (this.getEstado() == EstadoDeFelix.INMUNE) {
 			return true;
 		} else
 			return false;
 	}
 	
+	public void reset(){
+		// Deberia ver como espera para revivir 
+		this.setEstado(EstadoDeFelix.NORMAL);
+	}
+	
 	@Override
-	public void atender(int nivel) {
-		
+	public void atender() {
 	}
 }

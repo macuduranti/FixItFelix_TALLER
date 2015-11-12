@@ -45,4 +45,9 @@ public class PlantaBaja extends Ventana {
 	public boolean puedoPasarHacia(Direccion d) {
 		return true;
 	}
+
+	@Override
+	public boolean puedeAparecerNicelander() {
+		return false;
+	}
 }

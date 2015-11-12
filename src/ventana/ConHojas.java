@@ -2,14 +2,13 @@ package ventana;
 
 import juego.Direccion;
 
-public class ConHojas extends Ventana{
+public class ConHojas extends Ventana {
 	public boolean abierta;
-	
-	
+
 	public boolean isAbierta() {
 		return abierta;
 	}
-	
+
 	public void setAbierta(boolean abierta) {
 		this.abierta = abierta;
 	}
@@ -26,18 +25,25 @@ public class ConHojas extends Ventana{
 
 	@Override
 	public boolean puedoPasarDesde(Direccion d) { // Se debe llamar con la prox
-		if (this.isAbierta()){
-			if (d == Direccion.DERECHA) return false;
+		if (this.isAbierta()) {
+			if (d == Direccion.DERECHA)
+				return false;
 		}
 		return true;
 	}
 
 	@Override
 	public boolean puedoPasarHacia(Direccion d) {// Se debe llamar con la actual
-		if (this.isAbierta()){
-			if (d == Direccion.IZQUIERDA) return false;
+		if (this.isAbierta()) {
+			if (d == Direccion.IZQUIERDA)
+				return false;
 		}
 		return true;
 	}
-	
+
+	@Override
+	public boolean puedeAparecerNicelander() {
+		return false;
+	}
+
 }

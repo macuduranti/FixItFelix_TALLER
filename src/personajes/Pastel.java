@@ -2,6 +2,7 @@ package personajes;
 
 import juego.Juego;
 import personajes.Personaje;
+import personajes.felix.EstadoDeFelix;
 
 public class Pastel extends Personaje {
 
@@ -25,9 +26,13 @@ public class Pastel extends Personaje {
 
 	@Override
 	public void atender() {
-			this.setTiempo(getTiempo() - 1);
-			if (getTiempo() == 0)
-				this.eliminar();
+		if (Juego.felix.colision(this)) {
+			Juego.felix.setEstado(EstadoDeFelix.INMUNE);
+			this.eliminar();
+		}
+		this.setTiempo(getTiempo() - 1);
+		if (getTiempo() == 0)
+			this.eliminar();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package personajes.ralph;
 
 import juego.Juego;
 import personajes.Personaje;
+import personajes.felix.EstadoDeFelix;
 
 public class Ladrillo extends Personaje {
 
@@ -50,6 +51,12 @@ public class Ladrillo extends Personaje {
 		} else {
 			this.eliminar();
 		}
+		if (Juego.felix.isNormal()) {
+			if (Juego.felix.colision(this)) {
+				Juego.felix.setEstado(EstadoDeFelix.MUERTO);
+				this.eliminar();
+			}
+		}
 	}
 
 	@Override
@@ -57,8 +64,8 @@ public class Ladrillo extends Personaje {
 		this.eliminar();
 
 	}
-	
-	public void eliminar(){
+
+	public void eliminar() {
 		this.setEnJuego(false);
 		Juego.getInstance().listaLadrillos.remove(this.getPosLista());
 	}

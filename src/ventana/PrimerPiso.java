@@ -63,4 +63,9 @@ public class PrimerPiso extends Ventana {
 		return true;
 	}
 
+	@Override
+	public boolean puedeAparecerNicelander() {
+		return false;
+	}
+
 }

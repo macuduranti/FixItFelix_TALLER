@@ -31,17 +31,24 @@ public class Ralph extends Personaje {
 		}
 	}
 
-	public boolean sortearLadrillo() {
+	public void sortearLadrillo() {
 		Random random = new Random();
 		if (this.getCantidadLadrillos() < 0) {
 			if ((int) random.nextDouble() * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
-				return true;
-			} else
-				return false;
-		} else
-			return false;
+				Ladrillo ladrillo = new Ladrillo(this.getX(), this.getY());
+				Juego.getInstance().listaLadrillos.add(ladrillo);
+				ladrillo.setPosLista(Juego.getInstance().listaLadrillos.size());
+				Ladrillo ladrillo2 = new Ladrillo(this.getX(), this.getY());
+				Juego.getInstance().listaLadrillos.add(ladrillo2);
+				ladrillo2.setPosLista(Juego.getInstance().listaLadrillos.size());
+				Ladrillo ladrillo3 = new Ladrillo(this.getX(), this.getY());
+				Juego.getInstance().listaLadrillos.add(ladrillo3);
+				ladrillo3.setPosLista(Juego.getInstance().listaLadrillos.size());
+				this.setCantidadLadrillos(this.getCantidadLadrillos() - 3);
+			}
+		}
 	}
-	
+
 	public void tirarLadrillo() {
 		this.setEstado(EstadoDeRalph.TIRANDO);
 	}
@@ -72,15 +79,15 @@ public class Ralph extends Personaje {
 		CantidadLadrillos = cantidadLadrillos;
 	}
 
-	public void reset(){
+	public void reset() {
 		// Deberia ver como se rie
 		this.setEstado(EstadoDeRalph.NORMAL);
 	}
-	
+
 	@Override
 	public void atender() {
 		if (this.getEstado() == EstadoDeRalph.NORMAL)
-		 this.mover(Juego.getInstance().getNivel());
+			this.mover(Juego.getInstance().getNivel());
 	}
 
 	@Override

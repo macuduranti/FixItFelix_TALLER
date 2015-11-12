@@ -71,6 +71,14 @@ public class DosPaneles extends Ventana {
 		}
 		return true;
 	}
+
+	@Override
+	public boolean puedeAparecerNicelander() {
+		if (this.paneles[1].isRoto())
+			return true;
+		else
+			return false;
+	}
 	
 	
 }

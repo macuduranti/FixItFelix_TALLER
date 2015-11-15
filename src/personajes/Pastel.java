@@ -8,7 +8,6 @@ public class Pastel extends Personaje {
 
 	private boolean enJuego;
 	private int tiempo = (100 * Juego.getInstance().getNivel());
-	private int posLista;
 
 	public Pastel(int x, int y) {
 		this.setEnJuego(true);
@@ -42,15 +41,7 @@ public class Pastel extends Personaje {
 
 	public void eliminar() {
 		this.setEnJuego(false);
-		Juego.getInstance().listaPasteles.remove(this.getPosLista());
-	}
-
-	public int getPosLista() {
-		return posLista;
-	}
-
-	public void setPosLista(int posLista) {
-		this.posLista = posLista;
+		Juego.getInstance().listaPersonajes.remove(this.getPosLista());
 	}
 
 	public int getTiempo() {
@@ -59,6 +50,10 @@ public class Pastel extends Personaje {
 
 	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;
+	}
+
+	@Override
+	public void reset() {
 	}
 
 }

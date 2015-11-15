@@ -12,8 +12,6 @@ public class Pajaro extends Personaje {
 		DERECHA, IZQUIERDA
 	}
 
-	private int posLista;
-
 	direccion d;
 
 	// ----------------CREAR-------------------
@@ -106,15 +104,12 @@ public class Pajaro extends Personaje {
 
 	public void eliminar() {
 		this.setEnJuego(false);
-		Juego.getInstance().listaPajaros.remove(this.getPosLista());
+		Juego.getInstance().listaPersonajes.remove(this.getPosLista());
 	}
 
-	public int getPosLista() {
-		return posLista;
-	}
-
-	public void setPosLista(int posLista) {
-		this.posLista = posLista;
+	@Override
+	public void reset() {
+		this.eliminar();
 	}
 
 }

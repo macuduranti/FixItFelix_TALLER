@@ -8,7 +8,6 @@ public class Ladrillo extends Personaje {
 
 	private double velocidad;
 	public boolean enJuego;
-	private int posLista;
 
 	public Ladrillo(int x, int y) {
 		this.setEnJuego(true);
@@ -67,14 +66,11 @@ public class Ladrillo extends Personaje {
 
 	public void eliminar() {
 		this.setEnJuego(false);
-		Juego.getInstance().listaLadrillos.remove(this.getPosLista());
+		Juego.getInstance().listaPersonajes.remove(this.getPosLista());
 	}
 
-	public int getPosLista() {
-		return posLista;
-	}
-
-	public void setPosLista(int posLista) {
-		this.posLista = posLista;
+	@Override
+	public void reset() {
+		this.eliminar();
 	}
 }

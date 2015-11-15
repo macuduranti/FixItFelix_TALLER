@@ -36,14 +36,14 @@ public class Ralph extends Personaje {
 		if (this.getCantidadLadrillos() < 0) {
 			if ((int) random.nextDouble() * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
 				Ladrillo ladrillo = new Ladrillo(this.getX(), this.getY());
-				Juego.getInstance().listaLadrillos.add(ladrillo);
-				ladrillo.setPosLista(Juego.getInstance().listaLadrillos.size());
+				Juego.getInstance().listaPersonajes.add(ladrillo);
+				ladrillo.setPosLista(Juego.getInstance().listaPersonajes.size());
 				Ladrillo ladrillo2 = new Ladrillo(this.getX(), this.getY());
-				Juego.getInstance().listaLadrillos.add(ladrillo2);
-				ladrillo2.setPosLista(Juego.getInstance().listaLadrillos.size());
+				Juego.getInstance().listaPersonajes.add(ladrillo2);
+				ladrillo2.setPosLista(Juego.getInstance().listaPersonajes.size());
 				Ladrillo ladrillo3 = new Ladrillo(this.getX(), this.getY());
-				Juego.getInstance().listaLadrillos.add(ladrillo3);
-				ladrillo3.setPosLista(Juego.getInstance().listaLadrillos.size());
+				Juego.getInstance().listaPersonajes.add(ladrillo3);
+				ladrillo3.setPosLista(Juego.getInstance().listaPersonajes.size());
 				this.setCantidadLadrillos(this.getCantidadLadrillos() - 3);
 			}
 		}

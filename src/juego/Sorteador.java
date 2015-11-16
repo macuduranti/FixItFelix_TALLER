@@ -15,7 +15,6 @@ public class Sorteador {
 				// Sortea que salga un pajaro (30% de posibilidades)
 				Pajaro pajaro = new Pajaro();
 				Juego.getInstance().listaPersonajes.add(pajaro);
-				pajaro.setPosLista(Juego.getInstance().listaPersonajes.size());
 			}
 		}
 	}
@@ -30,7 +29,6 @@ public class Sorteador {
 				if ((int) random.nextDouble() * 5 == 1) {
 					Nicelander nicelander = new Nicelander(rndx,rndy);
 					Juego.getInstance().listaPersonajes.add(nicelander);
-					nicelander.setPosLista(Juego.getInstance().listaPersonajes.size());
 					System.out.println("Aparecio un nicelander en la ventana [" + rndx + "][" + rndy + "]");
 				}
 			}

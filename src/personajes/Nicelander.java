@@ -19,7 +19,6 @@ public class Nicelander extends Personaje {
 		if ((int) random.nextDouble() * 10 > 5) {
 			Pastel pastel = new Pastel(this.getX(), this.getY());
 			Juego.getInstance().listaPersonajes.add(pastel);
-			pastel.setPosLista(Juego.getInstance().listaPersonajes.size());
 			System.out.println("Y se porto el chabon, dejo un pastel!!");
 			return true;
 		} else
@@ -41,7 +40,7 @@ public class Nicelander extends Personaje {
 	
 	public void eliminar(){
 		this.setEnJuego(false);
-		Juego.getInstance().listaPersonajes.remove(this.getPosLista());
+		Juego.getInstance().listaPersonajes.remove(this);
 	}
 
 	@Override

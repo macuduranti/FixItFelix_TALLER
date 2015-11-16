@@ -5,7 +5,6 @@ import juego.Posicion;
 public abstract class Personaje {
 
 	public Posicion posicion;
-	private int posLista;
 
 	// Metodos globales
 	public void moverArriba() {
@@ -54,11 +53,4 @@ public abstract class Personaje {
 		this.posicion = posicion;
 	}
 
-	public int getPosLista() {
-		return posLista;
-	}
-
-	public void setPosLista(int posLista) {
-		this.posLista = posLista;
-	}
 }

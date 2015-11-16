@@ -23,18 +23,6 @@ public class Juego {
 	public Puntaje[] puntajesMax;
 
 	public List<Personaje> listaPersonajes = new ArrayList<Personaje>();
-	/*
-	 * TENGO QUE VER COMO MANEJO ESTA LISTA, COMO BORRO LOS PERSONAJES 
-	 * YA QUE COMO LO HACIA GUARDABA LA ULTIMA POSICION(EN LA QUE SE AGREGAN)
-	 * Y LUEGO BORRABA EN ESA POSICION, PERO CUANDO SE VAN BORRANDO SUPONGO
-	 * QUE SE VAN MODIFICANDO LAS POSICIONES DE LOS DEMAS Y NO SE ACTUALIZA LA POSLISTA 
-	 * DE CADA PERSONAJE
-	 * PREGUNTAR URGENTE!!!!!!!!!!!!
-	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	 * TAMBIEN VER SI DEBO AGREGARLOS EN EL CONSTRUCTOR 
-	 * (YA QUE SIEMPRE QUE CREE UNA INSTANCIA SE VA A AGREGAR A LA LISTA)
-	 * 
-	 */
 	
 	public static Juego getInstance() {
 		return instance;

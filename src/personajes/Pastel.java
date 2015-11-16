@@ -41,7 +41,7 @@ public class Pastel extends Personaje {
 
 	public void eliminar() {
 		this.setEnJuego(false);
-		Juego.getInstance().listaPersonajes.remove(this.getPosLista());
+		Juego.getInstance().listaPersonajes.remove(this);
 	}
 
 	public int getTiempo() {

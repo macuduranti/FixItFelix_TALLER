@@ -69,15 +69,15 @@ public class PantallaPrincipal extends JFrame {
 		JButton button = new JButton("");
 		button.setBounds(444, 323, 80, 76);
 		panel.add(button);
-		button.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/star-icon (1).png"));
+		button.setIcon(new ImageIcon("src/res/star-icon (1).png"));
 		
 		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/sign-question-icon.png"));
+		button_1.setIcon(new ImageIcon("src/res/sign-question-icon.png"));
 		button_1.setBounds(61, 323, 80, 76);
 		panel.add(button_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/background.png"));
+		label.setIcon(new ImageIcon("src/res/background.png"));
 		label.setBounds(6, 18, 590, 419);
 		panel.add(label);
 	}

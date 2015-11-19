@@ -45,7 +45,7 @@ public class ayuda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/Santi/Desktop/fixitfelixcortado/pajaro/slice08_08.png"));
+		label.setIcon(new ImageIcon("src/res/slice08_08.png"));
 		label.setBounds(117, 192, 64, 42);
 		contentPane.add(label);
 	}

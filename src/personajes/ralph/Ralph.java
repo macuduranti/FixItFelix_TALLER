@@ -33,7 +33,7 @@ public class Ralph extends Personaje {
 
 	public void sortearLadrillo() {
 		Random random = new Random();
-		if (this.getCantidadLadrillos() < 0) {
+		if (this.getCantidadLadrillos() > 0) {
 			if ((int) random.nextDouble() * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
 				Ladrillo ladrillo = new Ladrillo(this.getX(), this.getY());
 				Juego.getInstance().listaPersonajes.add(ladrillo);

@@ -46,4 +46,12 @@ public class ConHojas extends Ventana {
 		return false;
 	}
 
+	@Override
+	public String getSprite() {
+		if (this.isAbierta()){
+			return "src/res.niceland/slice106_@.png";
+		}
+		return "src/res.niceland/slice105_@.png";
+	}
+
 }

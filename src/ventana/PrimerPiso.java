@@ -68,4 +68,9 @@ public class PrimerPiso extends Ventana {
 		return false;
 	}
 
+	@Override
+	public String getSprite() {
+		return "/res/niceland/slice602_@.png";
+	}
+
 }

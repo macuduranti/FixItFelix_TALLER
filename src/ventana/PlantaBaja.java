@@ -50,4 +50,9 @@ public class PlantaBaja extends Ventana {
 	public boolean puedeAparecerNicelander() {
 		return false;
 	}
+
+	@Override
+	public String getSprite() {
+		return "/res/niceland/slice600_@.png";
+	}
 }

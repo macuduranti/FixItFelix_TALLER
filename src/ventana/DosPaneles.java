@@ -79,6 +79,11 @@ public class DosPaneles extends Ventana {
 		else
 			return false;
 	}
+
+	@Override
+	public String getSprite() {
+		return "/res/niceland/slice103_@.png";
+	}
 	
 	
 }

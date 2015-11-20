@@ -11,7 +11,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class ayuda extends JFrame {
+public class Ayuda extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +22,7 @@ public class ayuda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ayuda frame = new ayuda();
+					Ayuda frame = new Ayuda();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class ayuda extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ayuda() {
+	public Ayuda() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(590, 440)); 
 		setBounds(100, 100, 450, 300);

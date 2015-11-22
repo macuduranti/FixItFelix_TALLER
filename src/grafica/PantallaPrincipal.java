@@ -1,6 +1,7 @@
 package grafica;
 
 import java.awt.*;
+
 import javax.swing.*;
 
 import java.awt.EventQueue;
@@ -22,12 +23,14 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -66,9 +69,16 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/estrella ladrillo.png"));
+		button_1.setBounds(484, 341, 63, 65);
+		panel.add(button_1);
+		
 		JButton button = new JButton("");
-		button.setBounds(444, 323, 80, 76);
+		button.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/JUGAR.png"));
+		button.setBounds(224, 166, 177, 109);
 		panel.add(button);
+<<<<<<< Updated upstream
 		button.setIcon(new ImageIcon("src/res/star-icon (1).png"));
 		
 		JButton button_1 = new JButton("");
@@ -78,7 +88,31 @@ public class PantallaPrincipal extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("src/res/background.png"));
+=======
+		
+		JButton button_2 = new JButton("");
+		button_2.setAction(action);
+		button_2.setForeground(Color.BLACK);
+		button_2.setBackground(Color.BLACK);
+		button_2.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/whats ladrillo copia.png"));
+		button_2.setBounds(41, 341, 63, 65);
+		panel.add(button_2);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/pared22 copia.png"));
+>>>>>>> Stashed changes
 		label.setBounds(6, 18, 590, 419);
 		panel.add(label);
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+			
+			
+			
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }

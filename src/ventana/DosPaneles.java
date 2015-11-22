@@ -3,11 +3,20 @@ package ventana;
 import java.util.Random;
 
 import juego.Direccion;
+import ventana.panel.Panel;
 
 public class DosPaneles extends Ventana {
 	public boolean macetero;
 	public boolean moldura;
 
+	public DosPaneles(){
+		this.paneles=new Panel[2];
+		this.paneles[0]=new Panel();
+		this.paneles[1]=new Panel();
+		this.setMacetero(false);
+		this.setMoldura(false);
+	}
+	
 	public boolean hasMacetero() {
 		return macetero;
 	}

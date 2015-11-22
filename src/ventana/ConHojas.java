@@ -4,6 +4,11 @@ import juego.Direccion;
 
 public class ConHojas extends Ventana {
 	public boolean abierta;
+	
+	public ConHojas(){
+		this.paneles=null;
+		this.setAbierta(false);
+	}
 
 	public boolean isAbierta() {
 		return abierta;
@@ -49,9 +54,9 @@ public class ConHojas extends Ventana {
 	@Override
 	public String getSprite() {
 		if (this.isAbierta()){
-			return "src/res.niceland/slice106_@.png";
+			return "src/res/niceland/slice106_@.png";
 		}
-		return "src/res.niceland/slice105_@.png";
+		return "src/res/niceland/slice105_@.png";
 	}
 
 }

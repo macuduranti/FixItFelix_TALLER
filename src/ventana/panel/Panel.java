@@ -4,6 +4,10 @@ package ventana.panel;
 public class Panel {
 	public EstadoPanel estado;
 
+	public Panel(){
+		this.setEstado(new Sano());
+	}
+	
 	public EstadoPanel getEstado() {
 		return estado;
 	}

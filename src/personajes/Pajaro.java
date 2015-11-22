@@ -19,7 +19,7 @@ public class Pajaro extends Personaje {
 		setEnJuego(true); // Pone un nuevo pajaro
 		Random random = new Random(); // Sortea para ver si sale de la izquierda
 										// o la derecha
-		if ((int) random.nextDouble() * 10 > 5) {
+		if (((int) random.nextDouble()) * 10 > 5) {
 			setX(0); // Pajaro empieza en la izquierda
 			d = direccion.DERECHA;
 			System.out.print("Salio un pajaro desde la izquierda");
@@ -29,7 +29,7 @@ public class Pajaro extends Personaje {
 			System.out.print("Salio un pajaro desde la derecha");
 		}
 
-		int rnd = (int) random.nextDouble() * 3;// Sortea en que fila sale
+		int rnd = ((int) random.nextDouble()) * 3;// Sortea en que fila sale
 		switch (rnd) {
 		case 0:
 			this.setY(2 + (Juego.getInstance().getSeccion() * 3));
@@ -53,7 +53,7 @@ public class Pajaro extends Personaje {
 	public boolean sortear(int nivel, int seccion) {
 		Random random = new Random();
 		if (seccion != 0) { // En la primer seccion no salen pajaros
-			if ((int) random.nextDouble() * 100 > 70)
+			if (((int) random.nextDouble()) * 100 > 70)
 				;// Sortea que salga un pajaro (30% de posibilidades)
 			return true;
 		}

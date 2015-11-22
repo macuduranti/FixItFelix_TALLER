@@ -3,8 +3,21 @@ package ventana;
 import java.util.Random;
 
 import juego.Direccion;
+import ventana.panel.Panel;
 
 public class PrimerPiso extends Ventana {
+	public PrimerPiso(){
+		this.paneles=new Panel[8];
+		this.paneles[0]=new Panel();
+		this.paneles[1]=new Panel();
+		this.paneles[2]=new Panel();
+		this.paneles[3]=new Panel();
+		this.paneles[4]=new Panel();
+		this.paneles[5]=new Panel();
+		this.paneles[6]=new Panel();
+		this.paneles[7]=new Panel();
+	}
+	
 	@Override
 	public boolean arreglarVentana() {// Devuelve boolean si pudo arreglar para
 		// hacer la animacion o no, si devuelve

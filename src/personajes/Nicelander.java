@@ -16,7 +16,7 @@ public class Nicelander extends Personaje {
 
 	private boolean sortearPastel() {
 		Random random = new Random();
-		if ((int) random.nextDouble() * 10 > 5) {
+		if (((int) random.nextDouble()) * 10 > 5) {
 			Pastel pastel = new Pastel(this.getX(), this.getY());
 			Juego.getInstance().listaPersonajes.add(pastel);
 			System.out.println("Y se porto el chabon, dejo un pastel!!");

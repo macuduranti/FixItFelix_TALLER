@@ -21,8 +21,7 @@ public class Ralph extends Personaje {
 
 	public void mover(int nivel) {
 		Random random = new Random();
-		int rnd = (int) random.nextDouble() * 100;
-		if (rnd <= 50) {
+		if ((((int) random.nextDouble()) * 10) <= 5) {
 			if (this.getX() > 0) {
 				this.moverIzquierda();
 			}
@@ -34,7 +33,7 @@ public class Ralph extends Personaje {
 	public void sortearLadrillo() {
 		Random random = new Random();
 		if (this.getCantidadLadrillos() > 0) {
-			if ((int) random.nextDouble() * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
+			if (((int) random.nextDouble()) * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
 				Ladrillo ladrillo = new Ladrillo(this.getX(), this.getY());
 				Juego.getInstance().listaPersonajes.add(ladrillo);
 				Ladrillo ladrillo2 = new Ladrillo(this.getX(), this.getY());
@@ -57,8 +56,8 @@ public class Ralph extends Personaje {
 		int cantAux = cantSeccion;
 		for (int i = 0; i <= 2; i++) {
 			while (cantAux != 0) { // Rompe cada seccion
-				int rndx = (int) random.nextDouble() * 5;
-				int rndy = (int) random.nextDouble() * (3 * i) + ((3 * i + 1) - 1);
+				int rndx = ((int) random.nextDouble()) * 5;
+				int rndy = ((int) random.nextDouble()) * (3 * i) + ((3 * i + 1) - 1);
 				if (Niceland.getInstance().edificio[rndx][rndy].romperVentana()) {
 					cantAux--;
 				}

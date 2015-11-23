@@ -63,7 +63,7 @@ public class Juego {
 		this.setSeccion(0);
 		int cantArreglado = 0;
 
-		while (this.getSeccion() < 3) { // Cuando seccion llegue a tres, pasa de
+		while (this.getSeccion() < 4) { // Cuando seccion llegue a tres, pasa de
 										// nivel
 			if (this.getVidas() > 0) {
 				// Sortea si sale un pajaro y lo agrega a la lista de pajaros

@@ -6,12 +6,12 @@ import java.util.Random;
 public class Niceland {
 
 	private static Niceland instance = new Niceland();
-	public Ventana[][] edificio = new Ventana[5][9];
+	public Ventana[][] edificio = new Ventana[5][11];
 
 	public void generarNiceland(int nivel) {
 		Random random = new Random();
 		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 9; j++) {
+			for (int j = 0; j < 11; j++) {
 				//if (((i != 2) && (j != 0)) && ((i != 2) && (j != 1))) {
 					if (((int) (random.nextDouble() * 100)) < 15) {
 						this.edificio[i][j] = new ConHojas();
@@ -34,7 +34,7 @@ public class Niceland {
 		System.out.println("Se ha generado Niceland para nivel "+nivel+".");
 	}
 
-	public boolean mePuedoMover(Posicion act, Posicion prox, int seccion) {
+	public boolean mePuedoMover(Posicion act, Posicion prox) {
 		if (prox.getX() > act.getX()) { // Si me muevo a la derecha
 			if (prox.getX() <= 5 && this.edificio[prox.getX()][prox.getY()].puedoPasarDesde(Direccion.IZQUIERDA)
 					&& this.edificio[act.getX()][act.getY()].puedoPasarHacia(Direccion.DERECHA))
@@ -48,14 +48,14 @@ public class Niceland {
 			else
 				return false;
 		} else if (prox.getY() > act.getY()) {// Si me muevo hacia arriba
-			if ((prox.getY() <= 2 + (seccion * 3))
+			if ((prox.getY() <= 2 + (Juego.getInstance().getSeccion() * 3))
 					&& this.edificio[prox.getX()][prox.getY()].puedoPasarDesde(Direccion.ABAJO)
 					&& this.edificio[act.getX()][act.getY()].puedoPasarHacia(Direccion.ARRIBA))
 				return true;
 			else
 				return false;
 		} else if (prox.getY() < act.getY()) {// Si me muevo hacia abajo
-			if ((prox.getY() >= 0 + (seccion * 3))
+			if ((prox.getY() >= 0 + (Juego.getInstance().getSeccion() * 3))
 					&& this.edificio[prox.getX()][prox.getY()].puedoPasarDesde(Direccion.ARRIBA)
 					&& this.edificio[act.getX()][act.getY()].puedoPasarHacia(Direccion.ABAJO))
 				return true;

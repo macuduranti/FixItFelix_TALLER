@@ -31,7 +31,7 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverArriba() {
 		Posicion prox = new Posicion(this.getX(), this.getY() + 1);
-		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox,Juego.getInstance().getSeccion()))) {
+		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverArriba();
 		}
 	}
@@ -39,7 +39,7 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverAbajo() {
 		Posicion prox = new Posicion(this.getX(), this.getY() - 1);
-		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox,Juego.getInstance().getSeccion()))) {
+		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverAbajo();
 		}
 	}
@@ -47,7 +47,7 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverDerecha() {
 		Posicion prox = new Posicion(this.getX() + 1, this.getY());
-		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox,Juego.getInstance().getSeccion()))) {
+		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverDerecha();
 		}
 	}
@@ -55,7 +55,7 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverIzquierda() {
 		Posicion prox = new Posicion(this.getX() - 1, this.getY());
-		if (Niceland.getInstance().mePuedoMover(this.getPosicion(),prox,Juego.getInstance().getSeccion())) { 
+		if (Niceland.getInstance().mePuedoMover(this.getPosicion(),prox)) { 
 			super.moverIzquierda();
 		}
 	}

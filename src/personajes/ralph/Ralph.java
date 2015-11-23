@@ -54,7 +54,7 @@ public class Ralph extends Personaje {
 		Random random = new Random();
 		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
 		int cantAux = cantSeccion;
-		for (int i = 0; i <= 2; i++) {
+		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion
 				int rndx = ((int) random.nextDouble()) * 5;
 				int rndy = ((int) random.nextDouble()) * (3 * i) + ((3 * i + 1) - 1);

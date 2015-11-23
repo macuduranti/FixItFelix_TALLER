@@ -74,6 +74,13 @@ public class PantallaPrincipal extends JFrame {
 		label.setIcon(new ImageIcon("src/res/background.png"));
 		
 		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Juego JframeJuego = new Juego();
+				JframeJuego.frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/JUGAR.png")));
 		button.setBounds(217, 180, 177, 69);
 		panel.add(button);

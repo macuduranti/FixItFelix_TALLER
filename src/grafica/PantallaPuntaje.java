@@ -9,7 +9,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class PantallaPuntaje extends JFrame {
 
@@ -43,13 +47,26 @@ public class PantallaPuntaje extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha.png")));
-		button.setBounds(344, 232, 235, 185);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					PantallaPrincipal JframePrincipal = new PantallaPrincipal();
+					JframePrincipal.setVisible(true);
+					setVisible(false);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		button.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha y fondo.jpg")));
+		button.setBounds(516, 372, 48, 45);
 		contentPane.add(button);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
-		label.setBounds(6, 0, 654, 417);
+		label.setBounds(0, 0, 660, 423);
 		contentPane.add(label);
 	}
 

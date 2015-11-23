@@ -52,7 +52,7 @@ public class DosPaneles extends Ventana {
 	@Override
 	public boolean romperVentana() {
 		Random random = new Random();
-		return this.paneles[(int) random.nextDouble() * 1].romper();
+		return this.paneles[(int) (random.nextDouble() * 2)].romper();
 	}
 
 	@Override

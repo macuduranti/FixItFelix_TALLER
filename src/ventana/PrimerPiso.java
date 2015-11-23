@@ -63,7 +63,7 @@ public class PrimerPiso extends Ventana {
 	@Override
 	public boolean romperVentana() {
 		Random random = new Random();
-		return this.paneles[(int) random.nextDouble() * 7].romper();
+		return this.paneles[(int) (random.nextDouble() * 8)].romper();
 	}
 
 	@Override

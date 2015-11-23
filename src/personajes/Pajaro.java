@@ -3,6 +3,7 @@ package personajes;
 import java.util.Random;
 
 import juego.Juego;
+import juego.Posicion;
 import personajes.felix.EstadoDeFelix;
 
 public class Pajaro extends Personaje {
@@ -19,6 +20,7 @@ public class Pajaro extends Personaje {
 		setEnJuego(true); // Pone un nuevo pajaro
 		Random random = new Random(); // Sortea para ver si sale de la izquierda
 										// o la derecha
+		this.posicion = new Posicion();
 		if (((int) random.nextDouble()) * 10 > 5) {
 			setX(0); // Pajaro empieza en la izquierda
 			d = direccion.DERECHA;

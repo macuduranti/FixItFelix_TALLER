@@ -62,7 +62,7 @@ public class Juego {
 		int cantSeccion = ralph.romper(this.getNivel());
 		this.setSeccion(0);
 		int cantArreglado = 0;
-
+		ralph.setCantidadLadrillos(40);
 		while (this.getSeccion() < 4) { // Cuando seccion llegue a tres, pasa de
 										// nivel
 			if (this.getVidas() > 0) {

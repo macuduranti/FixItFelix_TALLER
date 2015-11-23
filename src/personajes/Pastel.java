@@ -1,6 +1,7 @@
 package personajes;
 
 import juego.Juego;
+import juego.Posicion;
 import personajes.Personaje;
 import personajes.felix.EstadoDeFelix;
 
@@ -11,8 +12,7 @@ public class Pastel extends Personaje {
 
 	public Pastel(int x, int y) {
 		this.setEnJuego(true);
-		this.setX(x);
-		this.setY(y);
+		this.posicion= new Posicion(x,y);
 	}
 
 	public boolean isEnJuego() {

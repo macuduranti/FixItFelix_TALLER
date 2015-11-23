@@ -44,7 +44,7 @@ public class PlantaBaja extends Ventana {
 	@Override
 	public boolean romperVentana() {
 		Random random = new Random();
-		return this.paneles[(int) random.nextDouble() * 3].romper();
+		return this.paneles[(int) (random.nextDouble() * 4)].romper();
 	}
 
 	@Override

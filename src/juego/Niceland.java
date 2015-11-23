@@ -6,12 +6,12 @@ import java.util.Random;
 public class Niceland {
 
 	private static Niceland instance = new Niceland();
-	public Ventana[][] edificio = new Ventana[5][11];
+	public Ventana[][] edificio = new Ventana[5][12];
 
 	public void generarNiceland(int nivel) {
 		Random random = new Random();
 		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 11; j++) {
+			for (int j = 0; j < 12; j++) {
 				//if (((i != 2) && (j != 0)) && ((i != 2) && (j != 1))) {
 					if (((int) (random.nextDouble() * 100)) < 15) {
 						this.edificio[i][j] = new ConHojas();
@@ -19,10 +19,10 @@ public class Niceland {
 							((ConHojas) this.edificio[i][j]).setAbierta(true);
 					} else {
 						this.edificio[i][j] = new DosPaneles();
-						if (((int) (random.nextDouble() * 100)) < (10 * (Math.pow(1.15, nivel - 1))))
+						if (((int) (random.nextDouble() * 100)) < (5 * (Math.pow(1.15, nivel - 1))))
 							((DosPaneles) this.edificio[i][j]).setMoldura(true);
 
-						if (((int) (random.nextDouble() * 100)) < (10 * (Math.pow(1.15, nivel - 1))))
+						if (((int) (random.nextDouble() * 100)) < (5 * (Math.pow(1.15, nivel - 1))))
 							((DosPaneles) this.edificio[i][j]).setMacetero(true);
 
 					}

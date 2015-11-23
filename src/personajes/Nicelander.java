@@ -3,15 +3,15 @@ package personajes;
 import java.util.Random;
 
 import juego.Juego;
+import juego.Posicion;
 
 public class Nicelander extends Personaje {
 	private boolean enJuego;
 	private int oportunidades = 3;
 
-	public Nicelander(int posX, int posY) { 
+	public Nicelander(int x, int y) { 
 		this.setEnJuego(true);
-		this.setX(posX);
-		this.setY(posY);
+		this.posicion=new Posicion(x,y);
 	}
 
 	private boolean sortearPastel() {

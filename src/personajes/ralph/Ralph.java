@@ -4,6 +4,7 @@ import java.util.Random;
 
 import juego.Juego;
 import juego.Niceland;
+import juego.Posicion;
 import personajes.Personaje;
 
 public class Ralph extends Personaje {
@@ -15,13 +16,12 @@ public class Ralph extends Personaje {
 	public Ralph() {
 		this.setCantidadLadrillos(40);
 		this.setEstado(EstadoDeRalph.NORMAL);
-		this.setX(2);
-		this.setY(3);
+		this.posicion = new Posicion(2, 3);
 	}
 
 	public void mover(int nivel) {
 		Random random = new Random();
-		if ((((int) random.nextDouble()) * 10) <= 5) {
+		if (((int) (random.nextDouble() * 10)) <= 5) {
 			if (this.getX() > 0) {
 				this.moverIzquierda();
 			}
@@ -33,7 +33,7 @@ public class Ralph extends Personaje {
 	public void sortearLadrillo() {
 		Random random = new Random();
 		if (this.getCantidadLadrillos() > 0) {
-			if (((int) random.nextDouble()) * 100 < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
+			if ((int) (random.nextDouble() * 100) < 20 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
 				Ladrillo ladrillo = new Ladrillo(this.getX(), this.getY());
 				Juego.getInstance().listaPersonajes.add(ladrillo);
 				Ladrillo ladrillo2 = new Ladrillo(this.getX(), this.getY());
@@ -56,14 +56,17 @@ public class Ralph extends Personaje {
 		int cantAux = cantSeccion;
 		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion
-				int rndx = ((int) random.nextDouble()) * 5;
-				int rndy = ((int) random.nextDouble()) * (3 * i) + ((3 * i + 1) - 1);
+				int rndx = (int) (random.nextDouble() * 4);
+				int rndy = (int) (random.nextDouble() * 3 + (3 * i));
 				if (Niceland.getInstance().edificio[rndx][rndy].romperVentana()) {
 					cantAux--;
 				}
 			}
+			System.out.println("Ralph ha roto la seccion " + (i + 1) + ".");
 			cantAux = cantSeccion;
 		}
+		System.out.println("Ralph ha roto niceland");
+		this.setEstado(EstadoDeRalph.NORMAL);
 		return cantSeccion;
 	}
 
@@ -91,7 +94,6 @@ public class Ralph extends Personaje {
 		while (this.getY() < (3 * (Juego.getInstance().getSeccion() + 1) - 1)) {
 			this.moverArriba();
 		}
-		this.setCantidadLadrillos(40);
 	}
 
 	public EstadoDeRalph getEstado() {

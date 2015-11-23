@@ -11,8 +11,7 @@ public class FelixJR extends Personaje {
 	// Constructor de FelixJR
 	public FelixJR() {
 		this.setEstado(EstadoDeFelix.NORMAL);
-		this.setX(2);
-		this.setY(0);
+		this.posicion=new Posicion(2,0);
 	}
 	
 	public boolean colision (Personaje p){

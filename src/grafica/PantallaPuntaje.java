@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class PantallaPuntaje extends JFrame {
 
@@ -40,9 +42,14 @@ public class PantallaPuntaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha.png")));
+		button.setBounds(344, 232, 235, 185);
+		contentPane.add(button);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
-		label.setBounds(0, 0, 654, 432);
+		label.setBounds(6, 0, 654, 417);
 		contentPane.add(label);
 	}
 

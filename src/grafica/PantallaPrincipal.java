@@ -79,8 +79,15 @@ public class PantallaPrincipal extends JFrame {
 		panel.add(button);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaAyuda JframeAyuda = new PantallaAyuda();
+				JframeAyuda.setVisible(true);
+				setVisible(false);
+			}
+		});
 		button_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/?.jpg"));
-		button_1.setBounds(54, 336, 63, 62);
+		button_1.setBounds(55, 345, 60, 53);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");

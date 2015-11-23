@@ -41,7 +41,7 @@ public class PantallaPuntaje extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/fondo puntaje.jpg"));
+		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
 		label.setBounds(0, 0, 654, 432);
 		contentPane.add(label);
 	}

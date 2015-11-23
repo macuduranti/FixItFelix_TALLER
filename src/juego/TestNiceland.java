@@ -9,7 +9,7 @@ public class TestNiceland {
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(3);
 		Ralph ralph = new Ralph();
-		int CantSeccion=ralph.romper(3);
+		ralph.romper(3);
 	}
 
 }

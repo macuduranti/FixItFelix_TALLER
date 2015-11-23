@@ -41,7 +41,7 @@ public class PantallaAyuda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/fondo ayuda.png"));
+		label.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/fondo ayuda.png")));
 		label.setBounds(0, -41, 587, 453);
 		contentPane.add(label);
 	}

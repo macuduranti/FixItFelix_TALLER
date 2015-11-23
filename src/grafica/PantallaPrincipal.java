@@ -96,7 +96,7 @@ public class PantallaPrincipal extends JFrame {
 		panel.add(button_2);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/fondo principal.png")));
+		label_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("src/res/fondo principal.png")));
 		label_1.setBounds(6, 18, 590, 417);
 		panel.add(label_1);
 	}

@@ -26,6 +26,7 @@ import javax.swing.border.TitledBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -57,7 +58,7 @@ public class PantallaPrincipal extends JFrame {
 		this.setMinimumSize(new Dimension(590, 440)); 
 		setTitle("Fixit Felix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 590, 436);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,40 +70,28 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/estrella ladrillo.png"));
-		button_1.setBounds(484, 341, 63, 65);
-		panel.add(button_1);
-		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/JUGAR.png"));
-		button.setBounds(224, 166, 177, 109);
-		panel.add(button);
-<<<<<<< Updated upstream
-		button.setIcon(new ImageIcon("src/res/star-icon (1).png"));
-		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("src/res/sign-question-icon.png"));
-		button_1.setBounds(61, 323, 80, 76);
-		panel.add(button_1);
-		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("src/res/background.png"));
-=======
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/JUGAR.png"));
+		button.setBounds(217, 180, 177, 69);
+		panel.add(button);
+		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/?.jpg"));
+		button_1.setBounds(54, 336, 63, 62);
+		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");
-		button_2.setAction(action);
-		button_2.setForeground(Color.BLACK);
-		button_2.setBackground(Color.BLACK);
-		button_2.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/whats ladrillo copia.png"));
-		button_2.setBounds(41, 341, 63, 65);
+		button_2.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/trofeo.jpg"));
+		button_2.setBounds(504, 336, 52, 62);
 		panel.add(button_2);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/images/pared22 copia.png"));
->>>>>>> Stashed changes
-		label.setBounds(6, 18, 590, 419);
-		panel.add(label);
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon("/Users/Santi/Desktop/FixItFelix_TALLER/src/res/fondo principal.png"));
+		label_1.setBounds(6, 18, 590, 417);
+		panel.add(label_1);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {

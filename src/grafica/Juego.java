@@ -76,7 +76,7 @@ public class Juego {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 451, 447);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

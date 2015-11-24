@@ -27,6 +27,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -94,7 +96,7 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		button_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/?.jpg")));
-		button_1.setBounds(55, 345, 59, 53);
+		button_1.setBounds(31, 224, 59, 53);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");
@@ -108,6 +110,19 @@ public class PantallaPrincipal extends JFrame {
 		button_2.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/trofeo.jpg")));
 		button_2.setBounds(504, 336, 52, 62);
 		panel.add(button_2);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PantallaAyuda JframeAyuda = new PantallaAyuda();
+				JframeAyuda.setVisible(true);
+				setVisible(false);
+			}
+		});
+		label_2.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/?_final.png")));
+		label_2.setBounds(46, 336, 60, 60);
+		panel.add(label_2);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/fondo principal.png")));

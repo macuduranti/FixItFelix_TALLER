@@ -78,7 +78,7 @@ public class PantallaPrincipal extends JFrame {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Juego JframeJuego = new Juego();
+				JuegoGrafica JframeJuego = new JuegoGrafica();
 				JframeJuego.frame.setVisible(true);
 				setVisible(false);
 			}

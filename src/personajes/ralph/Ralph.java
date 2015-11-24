@@ -52,7 +52,7 @@ public class Ralph extends Personaje {
 	public int romper(int nivel) {
 		this.setEstado(EstadoDeRalph.ROMPIENDO);
 		Random random = new Random();
-		int cantSeccion = 10 * ((int) Math.pow(1.15, nivel - 1));
+		int cantSeccion = (int)(10 *  Math.pow(1.15, nivel - 1));
 		int cantAux = cantSeccion;
 		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion

@@ -23,15 +23,26 @@ public class Juego {
 	public final ImageIcon pngPlantaBaja = new ImageIcon(Juego.class.getResource("/res/niceland/slice600_@.png"));
 	public final ImageIcon pngPrimerPiso = new ImageIcon(Juego.class.getResource("/res/niceland/slice602_@.png"));
 
-	public final ImageIcon pngPanelRoto = new ImageIcon(Juego.class.getResource(""));
-	public final ImageIcon pngPanelParcRoto1 = new ImageIcon(Juego.class.getResource("/res/niceland/slice05_05.png"));
-	public final ImageIcon pngPanelParcRoto2 = new ImageIcon(Juego.class.getResource("/res/niceland/slice06_06.png"));
-	public final ImageIcon pngPanelSano = new ImageIcon(Juego.class.getResource("/res/niceland/slice02_02.png"));
+	public final ImageIcon pngPanelParc1 = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_semi1.png"));
+	public final ImageIcon pngPanelParc2 = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_semi2.png"));
+	public final ImageIcon pngPanelSano = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_sano.png"));
+
+	public final ImageIcon pngPanelP1Parc1 = new ImageIcon(
+			Juego.class.getResource("/res/niceland/p1_panel_semi1.png"));
+	public final ImageIcon pngPanelP1Parc2 = new ImageIcon(
+			Juego.class.getResource("/res/niceland/p1_panel_semi2.png"));
+	public final ImageIcon pngPanelP1Roto = new ImageIcon(Juego.class.getResource("/res/niceland/p1_panel_roto.png"));
+	
+	public final ImageIcon pngPanelPBParc1 = new ImageIcon(
+			Juego.class.getResource("/res/niceland/pb_panel_semi1.png"));
+	public final ImageIcon pngPanelPBParc2 = new ImageIcon(
+			Juego.class.getResource("/res/niceland/pb_panel_semi2.png"));
+	public final ImageIcon pngPanelPBSano = new ImageIcon(Juego.class.getResource("/res/niceland/pb_panel_sano.png"));
 
 	public final ImageIcon pngMacetero = new ImageIcon(Juego.class.getResource("/res/niceland/macetero.png"));
 	public final ImageIcon pngMoldura = new ImageIcon(Juego.class.getResource("/res/niceland/slice22_22.png"));
-	
-	private int desp = 300;
+
+	private int desp = 0;
 
 	public int getDesp() {
 		return desp;
@@ -76,7 +87,7 @@ public class Juego {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 451, 447);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,11 +101,9 @@ public class Juego {
 
 		/*
 		 * 
-		 * Hay que cambiar la imagen de la con hojas abierta para que se abra
-		 * solo hacia la izquierda
-		 * 
-		 * Faltan los paneles de las ventanas semicirculares, hay que 
-		 * hacer las imagenes de eso
+		 * Preguntar si deberia ejecutar calcular obstaculos en cada ejecucion,
+		 * ya que es algo que no varia a lo largo del juego y deberia ejecutarse
+		 * solo la primera vez
 		 * 
 		 */
 
@@ -114,7 +123,7 @@ public class Juego {
 		panel.add(lblVentana10);
 
 		calcularPaneles(Niceland.getInstance().edificio[2][0], panel, 195, 313);
-		JLabel lblPlantaBaja = new JLabel(" ");
+		JLabel lblPlantaBaja = new JLabel("");
 		lblPlantaBaja.setIcon(definirSprite(Niceland.getInstance().edificio[2][0]));
 		lblPlantaBaja.setBounds(195, 313 + desp, 61, 97);
 		panel.add(lblPlantaBaja);
@@ -178,29 +187,29 @@ public class Juego {
 		lblVentana02.setBounds(105, 176 + desp, 38, 60);
 		panel.add(lblVentana02);
 
-		calcularObstaculos(Niceland.getInstance().edificio[0][2], panel, 150, 176);
-		calcularPaneles(Niceland.getInstance().edificio[0][2], panel, 150, 176);
+		calcularObstaculos(Niceland.getInstance().edificio[1][2], panel, 150, 176);
+		calcularPaneles(Niceland.getInstance().edificio[1][2], panel, 150, 176);
 		JLabel lblVentana12 = new JLabel("");
 		lblVentana12.setIcon(definirSprite(Niceland.getInstance().edificio[1][2]));
 		lblVentana12.setBounds(150, 176 + desp, 38, 60);
 		panel.add(lblVentana12);
 
-		calcularObstaculos(Niceland.getInstance().edificio[0][2], panel, 205, 176);
-		calcularPaneles(Niceland.getInstance().edificio[0][2], panel, 205, 176);
+		calcularObstaculos(Niceland.getInstance().edificio[2][2], panel, 205, 176);
+		calcularPaneles(Niceland.getInstance().edificio[2][2], panel, 205, 176);
 		JLabel lblVentana22 = new JLabel("");
 		lblVentana22.setIcon(definirSprite(Niceland.getInstance().edificio[2][2]));
 		lblVentana22.setBounds(205, 176 + desp, 38, 60);
 		panel.add(lblVentana22);
 
-		calcularObstaculos(Niceland.getInstance().edificio[0][2], panel, 260, 176);
-		calcularPaneles(Niceland.getInstance().edificio[0][2], panel, 260, 176);
+		calcularObstaculos(Niceland.getInstance().edificio[3][2], panel, 260, 176);
+		calcularPaneles(Niceland.getInstance().edificio[3][2], panel, 260, 176);
 		JLabel lblVentana32 = new JLabel("");
 		lblVentana32.setIcon(definirSprite(Niceland.getInstance().edificio[3][2]));
 		lblVentana32.setBounds(260, 176 + desp, 38, 60);
 		panel.add(lblVentana32);
 
-		calcularObstaculos(Niceland.getInstance().edificio[0][2], panel, 305, 176);
-		calcularPaneles(Niceland.getInstance().edificio[0][2], panel, 305, 176);
+		calcularObstaculos(Niceland.getInstance().edificio[4][2], panel, 305, 176);
+		calcularPaneles(Niceland.getInstance().edificio[4][2], panel, 305, 176);
 		JLabel lblVentana42 = new JLabel("");
 		lblVentana42.setIcon(definirSprite(Niceland.getInstance().edificio[4][2]));
 		lblVentana42.setBounds(305, 176 + desp, 38, 60);
@@ -278,14 +287,14 @@ public class Juego {
 	}
 
 	private void calcularObstaculos(Ventana ventana, JPanel panel, int x, int y) {
-		if (ventana instanceof DosPaneles){
-			if (((DosPaneles) ventana).hasMacetero()){
+		if (ventana instanceof DosPaneles) {
+			if (((DosPaneles) ventana).hasMacetero()) {
 				JLabel macetero = new JLabel("");
 				macetero.setIcon(this.pngMacetero);
 				macetero.setBounds(x + 5, y + 46 + desp, 29, 16);
 				panel.add(macetero);
 			}
-			if (((DosPaneles) ventana).hasMoldura()){
+			if (((DosPaneles) ventana).hasMoldura()) {
 				JLabel moldura = new JLabel("");
 				moldura.setIcon(this.pngMoldura);
 				moldura.setBounds(x - 1, y + 1 + desp, 40, 10);
@@ -298,7 +307,7 @@ public class Juego {
 		if (ventana instanceof DosPaneles) {
 			if (ventana.paneles[0].isParcRoto()) {
 				JLabel panel1 = new JLabel("");
-				panel1.setIcon(this.pngPanelParcRoto1);
+				panel1.setIcon(this.pngPanelParc1);
 				panel1.setBounds(x + 11, y + 12 + desp, 18, 17);
 				panel.add(panel1);
 			} else if (ventana.paneles[0].isSano()) {
@@ -310,32 +319,108 @@ public class Juego {
 			if (ventana.paneles[1].isParcRoto()) {
 				JLabel panel2 = new JLabel("");
 				panel2.setBounds(x + 13, y + 31 + desp, 16, 17);
-				panel2.setIcon(this.pngPanelParcRoto2);
+				panel2.setIcon(this.pngPanelParc2);
 				panel.add(panel2);
 			} else if (ventana.paneles[1].isSano()) {
 				JLabel panel2 = new JLabel("");
-				panel2.setBounds(x + 10, y + 32 + desp, 20, 16);
+				panel2.setBounds(x + 10, y + 31 + desp, 20, 16);
 				panel2.setIcon(this.pngPanelSano);
 				panel.add(panel2);
 			}
 
 		} else if (ventana instanceof PlantaBaja) {
-			/*
-			 * if (ventana.paneles[1].isParcRoto()) { JLabel panel2 = new
-			 * JLabel(""); panel2.setBounds(x + 13, y + 31 + desp, 16, 17);
-			 * panel2.setIcon(this.pngPanelParcRoto2); panel.add(panel2); } else
-			 * if (ventana.paneles[1].isSano()) { JLabel panel2 = new
-			 * JLabel(""); panel2.setBounds(x + 10, y + 32 + desp, 20, 16);
-			 * panel2.setIcon(this.pngPanelSano); panel.add(panel2); }else if
-			 * (ventana.paneles[1].isParcRoto()) { JLabel panel2 = new
-			 * JLabel(""); panel2.setBounds(x + 13, y + 31 + desp, 16, 17);
-			 * panel2.setIcon(this.pngPanelParcRoto2); panel.add(panel2); } else
-			 * if (ventana.paneles[1].isSano()) { JLabel panel2 = new
-			 * JLabel(""); panel2.setBounds(x + 10, y + 32 + desp, 20, 16);
-			 * panel2.setIcon(this.pngPanelSano); panel.add(panel2); }
-			 */
+			if (ventana.paneles[0].isParcRoto()) {
+				JLabel panel0 = new JLabel("");
+				panel0.setIcon(this.pngPanelPBParc1);
+				panel0.setBounds(208, 363 + desp, 14, 16);
+				panel.add(panel0);
+			} else if (ventana.paneles[0].isSano()) {
+				JLabel panel0 = new JLabel("");
+				panel0.setIcon(this.pngPanelPBSano);
+				panel0.setBounds(208, 363 + desp, 14, 16);
+				panel.add(panel0);
+			}
+			if (ventana.paneles[1].isParcRoto()) {
+				JLabel panel1 = new JLabel("");
+				panel1.setIcon(this.pngPanelPBParc2);
+				panel1.setBounds(228, 363 + desp, 14, 16);
+				panel.add(panel1);
+			} else if (ventana.paneles[1].isSano()) {
+				JLabel panel1 = new JLabel("");
+				panel1.setIcon(this.pngPanelPBSano);
+				panel1.setBounds(228, 363 + desp, 14, 16);
+				panel.add(panel1);
+			}
+			if (ventana.paneles[2].isParcRoto()) {
+				JLabel panel2 = new JLabel("");
+				panel2.setIcon(this.pngPanelPBParc2);
+				panel2.setBounds(208, 381 + desp, 14, 16);
+				panel.add(panel2);
+			} else if (ventana.paneles[2].isSano()) {
+				JLabel panel2 = new JLabel("");
+				panel2.setIcon(this.pngPanelPBSano);
+				panel2.setBounds(208, 381 + desp, 14, 16);
+				panel.add(panel2);
+			}
+			if (ventana.paneles[3].isParcRoto()) {
+				JLabel panel3 = new JLabel("");
+				panel3.setIcon(this.pngPanelPBParc1);
+				panel3.setBounds(228, 381 + desp, 14, 16);
+				panel.add(panel3);
+			} else if (ventana.paneles[3].isSano()) {
+				JLabel panel3 = new JLabel("");
+				panel3.setIcon(this.pngPanelPBSano);
+				panel3.setBounds(228, 381 + desp, 14, 16);
+				panel.add(panel3);
+			}
 
+			
+			
 		} else if (ventana instanceof PrimerPiso) {
+			if (ventana.paneles[0].isParcRoto()) {
+				JLabel panel0 = new JLabel("");
+				panel0.setIcon(this.pngPanelP1Parc1);
+				panel0.setBounds(205, 283 + desp, 8, 10);
+				panel.add(panel0);
+			} else if (ventana.paneles[0].isRoto()) {
+				JLabel panel0 = new JLabel("");
+				panel0.setIcon(this.pngPanelP1Roto);
+				panel0.setBounds(205, 283 + desp, 8, 10);
+				panel.add(panel0);
+			}
+			if (ventana.paneles[1].isParcRoto()) {
+				JLabel panel1 = new JLabel("");
+				panel1.setIcon(this.pngPanelP1Parc2);
+				panel1.setBounds(226, 283 + desp, 8, 10);
+				panel.add(panel1);
+			} else if (ventana.paneles[1].isRoto()) {
+				JLabel panel1 = new JLabel("");
+				panel1.setIcon(this.pngPanelP1Roto);
+				panel1.setBounds(226, 283 + desp, 8, 10);
+				panel.add(panel1);
+			}
+			if (ventana.paneles[2].isParcRoto()) {
+				JLabel panel2 = new JLabel("");
+				panel2.setIcon(this.pngPanelP1Parc2);
+				panel2.setBounds(214, 283 + desp, 8, 10);
+				panel.add(panel2);
+			} else if (ventana.paneles[2].isRoto()) {
+				JLabel panel2 = new JLabel("");
+				panel2.setIcon(this.pngPanelP1Roto);
+				panel2.setBounds(214, 283 + desp, 8, 10);
+				panel.add(panel2);
+			}
+			if (ventana.paneles[3].isParcRoto()) {
+				JLabel panel3 = new JLabel("");
+				panel3.setIcon(this.pngPanelP1Parc1);
+				panel3.setBounds(236, 283 + desp, 8, 10);
+				panel.add(panel3);
+			} else if (ventana.paneles[3].isRoto()) {
+				JLabel panel3 = new JLabel("");
+				panel3.setIcon(this.pngPanelP1Roto);
+				panel3.setBounds(236, 283 + desp, 8, 10);
+				panel.add(panel3);
+			}
 
 		}
 

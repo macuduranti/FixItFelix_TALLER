@@ -7,15 +7,11 @@ import ventana.panel.Panel;
 
 public class PrimerPiso extends Ventana {
 	public PrimerPiso(){
-		this.paneles=new Panel[8];
+		this.paneles=new Panel[4];
 		this.paneles[0]=new Panel();
 		this.paneles[1]=new Panel();
 		this.paneles[2]=new Panel();
 		this.paneles[3]=new Panel();
-		this.paneles[4]=new Panel();
-		this.paneles[5]=new Panel();
-		this.paneles[6]=new Panel();
-		this.paneles[7]=new Panel();
 	}
 	
 	@Override
@@ -40,30 +36,13 @@ public class PrimerPiso extends Ventana {
 			return arregle;
 		else
 			arregle = this.paneles[3].arreglar();
-		if (arregle)
-			return arregle;
-		else
-			arregle = this.paneles[4].arreglar();
-		if (arregle)
-			return arregle;
-		else
-			arregle = this.paneles[5].arreglar();
-		if (arregle)
-			return arregle;
-		else
-			arregle = this.paneles[6].arreglar();
-		if (arregle)
-			return arregle;
-		else
-			arregle = this.paneles[7].arreglar();
 		return arregle;
-
 	}
 
 	@Override
 	public boolean romperVentana() {
 		Random random = new Random();
-		return this.paneles[(int) (random.nextDouble() * 8)].romper();
+		return this.paneles[(int) (random.nextDouble() * 4)].romper();
 	}
 
 	@Override

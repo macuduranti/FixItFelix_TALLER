@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaAyuda extends JFrame {
 
@@ -46,6 +48,21 @@ public class PantallaAyuda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label_1 = new JLabel("");
+		label_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal JframePrincipal;
+				try {
+					JframePrincipal = new PantallaPrincipal();
+					JframePrincipal.setVisible(true);
+					setVisible(false);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
 		label_1.setBounds(16, 17, 52, 52);
 		contentPane.add(label_1);

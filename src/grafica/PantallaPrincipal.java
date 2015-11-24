@@ -74,6 +74,13 @@ public class PantallaPrincipal extends JFrame {
 		label.setIcon(new ImageIcon("src/res/background.png"));
 		
 		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Juego JframeJuego = new Juego();
+				JframeJuego.frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/JUGAR.png")));
 		button.setBounds(217, 180, 177, 69);
 		panel.add(button);
@@ -91,6 +98,13 @@ public class PantallaPrincipal extends JFrame {
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaPuntaje JframePuntaje = new PantallaPuntaje();
+				JframePuntaje.setVisible(true);
+				setVisible(false);
+			}
+		});
 		button_2.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/trofeo.jpg")));
 		button_2.setBounds(504, 336, 52, 62);
 		panel.add(button_2);

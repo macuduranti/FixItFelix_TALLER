@@ -65,7 +65,7 @@ public class PantallaPuntaje extends JFrame {
 			}
 		});
 		label_1.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha_final.png")));
-		label_1.setBounds(19, 23, 52, 52);
+		label_1.setBounds(16, 17, 52, 52);
 		contentPane.add(label_1);
 		
 		JLabel label = new JLabel("");

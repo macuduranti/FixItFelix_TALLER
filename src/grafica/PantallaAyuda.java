@@ -45,27 +45,14 @@ public class PantallaAyuda extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					PantallaPrincipal JframePrincipal = new PantallaPrincipal();
-					JframePrincipal.setVisible(true);
-					setVisible(false);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		button.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha y fondo.jpg")));
-		button.setBounds(512, 341, 48, 49);
-		contentPane.add(button);
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
+		label_1.setBounds(16, 17, 52, 52);
+		contentPane.add(label_1);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/fondo ayuda.png")));
 		label.setBounds(0, -41, 587, 453);
 		contentPane.add(label);
 	}
-
 }

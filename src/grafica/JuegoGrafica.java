@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
+import juego.Juego;
 import juego.Niceland;
 import personajes.ralph.Ralph;
 import ventana.ConHojas;
@@ -15,35 +16,45 @@ import ventana.DosPaneles;
 import ventana.PlantaBaja;
 import ventana.PrimerPiso;
 import ventana.Ventana;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
-public class Juego {
-	public final ImageIcon pngConHojasAbierta = new ImageIcon(Juego.class.getResource("/res/niceland/slice106_@.png"));
-	public final ImageIcon pngConHojasCerrada = new ImageIcon(Juego.class.getResource("/res/niceland/slice105_@.png"));
-	public final ImageIcon pngDosPaneles = new ImageIcon(Juego.class.getResource("/res/niceland/slice103_@.png"));
-	public final ImageIcon pngPlantaBaja = new ImageIcon(Juego.class.getResource("/res/niceland/slice600_@.png"));
-	public final ImageIcon pngPrimerPiso = new ImageIcon(Juego.class.getResource("/res/niceland/slice602_@.png"));
+public class JuegoGrafica {
+	public final ImageIcon pngVidaFelix = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/vida-felix-small.png"));
+	
+	public final ImageIcon pngConHojasAbierta = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice106_@.png"));
+	public final ImageIcon pngConHojasCerrada = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice105_@.png"));
+	public final ImageIcon pngDosPaneles = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice103_@.png"));
+	public final ImageIcon pngPlantaBaja = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice600_@.png"));
+	public final ImageIcon pngPrimerPiso = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice602_@.png"));
 
-	public final ImageIcon pngPanelParc1 = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_semi1.png"));
-	public final ImageIcon pngPanelParc2 = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_semi2.png"));
-	public final ImageIcon pngPanelSano = new ImageIcon(Juego.class.getResource("/res/niceland/2p_panel_sano.png"));
+	public final ImageIcon pngPanelParc1 = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/2p_panel_semi1.png"));
+	public final ImageIcon pngPanelParc2 = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/2p_panel_semi2.png"));
+	public final ImageIcon pngPanelSano = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/2p_panel_sano.png"));
 
 	public final ImageIcon pngPanelP1Parc1 = new ImageIcon(
-			Juego.class.getResource("/res/niceland/p1_panel_semi1.png"));
+			JuegoGrafica.class.getResource("/res/niceland/p1_panel_semi1.png"));
 	public final ImageIcon pngPanelP1Parc2 = new ImageIcon(
-			Juego.class.getResource("/res/niceland/p1_panel_semi2.png"));
-	public final ImageIcon pngPanelP1Roto = new ImageIcon(Juego.class.getResource("/res/niceland/p1_panel_roto.png"));
+			JuegoGrafica.class.getResource("/res/niceland/p1_panel_semi2.png"));
+	public final ImageIcon pngPanelP1Roto = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/p1_panel_roto.png"));
 	
 	public final ImageIcon pngPanelPBParc1 = new ImageIcon(
-			Juego.class.getResource("/res/niceland/pb_panel_semi1.png"));
+			JuegoGrafica.class.getResource("/res/niceland/pb_panel_semi1.png"));
 	public final ImageIcon pngPanelPBParc2 = new ImageIcon(
-			Juego.class.getResource("/res/niceland/pb_panel_semi2.png"));
-	public final ImageIcon pngPanelPBSano = new ImageIcon(Juego.class.getResource("/res/niceland/pb_panel_sano.png"));
+			JuegoGrafica.class.getResource("/res/niceland/pb_panel_semi2.png"));
+	public final ImageIcon pngPanelPBSano = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/pb_panel_sano.png"));
 
-	public final ImageIcon pngMacetero = new ImageIcon(Juego.class.getResource("/res/niceland/macetero.png"));
-	public final ImageIcon pngMoldura = new ImageIcon(Juego.class.getResource("/res/niceland/slice22_22.png"));
+	public final ImageIcon pngMacetero = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/macetero.png"));
+	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
-	private int desp = 0;
+	private int desp = 715;
 
+	// Seccion 0 = desp 0
+	// Seccion 1 = desp 245
+	// Seccion 2 = desp 480
+	// Seccion 3 = desp 715
+	
 	public int getDesp() {
 		return desp;
 	}
@@ -58,17 +69,20 @@ public class Juego {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-
+		Juego juego = new Juego();
+		Juego.setInstance(juego);
+		Juego.getInstance().setNivel(10);
+		Juego.getInstance().setVidas(3);
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
-		Niceland.getInstance().generarNiceland(5);
+		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
 		Ralph ralph = new Ralph();
-		ralph.romper(5);
+		ralph.romper(Juego.getInstance().getNivel());
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Juego window = new Juego();
+					JuegoGrafica window = new JuegoGrafica();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,7 +94,7 @@ public class Juego {
 	/**
 	 * Create the application.
 	 */
-	public Juego() {
+	public JuegoGrafica() {
 		initialize();
 	}
 
@@ -89,21 +103,58 @@ public class Juego {
 	 */
 	public void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 447);
+		frame.setBounds(100, 100, 451, 432);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JLabel lblAcaVaEl = new JLabel("Aca va el puntaje las vidas etc");
-		frame.getContentPane().add(lblAcaVaEl, BorderLayout.NORTH);
-
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		JLabel lblNivel= new JLabel("NIVEL "+Juego.getInstance().getNivel());
+		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNivel.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblNivel.setForeground(Color.WHITE);
+		lblNivel.setBounds(0, 17, 451, 21);
+		panel.add(lblNivel);
 
+		JLabel lblPuntaje = new JLabel("PUNTAJE");
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setBounds(31, 17, 61, 16);
+		panel.add(lblPuntaje);
+		
+		JLabel Puntaje = new JLabel(Integer.toString(Juego.getInstance().getPuntosJugadorActual()));
+		Puntaje.setHorizontalAlignment(SwingConstants.CENTER);
+		Puntaje.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		Puntaje.setForeground(Color.YELLOW);
+		Puntaje.setBounds(0, 42, 118, 16);
+		panel.add(Puntaje);
+		
+		JLabel lblVidas = new JLabel("VIDAS");
+		lblVidas.setForeground(Color.WHITE);
+		lblVidas.setBounds(365, 17, 38, 16);
+		panel.add(lblVidas);
+		
+		calcularVidas(panel);
+		
+		JLabel lblCuadroVidas = new JLabel("");
+		lblCuadroVidas.setIcon(new ImageIcon("/Users/macuduranti/Documents/Facultad/Taller de Lenguajes 2/Fix it Felix Jr./fixitfelixJr_images/cuadro-vidas.png"));
+		lblCuadroVidas.setBounds(339,34, 92, 35);
+		panel.add(lblCuadroVidas);
+		
+		JLabel lblForeground = new JLabel("");
+		lblForeground.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/cover juego.png")));
+		lblForeground.setBounds(-70, -16, 587, 441);
+		panel.add(lblForeground);
+		
 		/*
 		 * 
 		 * Preguntar si deberia ejecutar calcular obstaculos en cada ejecucion,
 		 * ya que es algo que no varia a lo largo del juego y deberia ejecutarse
 		 * solo la primera vez
+		 * 
+		 * Lo mismo con el foreground, hace un new ImageIcon cada vez que se ejecuta.
 		 * 
 		 */
 
@@ -266,7 +317,7 @@ public class Juego {
 		}
 
 		JLabel lblNiceland = new JLabel("");
-		lblNiceland.setIcon(new ImageIcon(Juego.class.getResource("/res/niceland/edificio_150.png")));
+		lblNiceland.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/edificio_150.png")));
 		lblNiceland.setBounds(65, -619 + desp, 315, 1028);
 		panel.add(lblNiceland);
 	}
@@ -424,5 +475,39 @@ public class Juego {
 
 		}
 
+	}
+	
+	public void calcularVidas(JPanel panel){
+		if (Juego.getInstance().getVidas() == 3 ){
+			JLabel vidaFelix = new JLabel("");
+			vidaFelix.setIcon(this.pngVidaFelix);
+			vidaFelix.setBounds(339, 37, 24, 29);
+			panel.add(vidaFelix);
+			
+			JLabel vidaFelix1 = new JLabel("");
+			vidaFelix1.setIcon(this.pngVidaFelix);
+			vidaFelix1.setBounds(373, 37, 24, 29);
+			panel.add(vidaFelix1);
+			
+			JLabel vidaFelix2 = new JLabel("");
+			vidaFelix2.setIcon(this.pngVidaFelix);
+			vidaFelix2.setBounds(407, 37, 24, 29);
+			panel.add(vidaFelix2);	
+		}else if (Juego.getInstance().getVidas() == 2 ){
+			JLabel vidaFelix1 = new JLabel("");
+			vidaFelix1.setIcon(this.pngVidaFelix);
+			vidaFelix1.setBounds(373, 37, 24, 29);
+			panel.add(vidaFelix1);
+			
+			JLabel vidaFelix2 = new JLabel("");
+			vidaFelix2.setIcon(this.pngVidaFelix);
+			vidaFelix2.setBounds(407, 37, 24, 29);
+			panel.add(vidaFelix2);	
+		}else if (Juego.getInstance().getVidas() == 1){
+			JLabel vidaFelix2 = new JLabel("");
+			vidaFelix2.setIcon(this.pngVidaFelix);
+			vidaFelix2.setBounds(407, 37, 24, 29);
+			panel.add(vidaFelix2);
+		}
 	}
 }

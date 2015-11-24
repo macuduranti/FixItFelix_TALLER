@@ -4,6 +4,11 @@ public class Puntaje implements Comparable<Puntaje>{
 	public int puntos;
 	public String nombre;
 	
+	public Puntaje(){
+		this.setPuntos(000000);
+		this.setNombre(null);
+	}
+	
 	public int getPuntos() {
 		return puntos;
 	}

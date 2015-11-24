@@ -31,6 +31,13 @@ public class Juego {
 	public static void setInstance(Juego instance) {
 		Juego.instance = instance;
 	}
+	
+	public Juego(){
+		this.setNivel(1);
+		this.setSeccion(0);
+		this.setVidas(3);
+		this.jugadorActual = new Puntaje();
+	}
 
 	public void nuevoJuego() {
 		this.setNivel(1);
@@ -108,9 +115,13 @@ public class Juego {
 	}
 
 	public Puntaje getJugadorActual() {
-		return jugadorActual;
+		return this.jugadorActual;
 	}
 
+	public int getPuntosJugadorActual() {
+		return this.jugadorActual.getPuntos();
+	}
+	
 	public void setJugadorActual(String name) {
 		this.jugadorActual.setNombre(name);
 	}

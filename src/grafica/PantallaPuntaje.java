@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaPuntaje extends JFrame {
 
@@ -46,11 +48,13 @@ public class PantallaPuntaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel label_1 = new JLabel("");
+		label_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal JframePrincipal;
 				try {
-					PantallaPrincipal JframePrincipal = new PantallaPrincipal();
+					JframePrincipal = new PantallaPrincipal();
 					JframePrincipal.setVisible(true);
 					setVisible(false);
 				} catch (IOException e1) {
@@ -60,9 +64,9 @@ public class PantallaPuntaje extends JFrame {
 				
 			}
 		});
-		button.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha y fondo.jpg")));
-		button.setBounds(516, 372, 48, 45);
-		contentPane.add(button);
+		label_1.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha_final.png")));
+		label_1.setBounds(19, 23, 52, 52);
+		contentPane.add(label_1);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));

@@ -145,15 +145,20 @@ public class JuegoGrafica {
 		JLabel lblPuntaje = new JLabel("PUNTAJE");
 		lblPuntaje.setForeground(Color.WHITE);
 		lblPuntaje.setFont(font.deriveFont(Font.PLAIN, 14f));
-		lblPuntaje.setBounds(33, 15, 76, 21);
+		lblPuntaje.setBounds(37, 15, 76, 21);
 		panel.add(lblPuntaje);
 		
 		JLabel Puntaje = new JLabel(Integer.toString(Juego.getInstance().getPuntosJugadorActual()));
 		Puntaje.setHorizontalAlignment(SwingConstants.CENTER);
 		Puntaje.setFont(font.deriveFont(Font.PLAIN, 21f));
 		Puntaje.setForeground(Color.YELLOW);
-		Puntaje.setBounds(0, 33, 118, 29);
+		Puntaje.setBounds(17, 33, 92, 35);
 		panel.add(Puntaje);
+		
+		JLabel lblCuadroPuntaje = new JLabel("");
+		lblCuadroPuntaje.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/cuadro-vidas.png")));
+		lblCuadroPuntaje.setBounds(17,33, 92, 35);
+		panel.add(lblCuadroPuntaje);
 		
 		JLabel lblVidas = new JLabel("VIDAS");
 		lblVidas.setFont(font.deriveFont(Font.PLAIN, 14f));
@@ -164,7 +169,7 @@ public class JuegoGrafica {
 		calcularVidas(panel);
 		
 		JLabel lblCuadroVidas = new JLabel("");
-		lblCuadroVidas.setIcon(new ImageIcon("/Users/macuduranti/Documents/Facultad/Taller de Lenguajes 2/Fix it Felix Jr./fixitfelixJr_images/cuadro-vidas.png"));
+		lblCuadroVidas.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/cuadro-vidas.png")));
 		lblCuadroVidas.setBounds(339,34, 92, 35);
 		panel.add(lblCuadroVidas);
 		

@@ -67,9 +67,14 @@ public class PantallaAyuda extends JFrame {
 		label_1.setBounds(16, 17, 52, 52);
 		contentPane.add(label_1);
 		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/pastel2.gif")));
+		label_2.setBounds(237, 336, 61, 52);
+		contentPane.add(label_2);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/fondo ayuda.png")));
-		label.setBounds(0, -41, 587, 453);
+		label.setBounds(0, -41, 600, 450);
 		contentPane.add(label);
 	}
 }

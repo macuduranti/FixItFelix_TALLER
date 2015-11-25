@@ -72,9 +72,6 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("src/res/background.png"));
-		
 		JButton button = new JButton("");
 		button.addMouseListener(new MouseAdapter() {
 			@Override

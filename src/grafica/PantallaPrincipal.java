@@ -76,6 +76,16 @@ public class PantallaPrincipal extends JFrame {
 		label.setIcon(new ImageIcon("src/res/background.png"));
 		
 		JButton button = new JButton("");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/JAmarillo.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/J.png")));
+			}
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JuegoGrafica JframeJuego = new JuegoGrafica();
@@ -83,8 +93,8 @@ public class PantallaPrincipal extends JFrame {
 				setVisible(false);
 			}
 		});
-		button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/JUGAR.png")));
-		button.setBounds(217, 180, 177, 69);
+		button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/J.png")));
+		button.setBounds(217, 180, 184, 69);
 		panel.add(button);
 		
 		JLabel label_2 = new JLabel("");

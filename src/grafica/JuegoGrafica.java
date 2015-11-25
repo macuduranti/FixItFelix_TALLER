@@ -18,6 +18,10 @@ import ventana.PrimerPiso;
 import ventana.Ventana;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
+
 import javax.swing.SwingConstants;
 
 public class JuegoGrafica {
@@ -71,7 +75,7 @@ public class JuegoGrafica {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(10);
+		Juego.getInstance().setNivel(3);
 		Juego.getInstance().setVidas(3);
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
@@ -112,28 +116,49 @@ public class JuegoGrafica {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		
+		Font font=null;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/res/fuente/VCR_OSD_MONO_1.001.ttf"));
+			
+			GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			genv.registerFont(font);
+			// makesure to derive the size
+			font = font.deriveFont(12f);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
+
+		
 		JLabel lblNivel= new JLabel("NIVEL "+Juego.getInstance().getNivel());
 		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNivel.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblNivel.setFont(font.deriveFont(Font.PLAIN, 28f));
 		lblNivel.setForeground(Color.WHITE);
 		lblNivel.setBounds(0, 17, 451, 21);
 		panel.add(lblNivel);
 
 		JLabel lblPuntaje = new JLabel("PUNTAJE");
 		lblPuntaje.setForeground(Color.WHITE);
-		lblPuntaje.setBounds(31, 17, 61, 16);
+		lblPuntaje.setFont(font.deriveFont(Font.PLAIN, 14f));
+		lblPuntaje.setBounds(33, 15, 76, 21);
 		panel.add(lblPuntaje);
 		
 		JLabel Puntaje = new JLabel(Integer.toString(Juego.getInstance().getPuntosJugadorActual()));
 		Puntaje.setHorizontalAlignment(SwingConstants.CENTER);
-		Puntaje.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		Puntaje.setFont(font.deriveFont(Font.PLAIN, 21f));
 		Puntaje.setForeground(Color.YELLOW);
-		Puntaje.setBounds(0, 42, 118, 16);
+		Puntaje.setBounds(0, 33, 118, 29);
 		panel.add(Puntaje);
 		
 		JLabel lblVidas = new JLabel("VIDAS");
+		lblVidas.setFont(font.deriveFont(Font.PLAIN, 14f));
 		lblVidas.setForeground(Color.WHITE);
-		lblVidas.setBounds(365, 17, 38, 16);
+		lblVidas.setBounds(365, 17, 54, 16);
 		panel.add(lblVidas);
 		
 		calcularVidas(panel);

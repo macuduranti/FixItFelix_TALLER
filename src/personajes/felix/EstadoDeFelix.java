@@ -1,5 +1,5 @@
 package personajes.felix;
 
 public enum EstadoDeFelix {
-	INMUNE, MUERTO, NORMAL
+	INMUNE, MUERTO, NORMAL, MOVIENDO, ARREGLANDO
 }

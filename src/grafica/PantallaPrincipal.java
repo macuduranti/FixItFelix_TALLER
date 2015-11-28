@@ -19,10 +19,14 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
+
+import test.JuegoMain;
+import test.JuegoTask;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -88,6 +92,12 @@ public class PantallaPrincipal extends JFrame {
 				JuegoGrafica JframeJuego = new JuegoGrafica();
 				JframeJuego.frame.setVisible(true);
 				setVisible(false);
+				
+				//Esto es todo para el test, no deberia ser asi - NO DARLE BOLA
+				/*JuegoMain juegomain = new JuegoMain();
+				Timer timer = new Timer("Imprimir....");
+				JuegoTask task = new JuegoTask();
+				timer.schedule(task, 0, 10);*/
 			}
 		});
 		button.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/J.png")));

@@ -13,7 +13,7 @@ public class Juego {
 	private static Juego instance = new Juego();
 
 	public static FelixJR felix = new FelixJR();
-	private static Ralph ralph = new Ralph();
+	public static Ralph ralph = new Ralph();
 	private static Sorteador sorteador = new Sorteador();
 
 	public int nivel;

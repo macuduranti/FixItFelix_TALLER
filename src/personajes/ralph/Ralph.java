@@ -62,7 +62,6 @@ public class Ralph extends Personaje {
 					cantAux--;
 				}
 			}
-			System.out.println("Ralph ha roto la seccion " + (i + 1) + ".");
 			cantAux = cantSeccion;
 		}
 		System.out.println("Ralph ha roto niceland");

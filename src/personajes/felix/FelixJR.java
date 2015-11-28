@@ -59,6 +59,10 @@ public class FelixJR extends Personaje {
 		}
 	}
 
+	public void arreglar(){
+		Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana();
+	}
+	
 	public EstadoDeFelix getEstado() {
 		return estado;
 	}
@@ -83,6 +87,20 @@ public class FelixJR extends Personaje {
 
 	public boolean isInmune() {
 		if (this.getEstado() == EstadoDeFelix.INMUNE) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public boolean isMoviendo() {
+		if (this.getEstado() == EstadoDeFelix.MOVIENDO) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public boolean isArreglando() {
+		if (this.getEstado() == EstadoDeFelix.ARREGLANDO) {
 			return true;
 		} else
 			return false;

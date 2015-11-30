@@ -710,9 +710,12 @@ public class JuegoGrafica {
 		}else if (Juego.felix.isMoviendo()){
 			lblFelix.setIcon(this.pngFelixMoviendo);
 			lblFelix.setBounds(x, y + desp, 31, 51);
-		}else if (Juego.felix.isArreglando()){
+		}else if (Juego.felix.isArreglando1()){
 			lblFelix.setIcon(this.pngFelixArreglando1);
 			lblFelix.setBounds(x, y + desp, 39, 54);
+		}else if (Juego.felix.isArreglando2()){
+			lblFelix.setIcon(this.pngFelixArreglando2);
+			lblFelix.setBounds(x, y + desp, 54, 51);
 		}else if (Juego.felix.isInmune()){
 			
 		}else if (Juego.felix.isMuerto()){

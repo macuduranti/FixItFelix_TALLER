@@ -1,6 +1,7 @@
 package personajes.felix;
 
 import java.awt.Rectangle;
+import java.util.Timer;
 
 import juego.Juego;
 import juego.Niceland;
@@ -42,6 +43,11 @@ public class FelixJR extends Personaje {
 		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverArriba();
 		}
+		Timer timer = new Timer("Moviendo");
+		TaskMoviendo m = new TaskMoviendo();
+		TaskNormal n = new TaskNormal();
+		timer.schedule(m, 0);
+		timer.schedule(n, 100);
 	}
 
 	@Override
@@ -50,6 +56,11 @@ public class FelixJR extends Personaje {
 		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverAbajo();
 		}
+		Timer timer = new Timer("Moviendo");
+		TaskMoviendo m = new TaskMoviendo();
+		TaskNormal n = new TaskNormal();
+		timer.schedule(m, 0);
+		timer.schedule(n, 100);
 	}
 
 	@Override
@@ -58,6 +69,11 @@ public class FelixJR extends Personaje {
 		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(),prox))) {
 			super.moverDerecha();
 		}
+		Timer timer = new Timer("Moviendo");
+		TaskMoviendo m = new TaskMoviendo();
+		TaskNormal n = new TaskNormal();
+		timer.schedule(m, 0);
+		timer.schedule(n, 100);
 	}
 
 	@Override
@@ -66,11 +82,24 @@ public class FelixJR extends Personaje {
 		if (Niceland.getInstance().mePuedoMover(this.getPosicion(),prox)) { 
 			super.moverIzquierda();
 		}
+		Timer timer = new Timer("Moviendo");
+		TaskMoviendo m = new TaskMoviendo();
+		TaskNormal n = new TaskNormal();
+		timer.schedule(m, 0);
+		timer.schedule(n, 100);
 	}
 
 	public void arreglar(){
 		if (Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana()){
 			Juego.getInstance().setJugadorActual(Juego.getInstance().getPuntosJugadorActual()+100);
+			Timer timer = new Timer("Arreglando");
+			TaskArreglando1 ta1 = new TaskArreglando1();
+			TaskArreglando2 ta2 = new TaskArreglando2();
+			TaskNormal n = new TaskNormal();
+			timer.schedule(ta1, 0);
+			timer.schedule(ta2, 50);
+			timer.schedule(n, 150);
+			
 		}
 			
 	}
@@ -111,8 +140,15 @@ public class FelixJR extends Personaje {
 			return false;
 	}
 	
-	public boolean isArreglando() {
-		if (this.getEstado() == EstadoDeFelix.ARREGLANDO) {
+	public boolean isArreglando1() {
+		if (this.getEstado() == EstadoDeFelix.ARREGLANDO1) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public boolean isArreglando2() {
+		if (this.getEstado() == EstadoDeFelix.ARREGLANDO2) {
 			return true;
 		} else
 			return false;

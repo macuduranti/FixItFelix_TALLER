@@ -20,15 +20,13 @@ public class PantallaAyuda extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					PantallaAyuda frame = new PantallaAyuda();
-					frame.setVisible(true);
+					frame.setVisible(true);	//Creacion de la pantalla ayuda
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,29 +34,27 @@ public class PantallaAyuda extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public PantallaAyuda() {
+
+	public PantallaAyuda() { //Constructor de Ayuda
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null);
 		
-		JLabel label_1 = new JLabel("");
+		JLabel label_1 = new JLabel(""); //Boton atras
 		label_1.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal JframePrincipal;
 				try {
 					JframePrincipal = new PantallaPrincipal();
 					JframePrincipal.setVisible(true);
 					setVisible(false);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+				} 
+				catch (IOException e1) {
 					e1.printStackTrace();
 				}
 				

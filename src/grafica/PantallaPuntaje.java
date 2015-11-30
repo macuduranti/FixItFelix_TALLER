@@ -21,9 +21,6 @@ public class PantallaPuntaje extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,12 +34,11 @@ public class PantallaPuntaje extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public PantallaPuntaje() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,7 +47,7 @@ public class PantallaPuntaje extends JFrame {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.addMouseListener(new MouseAdapter() {
-			@Override
+			
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal JframePrincipal;
 				try {
@@ -59,12 +55,12 @@ public class PantallaPuntaje extends JFrame {
 					JframePrincipal.setVisible(true);
 					setVisible(false);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
 			}
 		});
+		
 		label_1.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/flecha_final.png")));
 		label_1.setBounds(16, 17, 52, 52);
 		contentPane.add(label_1);

@@ -25,14 +25,21 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
+<<<<<<< Updated upstream
 import test.JuegoMain;
 import test.JuegoTask;
+=======
+import personajes.ralph.Ralph;
+>>>>>>> Stashed changes
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import juego.Juego;
+import juego.Niceland;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -46,6 +53,15 @@ public class PantallaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Juego juego = new Juego();
+					Juego.setInstance(juego);
+					Juego.getInstance().setNivel(3);
+					Juego.getInstance().setVidas(3);
+					Niceland niceland = new Niceland();
+					Niceland.setInstance(niceland);
+					Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
+					Ralph ralph = new Ralph();
+					ralph.romper(Juego.getInstance().getNivel());
 					PantallaPrincipal frame = new PantallaPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {

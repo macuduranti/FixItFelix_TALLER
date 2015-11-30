@@ -89,7 +89,7 @@ public class PantallaAyuda extends JFrame {
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/pastel2.gif")));
-		label_2.setBounds(237, 336, 61, 52);
+		label_2.setBounds(265, 330, 61, 52);
 		contentPane.add(label_2);
 		
 		JLabel label = new JLabel("");

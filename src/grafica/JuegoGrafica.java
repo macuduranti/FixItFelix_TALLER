@@ -94,12 +94,12 @@ public class JuegoGrafica {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(3);
+		Juego.getInstance().setNivel(10);
 		Juego.getInstance().setVidas(3);
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.ralph.romper(Juego.getInstance().getNivel());	
+		Juego.ralph.romper(Juego.getInstance().getNivel());
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -129,9 +129,10 @@ public class JuegoGrafica {
 	 */
 	public void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 432);
+		frame.setBounds(100, 100, 451, 432); //451
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 
 		panel = new JuegoPanel();
 		panel.setFocusable(true);
@@ -151,11 +152,18 @@ public class JuegoGrafica {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-
+		
+		public void initialize() {
+			
+		}
+		
+		
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			this.removeAll();
+			
+			// Cada vez que repaintea setea la fuente
 			Font font = null;
 			try {
 				font = Font.createFont(Font.TRUETYPE_FONT,
@@ -387,7 +395,6 @@ public class JuegoGrafica {
 			lblNiceland.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/edificio_150.png")));
 			lblNiceland.setBounds(65, -619 + desp, 315, 1028);
 			this.add(lblNiceland);
-			System.out.println("Repintado lince");
 		}
 	}
 	

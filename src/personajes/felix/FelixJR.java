@@ -69,7 +69,10 @@ public class FelixJR extends Personaje {
 	}
 
 	public void arreglar(){
-		Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana();
+		if (Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana()){
+			Juego.getInstance().setJugadorActual(Juego.getInstance().getPuntosJugadorActual()+100);
+		}
+			
 	}
 	
 	public EstadoDeFelix getEstado() {

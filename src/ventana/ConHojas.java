@@ -31,7 +31,7 @@ public class ConHojas extends Ventana {
 	@Override
 	public boolean puedoPasarDesde(Direccion d) { // Se debe llamar con la prox
 		if (this.isAbierta()) {
-			if (d == Direccion.DERECHA)
+			if (d == Direccion.IZQUIERDA)
 				return false;
 		}
 		return true;

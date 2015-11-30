@@ -25,6 +25,9 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
+import controller.Controller;
+import juego.Juego;
+import juego.Niceland;
 import test.JuegoMain;
 import test.JuegoTask;
 
@@ -43,7 +46,16 @@ public class PantallaPrincipal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		Juego juego = new Juego();
+		Juego.setInstance(juego);
+		Juego.getInstance().setNivel(1);
+		Juego.getInstance().setVidas(3);
+		Niceland niceland = new Niceland();
+		Niceland.setInstance(niceland);
+		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
+		Juego.ralph.romper(Juego.getInstance().getNivel());
+		
+		EventQueue.invokeLater(new Runnable() {		
 			public void run() {
 				try {
 					PantallaPrincipal frame = new PantallaPrincipal();
@@ -61,14 +73,15 @@ public class PantallaPrincipal extends JFrame {
 	 */
 	public PantallaPrincipal() throws IOException {
 		setResizable(false);
-		this.setMinimumSize(new Dimension(590, 440)); 
+		//this.setMinimumSize(new Dimension(590, 440)); 
 		setTitle("Fixit Felix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 590, 436);
+		setBounds(100, 100, 590, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "JPanel title", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -91,6 +104,10 @@ public class PantallaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JuegoGrafica JframeJuego = new JuegoGrafica();
 				JframeJuego.frame.setVisible(true);
+				Controller controller = new Controller(JframeJuego);
+				Timer timer = new Timer ("Jugando..");
+				TareaPrueba tarea = new TareaPrueba (JframeJuego);
+				timer.schedule(tarea, 0 , 10);
 				setVisible(false);
 				
 				//Esto es todo para el test, no deberia ser asi - NO DARLE BOLA

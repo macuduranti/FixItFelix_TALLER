@@ -36,7 +36,6 @@ public class ListenerTeclas implements KeyListener{
 			Juego.felix.arreglar();
 			break;
 		}
-		System.out.println("key");
 		
 	}
 

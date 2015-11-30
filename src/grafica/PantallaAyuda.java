@@ -41,11 +41,12 @@ public class PantallaAyuda extends JFrame {
 	 */
 	public PantallaAyuda() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 587, 431);
+		setBounds(100, 100, 590, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.addMouseListener(new MouseAdapter() {

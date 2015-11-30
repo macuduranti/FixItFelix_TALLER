@@ -5,6 +5,35 @@ import juego.Posicion;
 public abstract class Personaje {
 
 	public Posicion posicion;
+	
+	public int xReal;
+	public int yReal;
+	public int height;
+	public int width;
+
+	public int getxReal() {
+		return xReal;
+	}
+
+	public void setxReal(int xReal) {
+		this.xReal = xReal;
+	}
+
+	public int getyReal() {
+		return yReal;
+	}
+
+	public void setyReal(int yReal) {
+		this.yReal = yReal;
+	}
+
+	public int getHeight() {
+		return this.height;
+	}
+
+	public int getWidth() {
+		return this.width;
+	}
 
 	// Metodos globales
 	public void moverArriba() {

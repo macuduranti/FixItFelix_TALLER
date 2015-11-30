@@ -1,5 +1,7 @@
 package personajes.felix;
 
+import java.awt.Rectangle;
+
 import juego.Juego;
 import juego.Niceland;
 import juego.Posicion;
@@ -7,15 +9,22 @@ import personajes.Personaje;
 
 public class FelixJR extends Personaje {
 	public EstadoDeFelix estado;
+	
+	public int height = 53;
+	public int width = 24;
 
 	// Constructor de FelixJR
 	public FelixJR() {
 		this.setEstado(EstadoDeFelix.NORMAL);
 		this.posicion=new Posicion(2,0);
+		
 	}
 	
 	public boolean colision (Personaje p){
-		if (this.getX() == p.getX() && this.getY() == p.getY()){
+		Rectangle r1 = new Rectangle (this.getxReal(),this.getyReal(),this.getWidth(),this.getHeight());
+		Rectangle r2 = new Rectangle (p.getxReal(),p.getyReal(),p.getWidth(),p.getHeight());
+		
+		if (r1.intersects(r2)){
 			return true;
 		}else return false;
 	}

@@ -14,6 +14,9 @@ public class Pajaro extends Personaje {
 	}
 
 	direccion d;
+	
+	public int height = 22;
+	public int width = 34;
 
 	// ----------------CREAR-------------------
 	public Pajaro() {

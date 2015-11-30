@@ -36,7 +36,7 @@ public class Niceland {
 
 	public boolean mePuedoMover(Posicion act, Posicion prox) {
 		if (prox.getX() > act.getX()) { // Si me muevo a la derecha
-			if (prox.getX() <= 5 && this.edificio[prox.getX()][prox.getY()].puedoPasarDesde(Direccion.IZQUIERDA)
+			if (prox.getX() <= 4 && this.edificio[prox.getX()][prox.getY()].puedoPasarDesde(Direccion.IZQUIERDA)
 					&& this.edificio[act.getX()][act.getY()].puedoPasarHacia(Direccion.DERECHA))
 				return true;
 			else

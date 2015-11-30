@@ -8,6 +8,10 @@ public class Ladrillo extends Personaje {
 
 	private double velocidad;
 	public boolean enJuego;
+	
+	public int height = 13;
+	public int width = 20;
+	
 
 	public Ladrillo(int x, int y) {
 		this.setEnJuego(true);

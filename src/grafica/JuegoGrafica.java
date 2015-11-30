@@ -10,17 +10,14 @@ import javax.swing.JPanel;
 
 import juego.Juego;
 import juego.Niceland;
-import ventana.ConHojas;
-import ventana.DosPaneles;
-import ventana.PlantaBaja;
-import ventana.PrimerPiso;
-import ventana.Ventana;
+import ventana.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
+import java.util.Timer;
 
 import javax.swing.SwingConstants;
 
@@ -73,7 +70,7 @@ public class JuegoGrafica {
 	public final ImageIcon pngMacetero = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/macetero.png"));
 	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
-	private int desp = 715;
+	private int desp = 0;
 
 	// Seccion 0 = desp 0
 	// Seccion 1 = desp 245
@@ -102,14 +99,7 @@ public class JuegoGrafica {
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.ralph.romper(Juego.getInstance().getNivel());
-		
-		
-		
-		Juego.felix.setX(4);
-		Juego.felix.setY(11);
-		
-		
+		Juego.ralph.romper(Juego.getInstance().getNivel());	
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -117,10 +107,9 @@ public class JuegoGrafica {
 					JuegoGrafica window = new JuegoGrafica();
 					window.frame.setVisible(true);
 					Controller controller = new Controller(window);
-					Niceland.getInstance().edificio[0][0].romperVentana();
-					window.frame.repaint();
-					Niceland.getInstance().edificio[0][0].romperVentana();
-					window.frame.repaint();
+					Timer timer = new Timer ("Jugando..");
+					TareaPrueba tarea = new TareaPrueba (window);
+					timer.schedule(tarea, 0 , 10);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -145,6 +134,7 @@ public class JuegoGrafica {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JuegoPanel();
+		panel.setFocusable(true);
 		panel.setBackground(Color.BLACK);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -165,7 +155,7 @@ public class JuegoGrafica {
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			this.setFocusable(true);
+			this.removeAll();
 			Font font = null;
 			try {
 				font = Font.createFont(Font.TRUETYPE_FONT,
@@ -346,48 +336,48 @@ public class JuegoGrafica {
 
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
-					calcularObstaculos(Niceland.getInstance().edificio[0][j + (i * 3) + 2], this, 105,
+					calcularObstaculos(Niceland.getInstance().edificio[0][j + (i * 3) + 3], this, 105,
 							85 - (70 * (j + (i * 3))) - (24 * i));
-					calcularPaneles(Niceland.getInstance().edificio[0][j + (i * 3) + 2], this, 105,
+					calcularPaneles(Niceland.getInstance().edificio[0][j + (i * 3) + 3], this, 105,
 							85 - (70 * (j + (i * 3))) - (24 * i));
 					JLabel lblVentanaW = new JLabel("");
-					lblVentanaW.setIcon(definirSprite(Niceland.getInstance().edificio[0][j + (i * 3) + 2]));
+					lblVentanaW.setIcon(definirSprite(Niceland.getInstance().edificio[0][j + (i * 3) + 3]));
 					lblVentanaW.setBounds(105, 85 - (70 * (j + (i * 3))) - (24 * i) + desp, 38, 60);
 					this.add(lblVentanaW);
 
-					calcularObstaculos(Niceland.getInstance().edificio[1][j + (i * 3) + 2], this, 150,
+					calcularObstaculos(Niceland.getInstance().edificio[1][j + (i * 3) + 3], this, 150,
 							85 - (70 * (j + (i * 3))) - (24 * i));
-					calcularPaneles(Niceland.getInstance().edificio[1][j + (i * 3) + 2], this, 150,
+					calcularPaneles(Niceland.getInstance().edificio[1][j + (i * 3) + 3], this, 150,
 							85 - (70 * (j + (i * 3))) - (24 * i));
 					JLabel lblVentanaWM = new JLabel("");
-					lblVentanaWM.setIcon(definirSprite(Niceland.getInstance().edificio[1][j + (i * 3) + 2]));
+					lblVentanaWM.setIcon(definirSprite(Niceland.getInstance().edificio[1][j + (i * 3) + 3]));
 					lblVentanaWM.setBounds(150, 85 - (70 * (j + (i * 3))) - (24 * i) + desp, 38, 60);
 					this.add(lblVentanaWM);
 
-					calcularObstaculos(Niceland.getInstance().edificio[2][j + (i * 3) + 2], this, 205,
+					calcularObstaculos(Niceland.getInstance().edificio[2][j + (i * 3) + 3], this, 205,
 							85 - (70 * (j + (i * 3))) - (24 * i));
-					calcularPaneles(Niceland.getInstance().edificio[2][j + (i * 3) + 2], this, 205,
+					calcularPaneles(Niceland.getInstance().edificio[2][j + (i * 3) + 3], this, 205,
 							85 - (70 * (j + (i * 3))) - (24 * i));
 					JLabel lblVentanaM = new JLabel("");
-					lblVentanaM.setIcon(definirSprite(Niceland.getInstance().edificio[2][j + (i * 3) + 2]));
+					lblVentanaM.setIcon(definirSprite(Niceland.getInstance().edificio[2][j + (i * 3) + 3]));
 					lblVentanaM.setBounds(205, 85 - (70 * (j + (i * 3))) - (24 * i) + desp, 38, 60);
 					this.add(lblVentanaM);
 
-					calcularObstaculos(Niceland.getInstance().edificio[3][j + (i * 3) + 2], this, 260,
+					calcularObstaculos(Niceland.getInstance().edificio[3][j + (i * 3) + 3], this, 260,
 							85 - (70 * (j + (i * 3))) - (24 * i));
-					calcularPaneles(Niceland.getInstance().edificio[3][j + (i * 3) + 2], this, 260,
+					calcularPaneles(Niceland.getInstance().edificio[3][j + (i * 3) + 3], this, 260,
 							85 - (70 * (j + (i * 3))) - (24 * i));
 					JLabel lblVentanaEM = new JLabel("");
-					lblVentanaEM.setIcon(definirSprite(Niceland.getInstance().edificio[3][j + (i * 3) + 2]));
+					lblVentanaEM.setIcon(definirSprite(Niceland.getInstance().edificio[3][j + (i * 3) + 3]));
 					lblVentanaEM.setBounds(260, 85 - (70 * (j + (i * 3))) - (24 * i) + desp, 38, 60);
 					this.add(lblVentanaEM);
 
-					calcularObstaculos(Niceland.getInstance().edificio[4][j + (i * 3) + 2], this, 305,
+					calcularObstaculos(Niceland.getInstance().edificio[4][j + (i * 3) + 3], this, 305,
 							85 - (70 * (j + (i * 3))) - (24 * i));
-					calcularPaneles(Niceland.getInstance().edificio[4][j + (i * 3) + 2], this, 305,
+					calcularPaneles(Niceland.getInstance().edificio[4][j + (i * 3) + 3], this, 305,
 							85 - (70 * (j + (i * 3))) - (24 * i));
 					JLabel lblVentanaE = new JLabel("");
-					lblVentanaE.setIcon(definirSprite(Niceland.getInstance().edificio[4][j + (i * 3) + 2]));
+					lblVentanaE.setIcon(definirSprite(Niceland.getInstance().edificio[4][j + (i * 3) + 3]));
 					lblVentanaE.setBounds(305, 85 - (70 * (j + (i * 3))) - (24 * i) + desp, 38, 60);
 					this.add(lblVentanaE);
 				}
@@ -717,7 +707,7 @@ public class JuegoGrafica {
 			lblFelix.setIcon(this.pngFelixArreglando1);
 			lblFelix.setBounds(x, y + desp, 39, 54);
 		}else if (Juego.felix.isInmune()){
-	
+			
 		}else if (Juego.felix.isMuerto()){
 			
 		}

@@ -41,6 +41,8 @@ public class JuegoGrafica {
 	
 	public final ImageIcon pngLadrillo1 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
+	public final ImageIcon pngLadrillo2 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice11_11.png"));
 	
 	public final ImageIcon pngRalphNormal = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice146_@.png"));
@@ -88,12 +90,14 @@ public class JuegoGrafica {
 	public final ImageIcon pngMacetero = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/macetero.png"));
 	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
-	private int desp = 245;
+	private int desp = 0;
+	
+	public static Controller controller = new Controller();
 
-	// Seccion 0 = desp 0
-	// Seccion 1 = desp 245
-	// Seccion 2 = desp 480
-	// Seccion 3 = desp 715
+	// Seccion 1 = desp 0
+	// Seccion 2 = desp 245
+	// Seccion 3 = desp 480
+	// Seccion 4 = desp 715
 
 	public int getDesp() {
 		return desp;
@@ -114,9 +118,9 @@ public class JuegoGrafica {
 		Juego.setInstance(juego);
 		Juego.getInstance().setNivel(3);
 		Juego.getInstance().setVidas(3);
-		Juego.getInstance().setSeccion(1);
+		Juego.getInstance().setSeccion(0);
 		Juego.felix.setX(2);
-		Juego.felix.setY(3);
+		Juego.felix.setY(0);
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
@@ -127,7 +131,7 @@ public class JuegoGrafica {
 				try {
 					JuegoGrafica window = new JuegoGrafica();
 					window.frame.setVisible(true);
-					Controller controller = new Controller(window);
+					controller.addListeners(window);
 					Timer timer = new Timer ("Jugando..");
 					TareaPrueba tarea = new TareaPrueba (window);
 					timer.schedule(tarea, 0 , 50);
@@ -184,7 +188,8 @@ public class JuegoGrafica {
 			super.paintComponent(g);
 			this.removeAll();
 			
-			// Cada vez que repaintea setea la fuente
+			
+			// Cada vez que repaintea setea la fuente - esta mal
 			Font font = null;
 			try {
 				font = Font.createFont(Font.TRUETYPE_FONT,
@@ -746,8 +751,8 @@ public class JuegoGrafica {
 		}
 		panel.add(lblFelix);
 		//////////////////
-		Juego.felix.setxReal(x);
-		Juego.felix.setyReal(y+desp);
+		controller.tomarPosReal(Juego.felix,x, y+desp);
+		
 	}
 	
 	public void calcularRalph(JPanel panel){
@@ -777,12 +782,17 @@ public class JuegoGrafica {
 		for (Personaje personaje : Juego.getInstance().listaPersonajes) { // Falta implementar el de felix
 			JLabel lblPj = new JLabel("");
 			if (personaje instanceof Ladrillo){
-				lblPj.setIcon(this.pngLadrillo1);
-				lblPj.setBounds((int)(74+(((Ladrillo) personaje).getXdouble())*55),(int)(((Ladrillo) personaje).getYdouble()),20,13);
+				if (((Ladrillo) personaje).isE1()){
+					lblPj.setIcon(this.pngLadrillo1);
+					lblPj.setBounds((int)(74+(((Ladrillo) personaje).getXdouble())*55),(int)(((Ladrillo) personaje).getYdouble()),20,13);
+				}else if (((Ladrillo) personaje).isE2()){
+					lblPj.setIcon(this.pngLadrillo2);
+					lblPj.setBounds((int)(74+(((Ladrillo) personaje).getXdouble())*55),(int)(((Ladrillo) personaje).getYdouble()),20,13);
+				}
+				
 				
 				//////////////
-				personaje.setxReal((int)(74+(((Ladrillo) personaje).getXdouble())*55));
-				personaje.setyReal((int)(((Ladrillo) personaje).getYdouble()));
+				controller.tomarPosReal(personaje, (int)(74+(((Ladrillo) personaje).getXdouble())*55), (int)(((Ladrillo) personaje).getYdouble()));
 			}		
 			panel.add(lblPj);
 		}

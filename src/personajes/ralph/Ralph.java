@@ -6,11 +6,7 @@ import java.util.Timer;
 import juego.Direccion;
 import juego.Juego;
 import juego.Niceland;
-import juego.Posicion;
 import personajes.Personaje;
-import personajes.felix.EstadoDeFelix;
-import personajes.felix.TaskMoviendo;
-import personajes.felix.TaskNormal;
 
 public class Ralph extends Personaje {
 
@@ -27,7 +23,7 @@ public class Ralph extends Personaje {
 	public Ralph() {
 		this.setCantidadLadrillos(40);
 		this.setEstado(EstadoDeRalph.NORMAL);
-		this.setyReal(88);
+		this.setyReal(78);
 		this.setXdouble(2);
 		this.setYdouble(3);
 		this.setCantMov(0);

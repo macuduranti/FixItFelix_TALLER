@@ -22,7 +22,12 @@ public class TareaPrueba extends TimerTask{
 		Juego.ralph.sortearLadrillo();
 		for (Personaje personaje : Juego.getInstance().listaPersonajes) { // Falta implementar el de felix
 			personaje.atender();
+			System.out.println(personaje.xReal);
+			System.out.println(personaje.yReal);
+			System.out.println("F "+Juego.felix.xReal);
+			System.out.println("F "+Juego.felix.yReal);
 		}
+
 	}
 	
 }

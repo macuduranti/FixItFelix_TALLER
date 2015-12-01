@@ -24,8 +24,9 @@ public class FelixJR extends Personaje {
 	public boolean colision (Personaje p){
 		Rectangle r1 = new Rectangle (this.getxReal(),this.getyReal(),this.getWidth(),this.getHeight());
 		Rectangle r2 = new Rectangle (p.getxReal(),p.getyReal(),p.getWidth(),p.getHeight());
-		
+		System.err.println("Chequendo colisiones");
 		if (r1.intersects(r2)){
+			System.err.println("Colision");
 			return true;
 		}else return false;
 	}

@@ -14,8 +14,6 @@ import java.util.Timer;
 import controller.Controller;
 import juego.Juego;
 import juego.Niceland;
-import test.JuegoMain;
-import test.JuegoTask;
 import personajes.ralph.Ralph;
 import juego.Juego;
 import juego.Niceland;
@@ -93,7 +91,6 @@ public class PantallaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JuegoGrafica JframeJuego = new JuegoGrafica();
 				JframeJuego.frame.setVisible(true);
-				Controller controller = new Controller(JframeJuego);
 				Timer timer = new Timer ("Jugando..");
 				TareaPrueba tarea = new TareaPrueba (JframeJuego);
 				timer.schedule(tarea, 0 , 10);

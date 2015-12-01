@@ -18,6 +18,7 @@ public class Ralph extends Personaje {
 	public int cantMovs;
 	private Direccion ultDir;
 	public boolean quieto;
+	public int cantSeccion;
 
 	// Constructor de Ralph
 	public Ralph() {
@@ -185,9 +186,9 @@ public class Ralph extends Personaje {
 				/*Ladrillo ladrillo2 = new Ladrillo(this.getXdouble()-0.5, this.getyReal());
 				Juego.getInstance().listaPersonajes.add(ladrillo2);
 				Ladrillo ladrillo3 = new Ladrillo(this.getXdouble(), this.getyReal());
-				Juego.getInstance().listaPersonajes.add(ladrillo3);
-				this.setCantidadLadrillos(this.getCantidadLadrillos() - 3);*/
-				System.out.println("Ralph ha tirado un ladrillo");
+				Juego.getInstance().listaPersonajes.add(ladrillo3);*/
+				this.setCantidadLadrillos(this.getCantidadLadrillos() - 1);
+				System.out.println("Ralph ha tirado un ladrillo, le quedan "+Juego.ralph.getCantidadLadrillos());
 			}
 		}
 	}
@@ -196,11 +197,11 @@ public class Ralph extends Personaje {
 		this.setEstado(EstadoDeRalph.TIRANDO);
 	}
 
-	public int romper(int nivel) {
+	public void romper(int nivel) {
 		this.setEstado(EstadoDeRalph.ROMPIENDO);
 		Random random = new Random();
-		int cantSeccion = (int) (10 * Math.pow(1.15, nivel - 1));
-		int cantAux = cantSeccion;
+		this.setCantSeccion((int) (10 * Math.pow(1.15, nivel - 1)));
+		int cantAux = this.getCantSeccion();
 		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion
 				int rndx = (int) (random.nextDouble() * 4);
@@ -209,11 +210,10 @@ public class Ralph extends Personaje {
 					cantAux--;
 				}
 			}
-			cantAux = cantSeccion;
+			cantAux = this.getCantSeccion();
 		}
 		System.out.println("Ralph ha roto niceland");
 		this.setEstado(EstadoDeRalph.NORMAL);
-		return cantSeccion;
 	}
 
 	public int getCantidadLadrillos() {
@@ -330,6 +330,22 @@ public class Ralph extends Personaje {
 
 	public void setQuieto(boolean quieto) {
 		this.quieto = quieto;
+	}
+
+	public int getCantMovs() {
+		return cantMovs;
+	}
+
+	public void setCantMovs(int cantMovs) {
+		this.cantMovs = cantMovs;
+	}
+
+	public int getCantSeccion() {
+		return cantSeccion;
+	}
+
+	public void setCantSeccion(int cantSeccion) {
+		this.cantSeccion = cantSeccion;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import personajes.Personaje;
 import personajes.felix.FelixJR;
@@ -25,7 +26,7 @@ public class Juego {
 	public int vidas;
 	public ArrayList<Puntaje> puntajesMax;
 
-	public List<Personaje> listaPersonajes = new ArrayList<Personaje>();
+	public CopyOnWriteArrayList<Personaje> listaPersonajes = new CopyOnWriteArrayList<Personaje>();
 	
 	public static Juego getInstance() {
 		return instance;

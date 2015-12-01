@@ -3,13 +3,11 @@ package grafica;
 // Cambiar paneles si hay tiempo
 
 import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-
 import juego.Juego;
 import juego.Niceland;
 import personajes.Personaje;
@@ -22,9 +20,7 @@ import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.util.Timer;
-
 import javax.swing.SwingConstants;
-
 import controller.Controller;
 
 public class JuegoGrafica {
@@ -38,6 +34,8 @@ public class JuegoGrafica {
 			JuegoGrafica.class.getResource("/res/personajes/slice76_76.png"));
 	public final ImageIcon pngFelixArreglando2 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice84_84.png"));
+	public final ImageIcon pngFelixMuerto = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice291_@.png"));
 	
 	public final ImageIcon pngLadrillo1 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
@@ -90,7 +88,7 @@ public class JuegoGrafica {
 	public final ImageIcon pngMacetero = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/macetero.png"));
 	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
-	private int desp = 0;
+	private static int desp;
 	
 	public static Controller controller = new Controller();
 
@@ -99,12 +97,12 @@ public class JuegoGrafica {
 	// Seccion 3 = desp 480
 	// Seccion 4 = desp 715
 
-	public int getDesp() {
+	public static int getDesp() {
 		return desp;
 	}
 
-	public void setDesp(int desp) {
-		this.desp = desp;
+	public static void setDesp(int d) {
+		desp = d;
 	}
 
 	public JFrame frame;
@@ -113,7 +111,7 @@ public class JuegoGrafica {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
 		Juego.getInstance().setNivel(3);
@@ -121,6 +119,23 @@ public class JuegoGrafica {
 		Juego.getInstance().setSeccion(0);
 		Juego.felix.setX(2);
 		Juego.felix.setY(0);
+		
+		switch (Juego.getInstance().getSeccion()) {
+		case 0:
+			setDesp(0);
+			break;
+		case 1:
+			setDesp(245);
+			break;
+		case 2:
+			setDesp(480);
+			break;
+		case 3:
+			setDesp(715);
+			break;
+		}
+
+		
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
@@ -747,7 +762,8 @@ public class JuegoGrafica {
 		}else if (Juego.felix.isInmune()){
 			
 		}else if (Juego.felix.isMuerto()){
-			
+			lblFelix.setIcon(this.pngFelixMuerto);
+			lblFelix.setBounds(x, y + desp + 24, 51, 29);
 		}
 		panel.add(lblFelix);
 		//////////////////

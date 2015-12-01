@@ -9,21 +9,24 @@ public class Ladrillo extends Personaje {
 	private double velocidad;
 	public boolean enJuego;
 	
+	public double xdouble;
+	public double ydouble;
+	
 	public int height = 13;
 	public int width = 20;
 	
 
-	public Ladrillo(int x, int y) {
+	public Ladrillo(double x, double y) {
 		this.setEnJuego(true);
 		this.setVelocidad(10); // Aca iria el valor de la velocidad modificado
 								// por el nivel
-		this.setX(x);
-		this.setY(y); // Crea el ladrillo en el mismo lugar donde se encuentra
+		this.setXdouble(x);
+		this.setYdouble(y); // Crea el ladrillo en el mismo lugar donde se encuentra
 						// ralph
 	}
-
+	@Deprecated
 	public void mover() {
-		if (getY() > 0)
+		if (getYdouble() > 0)
 			this.moverAbajo();
 		else {
 			setEnJuego(false); // Llego al final y hay que sacarlo del juego
@@ -49,17 +52,23 @@ public class Ladrillo extends Personaje {
 
 	@Override
 	public void atender() {
-		if (getY() > 0) {
+		if (getYdouble() <= 400) {
 			this.moverAbajo();
 		} else {
-			this.eliminar();
+			//this.eliminar();
 		}
-		if (Juego.felix.isNormal()) {
+		if (!Juego.felix.isInmune()) {
 			if (Juego.felix.colision(this)) {
-				Juego.felix.setEstado(EstadoDeFelix.MUERTO);
-				this.eliminar();
+				//Juego.felix.setEstado(EstadoDeFelix.MUERTO);
+				System.out.println("Felix ha muerto");
+				//this.eliminar();
 			}
 		}
+	}
+	
+	@Override 
+	public void moverAbajo(){
+		this.setYdouble(this.getYdouble()+5);
 	}
 
 	@Override
@@ -76,5 +85,21 @@ public class Ladrillo extends Personaje {
 	@Override
 	public void reset() {
 		this.eliminar();
+	}
+
+	public double getXdouble() {
+		return xdouble;
+	}
+
+	public void setXdouble(double xdouble) {
+		this.xdouble = xdouble;
+	}
+
+	public double getYdouble() {
+		return ydouble;
+	}
+
+	public void setYdouble(double ydouble) {
+		this.ydouble = ydouble;
 	}
 }

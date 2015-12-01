@@ -1,5 +1,7 @@
 package grafica;
 
+// Cambiar paneles si hay tiempo
+
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -10,6 +12,8 @@ import javax.swing.JPanel;
 
 import juego.Juego;
 import juego.Niceland;
+import personajes.Personaje;
+import personajes.ralph.Ladrillo;
 import ventana.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -34,6 +38,20 @@ public class JuegoGrafica {
 			JuegoGrafica.class.getResource("/res/personajes/slice76_76.png"));
 	public final ImageIcon pngFelixArreglando2 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice84_84.png"));
+	
+	public final ImageIcon pngLadrillo1 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
+	
+	public final ImageIcon pngRalphNormal = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice146_@.png"));
+	public final ImageIcon pngRalphMovD1 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice147_@.png"));
+	public final ImageIcon pngRalphMovD2 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice148_@.png"));
+	public final ImageIcon pngRalphMovI1 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice147_@i.png"));
+	public final ImageIcon pngRalphMovI2 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice148_@i.png"));
 	
 	public final ImageIcon pngConHojasAbierta = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/niceland/slice106_@.png"));
@@ -70,7 +88,7 @@ public class JuegoGrafica {
 	public final ImageIcon pngMacetero = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/macetero.png"));
 	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
-	private int desp = 0;
+	private int desp = 245;
 
 	// Seccion 0 = desp 0
 	// Seccion 1 = desp 245
@@ -94,8 +112,11 @@ public class JuegoGrafica {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(10);
+		Juego.getInstance().setNivel(3);
 		Juego.getInstance().setVidas(3);
+		Juego.getInstance().setSeccion(1);
+		Juego.felix.setX(2);
+		Juego.felix.setY(3);
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
@@ -109,7 +130,7 @@ public class JuegoGrafica {
 					Controller controller = new Controller(window);
 					Timer timer = new Timer ("Jugando..");
 					TareaPrueba tarea = new TareaPrueba (window);
-					timer.schedule(tarea, 0 , 10);
+					timer.schedule(tarea, 0 , 50);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -129,7 +150,7 @@ public class JuegoGrafica {
 	 */
 	public void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 432); //451
+		frame.setBounds(100, 100, 451, 432); 
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
@@ -232,6 +253,8 @@ public class JuegoGrafica {
 			 * 
 			 */
 			calcularFelix(this);
+			calcularRalph(this);
+			calcularPersonajes(this);
 			
 			// Ventanas Planta Baja
 			calcularObstaculos(Niceland.getInstance().edificio[0][0], this, 105, 330);
@@ -721,7 +744,47 @@ public class JuegoGrafica {
 		}else if (Juego.felix.isMuerto()){
 			
 		}
-		
 		panel.add(lblFelix);
+		//////////////////
+		Juego.felix.setxReal(x);
+		Juego.felix.setyReal(y+desp);
+	}
+	
+	public void calcularRalph(JPanel panel){
+		JLabel lblRalph = new JLabel("");
+		if (Juego.ralph.isNormal()){
+			lblRalph.setIcon(this.pngRalphNormal);
+			lblRalph.setBounds((int)(74+(Juego.ralph.getXdouble())*55),Juego.ralph.getyReal(),70,84);
+		}else if (Juego.ralph.isMoviendoD1()){
+			lblRalph.setIcon(this.pngRalphMovD1);
+			lblRalph.setBounds((int)(74+(Juego.ralph.getXdouble())*55),Juego.ralph.getyReal(),68,85);
+		}else if (Juego.ralph.isMoviendoD2()){
+			lblRalph.setIcon(this.pngRalphMovD2);
+			lblRalph.setBounds((int)(74+(Juego.ralph.getXdouble())*55),Juego.ralph.getyReal(),66,87);
+		}else if (Juego.ralph.isMoviendoI1()){
+			lblRalph.setIcon(this.pngRalphMovI1);
+			lblRalph.setBounds((int)(74+(Juego.ralph.getXdouble())*55),Juego.ralph.getyReal(),68,85);
+		}else if (Juego.ralph.isMoviendoI2()){
+			lblRalph.setIcon(this.pngRalphMovI2);
+			lblRalph.setBounds((int)(74+(Juego.ralph.getXdouble())*55),Juego.ralph.getyReal(),66,87);
+		}
+		
+		
+		panel.add(lblRalph);
+	}
+	
+	public void calcularPersonajes(JPanel panel){
+		for (Personaje personaje : Juego.getInstance().listaPersonajes) { // Falta implementar el de felix
+			JLabel lblPj = new JLabel("");
+			if (personaje instanceof Ladrillo){
+				lblPj.setIcon(this.pngLadrillo1);
+				lblPj.setBounds((int)(74+(((Ladrillo) personaje).getXdouble())*55),(int)(((Ladrillo) personaje).getYdouble()),20,13);
+				
+				//////////////
+				personaje.setxReal((int)(74+(((Ladrillo) personaje).getXdouble())*55));
+				personaje.setyReal((int)(((Ladrillo) personaje).getYdouble()));
+			}		
+			panel.add(lblPj);
+		}
 	}
 }

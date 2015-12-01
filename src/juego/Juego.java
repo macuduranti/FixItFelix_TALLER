@@ -1,8 +1,11 @@
 package juego;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import personajes.Personaje;
 import personajes.felix.FelixJR;
@@ -20,7 +23,7 @@ public class Juego {
 	public int seccion;
 	public Puntaje jugadorActual;
 	public int vidas;
-	public Puntaje[] puntajesMax;
+	public ArrayList<Puntaje> puntajesMax;
 
 	public List<Personaje> listaPersonajes = new ArrayList<Personaje>();
 	
@@ -36,14 +39,14 @@ public class Juego {
 		this.setNivel(1);
 		this.setSeccion(0);
 		this.setVidas(3);
-		this.jugadorActual = new Puntaje();
+		this.jugadorActual = new Puntaje(); //CREA UN NUEVO OBJETO PUNJATE
 	}
 
 	public void nuevoJuego() {
 		this.setNivel(1);
 		this.setSeccion(0);
 		this.setVidas(3);
-		this.setJugadorActual(0);
+		this.setJugadorActual(0); //PONE EN 0 EL PUNTAJE DEL JUGADOR
 		listaPersonajes.add(felix);
 		listaPersonajes.add(ralph);
 		while (this.getVidas() > 0 && this.getNivel() <= 10) {
@@ -58,11 +61,28 @@ public class Juego {
 		// Game over
 		// Lee el nombre en nombre
 		String nombre = "Lo que lea";
-		this.setJugadorActual(nombre);
-		this.getPuntajesMax()[5] = this.getJugadorActual();
-		Arrays.sort(this.getPuntajesMax());
-
+		this.setJugadorActual(nombre); //PONE EL NOMBRE DEL JUGADOR
+		this.puntajesMax.add(getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
+		Arrays.sort(this.getPuntajesMax()); //LA ORDENA 
+		
+		Vector<Puntaje> v = new Vector<Puntaje>();
+		for(Puntaje p: this.getPuntajesMax()) {
+			v.add(p);
+		}
+		
+		ObjectOutputStream o = null;
+		try {
+			o.writeObject(v);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+	
+	
+	
+
 
 	private boolean jugarNivel() {
 		Niceland.getInstance().generarNiceland(this.getNivel());

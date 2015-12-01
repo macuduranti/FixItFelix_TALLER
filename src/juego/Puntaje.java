@@ -1,6 +1,8 @@
 package juego;
 
-public class Puntaje implements Comparable<Puntaje>{
+import java.io.Serializable;
+
+public class Puntaje implements Comparable<Puntaje>, Serializable{
 	public int puntos;
 	public String nombre;
 	

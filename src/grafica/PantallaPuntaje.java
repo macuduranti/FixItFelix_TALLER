@@ -34,7 +34,7 @@ import juego.Puntaje;
 public class PantallaPuntaje extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable miTabla2 = new JTable();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,6 +42,9 @@ public class PantallaPuntaje extends JFrame {
 				try {
 					PantallaPuntaje frame = new PantallaPuntaje();
 					frame.setVisible(true);
+					//SimpleTable1 frame = new SimpleTable1(); 
+					frame.pack(); 
+					frame.setVisible(true); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,6 +62,40 @@ public class PantallaPuntaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		
+		//Array bidimensional de objetos con los datos de la tabla 
+				Object[][] data = { 
+				{"Mary", "Campione", "Esquiar", new Integer(5), new Boolean(false)}, 
+				{"Lhucas", "Huml", "Patinar", new Integer(3), new Boolean(true)}, 
+				{"Kathya", "Walrath", "Escalar", new Integer(2), new Boolean(false)}, 
+				{"Marcus", "Andrews", "Correr", new Integer(7), new Boolean(true)}, 
+				{"Angela", "Lalth", "Nadar", new Integer(4), new Boolean(false)} 
+				};
+
+				//Array de ‘String’ con los titulos de las columnas 
+				String[] columnNames = {"Nombre", "Apellido", "Pasatiempo", "Años de Practica", "Soltero(a)"};
+
+				//Creacion de la tabla 
+				final JTable table = new JTable(data, columnNames); 
+				table.setPreferredScrollableViewportSize(new Dimension(500, 80));
+
+				//Creamos un scrollpanel y se lo agregamos a la tabla 
+				JScrollPane scrollpane = new JScrollPane(table);
+
+				//Agregamos el scrollpanel al contenedor 
+				getContentPane().add(scrollpane, BorderLayout.CENTER);
+
+				//manejamos la salida 
+				addWindowListener(new WindowAdapter() {
+
+				public void windowClosing(WindowEvent e) { 
+				System.exit(0); 
+				} 
+				}); 
+				
+		
+		
 		
 		JLabel label_1 = new JLabel("");
 		label_1.addMouseListener(new MouseAdapter() {
@@ -86,17 +123,25 @@ public class PantallaPuntaje extends JFrame {
 		Vector<Puntaje> vector = Juego.getInstance().getTopFive();
 		
 		
-		
-		String[] columnas = {"NOMBRE", "PUNTAJE"};;
-		Object[][] data = {
-				{"prueba", "prueba2"}  
+	
+
+	/*	public void SimpleTable1() { 
+	
+
+		//Array bidimensional de objetos con los datos de la tabla 
+		Object[][] data = { 
+		{"Mary", "Campione", "Esquiar", new Integer(5), new Boolean(false)}, 
+		{"Lhucas", "Huml", "Patinar", new Integer(3), new Boolean(true)}, 
+		{"Kathya", "Walrath", "Escalar", new Integer(2), new Boolean(false)}, 
+		{"Marcus", "Andrews", "Correr", new Integer(7), new Boolean(true)}, 
+		{"Angela", "Lalth", "Nadar", new Integer(4), new Boolean(false)} 
 		};
-		DefaultTableModel dtm= new DefaultTableModel(data, columnas);
-		
-		final JTable table = new JTable(dtm);
-		
-		
-		
+
+		//Array de ‘String’ con los titulos de las columnas 
+		String[] columnNames = {"Nombre", "Apellido", "Pasatiempo", "Años de Practica", "Soltero(a)"};
+
+		//Creacion de la tabla 
+		final JTable table = new JTable(data, columnNames); 
 		table.setPreferredScrollableViewportSize(new Dimension(500, 80));
 
 		//Creamos un scrollpanel y se lo agregamos a la tabla 
@@ -112,29 +157,19 @@ public class PantallaPuntaje extends JFrame {
 		System.exit(0); 
 		} 
 		}); 
-		
-
-	
-		
-		
-		
-		
-		contentPane.add(table);
-		JScrollPane scrollPane = new JScrollPane(table);
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		table.setBounds(100,100,1,1);
-		
+		}
 
 
-	
+	*/
 
 
 		
 		
 		JLabel label = new JLabel("");
-		//label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
+		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
 		label.setBounds(0, 0, 660, 423);
 		contentPane.add(label);
+		contentPane.add(table);
 		
 	}
 }

@@ -92,7 +92,7 @@ public class PantallaGameOver extends JFrame {
 			}
 		});
 		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
-		label_1.setBounds(16, 17, 52, 52);
+		label_1.setBounds(54, 303, 52, 52);
 		contentPane.add(label_1);
 		
 		

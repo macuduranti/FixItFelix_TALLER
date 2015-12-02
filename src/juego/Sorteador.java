@@ -11,7 +11,7 @@ public class Sorteador {
 		Random random = new Random();
 		if (Juego.getInstance().getSeccion() != 0) { // En la primer seccion no
 														// salen pajaros
-			if (((int) (random.nextDouble() * 100)) > 98) {
+			if (((int) (random.nextDouble() * 100)) > 99) {
 				// Sortea que salga un pajaro
 				Pajaro pajaro = new Pajaro();
 				Juego.getInstance().listaPersonajes.add(pajaro);

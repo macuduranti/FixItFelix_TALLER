@@ -1,7 +1,11 @@
 package juego;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
@@ -46,31 +50,31 @@ public class TaskJuego extends TimerTask {
 				}
 			}
 			if (Juego.felix.getCantArreglado() == Juego.ralph.getCantSeccion()) {
+				Juego.getInstance().setSeccion(Juego.getInstance().getSeccion() + 1);
+				switch (Juego.getInstance().getSeccion()) {
+				case 0:
+					JuegoGrafica.setDesp(0);
+					break;
+				case 1:
+					JuegoGrafica.setDesp(245);
+					break;
+				case 2:
+					JuegoGrafica.setDesp(480);
+					break;
+				case 3:
+					JuegoGrafica.setDesp(715);
+					break;
+				}
+				Juego.felix.setX(2);
+				Juego.felix.setY(Juego.getInstance().getSeccion() * 3);
+				Juego.ralph.setyReal(88);
+				for (Personaje personaje : Juego.getInstance().listaPersonajes) {
+					personaje.reset();
+				}
+				Juego.felix.setCantArreglado(0);
+				Juego.felix.setEstado(EstadoDeFelix.NORMAL);
+				Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
 				if (Juego.getInstance().getSeccion() != 4) {
-					Juego.getInstance().setSeccion(Juego.getInstance().getSeccion() + 1);
-					switch (Juego.getInstance().getSeccion()) {
-					case 0:
-						JuegoGrafica.setDesp(0);
-						break;
-					case 1:
-						JuegoGrafica.setDesp(245);
-						break;
-					case 2:
-						JuegoGrafica.setDesp(480);
-						break;
-					case 3:
-						JuegoGrafica.setDesp(715);
-						break;
-					}
-					Juego.felix.setX(2);
-					Juego.felix.setY(Juego.getInstance().getSeccion() * 3);
-					Juego.ralph.setyReal(88);
-					for (Personaje personaje : Juego.getInstance().listaPersonajes) {
-						personaje.reset();
-					}
-					Juego.felix.setCantArreglado(0);
-					Juego.felix.setEstado(EstadoDeFelix.NORMAL);
-					Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
 					CambioSeccion cs = new CambioSeccion();
 					cs.setVisible(true);
 					Timer t = new Timer("SacandoCambioSeccion");
@@ -114,6 +118,23 @@ public class TaskJuego extends TimerTask {
 			this.jg.frame.setVisible(false);
 			PantallaGameOver pgo = new PantallaGameOver();
 			pgo.setVisible(true);
+			/*String nombre = "Lo que lea";
+			Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE DEL JUGADOR
+			Juego.getInstance().puntajesMax.add(Juego.getInstance().getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
+			Arrays.sort(Juego.getInstance().getPuntajesMax()); //LA ORDENA 
+			
+			Vector<Puntaje> topFive = new Vector<Puntaje>();
+			for(Puntaje p: Juego.getInstance().getPuntajesMax()) {
+				topFive.add(p);
+			}
+			
+			ObjectOutputStream o = null;
+			try {
+				o.writeObject(topFive);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 		}
 
 	}

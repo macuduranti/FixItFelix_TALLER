@@ -65,6 +65,10 @@ public class PantallaPrincipal extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				btnJugar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/J.png"))); //Animacion que cambia entre amarillo y negro
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
 		});
 		
 		btnJugar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/J.png")));

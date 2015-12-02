@@ -89,6 +89,11 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/configuracion.png")));
+		label.setBounds(482, 40, 68, 75);
+		panel.add(label);
+		
 		label_3.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/trofeo_final.png")));
 		label_3.setBounds(479, 336, 68, 63);
 		panel.add(label_3);

@@ -14,9 +14,11 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 import juego.Juego;
+import javax.swing.SwingConstants;
 
 public class CambioSeccion extends JFrame {
 
@@ -30,7 +32,7 @@ public class CambioSeccion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					int sec = Juego.getInstance().getSeccion();
+					//int sec = Juego.getInstance().getSeccion();
 					CambioSeccion frame = new CambioSeccion();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -45,11 +47,14 @@ public class CambioSeccion extends JFrame {
 	 */
 	public CambioSeccion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 590, 432);
+		setBounds(100, 100, 200, 100);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(BorderFactory.createMatteBorder( 5, 5, 5, 5, Color.YELLOW ));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+	    this.setUndecorated(true);
 		
 		
 		Font font = null;
@@ -66,23 +71,24 @@ public class CambioSeccion extends JFrame {
 			GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			genv.registerFont(font);
 			font = font.deriveFont(12f);
-		
+		/*
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(CambioSeccion.class.getResource("/res/bienFelixGif.gif")));
 		lblNewLabel_2.setBounds(148, 38, 498, 177);
-		contentPane.add(lblNewLabel_2);
+		contentPane.add(lblNewLabel_2);*/
 		
-		JLabel lblNewLabel_1 = new JLabel("¡SECCION " + sec + "!");
+		JLabel lblNewLabel_1 = new JLabel("¡SECCION " + Juego.getInstance().getSeccion() + "!");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(font.deriveFont(Font.PLAIN, 50f));
-		lblNewLabel_1.setBounds(135, 179, 480, 177);
+		lblNewLabel_1.setFont(font.deriveFont(Font.PLAIN, 22f));
+		lblNewLabel_1.setBounds(0, 0, 200, 100);
 		getContentPane().add(lblNewLabel_1);
 		
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(CambioSeccion.class.getResource("/res/FondoNegro.png")));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(0, 0, 590, 410);
+		lblNewLabel.setBounds(5, 5, 190, 90);
 		contentPane.add(lblNewLabel);
 	}
 	

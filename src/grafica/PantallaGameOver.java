@@ -48,6 +48,7 @@ public class PantallaGameOver extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		this.setLocationRelativeTo(null);
 		
 		Font font = null;
 		
@@ -92,7 +93,7 @@ public class PantallaGameOver extends JFrame {
 			}
 		});
 		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
-		label_1.setBounds(54, 303, 52, 52);
+		label_1.setBounds(16, 17, 52, 52);
 		contentPane.add(label_1);
 		
 		
@@ -100,9 +101,9 @@ public class PantallaGameOver extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(CambioSeccion.class.getResource("/res/FondoNegro.png")));
+		lblNewLabel.setIcon(new ImageIcon(CambioSeccion.class.getResource("/res/fondo puntaje.jpg")));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(0, 0, 608, 410);
+		lblNewLabel.setBounds(0, 0, 590, 438);
 		contentPane.add(lblNewLabel);
 		
 		JLabel label_11 = new JLabel(""); //Boton atras

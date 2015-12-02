@@ -3,7 +3,6 @@ package grafica;
 // Cambiar paneles si hay tiempo
 
 import java.awt.EventQueue;
-import personajes.Pajaro.DireccionPajaro;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import juego.Juego;
 import juego.Niceland;
+import juego.TaskJuego;
 import personajes.Pajaro;
 import personajes.Personaje;
 import personajes.ralph.Ladrillo;
@@ -153,7 +153,7 @@ public class JuegoGrafica {
 					window.frame.setVisible(true);
 					controller.addListeners(window);
 					Timer timer = new Timer ("Jugando..");
-					TareaPrueba tarea = new TareaPrueba (window,timer);
+					TaskJuego tarea = new TaskJuego (window,timer);
 					timer.schedule(tarea, 0 , 50);
 				} catch (Exception e) {
 					e.printStackTrace();

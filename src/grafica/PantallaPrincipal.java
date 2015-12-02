@@ -91,9 +91,6 @@ public class PantallaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JuegoGrafica JframeJuego = new JuegoGrafica();
 				JframeJuego.frame.setVisible(true);
-				Timer timer = new Timer ("Jugando..");
-				TareaPrueba tarea = new TareaPrueba (JframeJuego);
-				timer.schedule(tarea, 0 , 10);
 				setVisible(false);
 			}
 		});

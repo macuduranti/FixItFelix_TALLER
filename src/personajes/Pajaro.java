@@ -1,54 +1,63 @@
 package personajes;
 
 import java.util.Random;
+import java.util.Timer;
 
 import juego.Juego;
 import juego.Posicion;
 import personajes.felix.EstadoDeFelix;
+import personajes.ralph.TaskE1Ladrillo;
+import personajes.ralph.TaskE2Ladrillo;
 
 public class Pajaro extends Personaje {
-	private boolean enJuego;
 
-	private enum direccion {
+	public enum EstadoDePajaro {
+		E1, E2
+	}
+
+	public enum DireccionPajaro {
 		DERECHA, IZQUIERDA
 	}
 
-	direccion d;
-	
-	public int height = 22;
-	public int width = 34;
+	public DireccionPajaro d;
+	public EstadoDePajaro estado;
+
+	// public int height = 22;
+	// public int width = 34;
+	public double xdouble;
+	public double ydouble;
 
 	// ----------------CREAR-------------------
 	public Pajaro() {
-		setEnJuego(true); // Pone un nuevo pajaro
+		this.setHeight(22);
+		this.setWidth(34);
+		this.setEstado(EstadoDePajaro.E1);
 		Random random = new Random(); // Sortea para ver si sale de la izquierda
 										// o la derecha
-		this.posicion = new Posicion();
-		if (((int) random.nextDouble()) * 10 > 5) {
-			setX(0); // Pajaro empieza en la izquierda
-			d = direccion.DERECHA;
+
+		if (((int) (random.nextDouble()) * 10) > 5) {
+			this.setXdouble(0); // Pajaro empieza en la izquierda
+			this.setD(DireccionPajaro.DERECHA);
 			System.out.print("Salio un pajaro desde la izquierda");
 		} else {
-			setX(4); // Pajaro empieza en la derecha
-			d = direccion.IZQUIERDA;
+			this.setXdouble(4); // Pajaro empieza en la derecha
+			this.setD(DireccionPajaro.IZQUIERDA);
 			System.out.print("Salio un pajaro desde la derecha");
 		}
 
-		int rnd = ((int) random.nextDouble()) * 3;// Sortea en que fila sale
+		int rnd = (int) (random.nextDouble() * 3);// Sortea en que fila sale
 		switch (rnd) {
 		case 0:
-			this.setY(2 + (Juego.getInstance().getSeccion() * 3));
+			this.setYdouble(340);
 			System.out.println(" en el piso 3");
 			break;
 		case 1:
-			this.setY(1 + (Juego.getInstance().getSeccion() * 3));
+			this.setYdouble(270);
 			System.out.println(" en el piso 2");
 			break;
 		case 2:
-			this.setY(0 + (Juego.getInstance().getSeccion() * 3));
+			this.setYdouble(200);
 			System.out.println(" en el piso 1");
-			break;
-		default:
 			break;
 		}
 	}
@@ -58,45 +67,63 @@ public class Pajaro extends Personaje {
 	public boolean sortear(int nivel, int seccion) {
 		Random random = new Random();
 		if (seccion != 0) { // En la primer seccion no salen pajaros
-			if (((int) random.nextDouble()) * 100 > 70)
+			if (((int) random.nextDouble()) * 100 > 90)
 				;// Sortea que salga un pajaro (30% de posibilidades)
 			return true;
 		}
 		return false;
 	}
 
-	// -------------MOVER---------------
-
-	public void mover() {
-		if (d == direccion.DERECHA) {
-			if (getX() < 4)
-				this.moverDerecha();
-			if (getX() == 4)
-				setEnJuego(false); // Si el pajaro tiene direccion para la
-									// derecha va sumando uno sobre x hasta que
-									// salga del edif
-		} else {
-			if (getX() > 0)
-				this.moverIzquierda();
-			if (getX() == 0)
-				setEnJuego(false);
-		}
+	@Override
+	public void moverDerecha() {
+		this.setXdouble(this.getXdouble() + 0.04);
 	}
 
-	public boolean isEnJuego() {
-		return this.enJuego;
-	}
-
-	public void setEnJuego(boolean juego) {
-		this.enJuego = juego;
+	@Override
+	public void moverIzquierda() {
+		this.setXdouble(this.getXdouble() - 0.04);
 	}
 
 	@Override
 	public void atender() {
-		this.mover();
-		if (Juego.felix.isNormal()) {
+		Timer timer = new Timer("Volando");
+		TaskE1Pajaro e1 = new TaskE1Pajaro(this);
+		TaskE2Pajaro e2 = new TaskE2Pajaro(this);
+		if (d == DireccionPajaro.DERECHA) {
+			if (getXdouble() < 4) {
+				if (this.isE1()) {
+					timer.schedule(e2, 300);
+				} else if (this.isE2()) {
+					timer.schedule(e1, 300);
+				}
+				this.moverDerecha();
+			} else {
+				this.eliminar();
+				if (this.getXdouble() == 4) {
+					timer.cancel();
+				}
+			}
+
+		} else {
+			if (getXdouble() > 0) {
+				if (this.isE1()) {
+					timer.schedule(e2, 300);
+				} else if (this.isE2()) {
+					timer.schedule(e1, 300);
+				}
+				this.moverIzquierda();
+			} else {
+				this.eliminar();
+				if (getXdouble() == 0) {
+					timer.cancel();
+				}
+			}
+
+		}
+		if (!Juego.felix.isInmune() && !Juego.felix.isMuerto()) {
 			if (Juego.felix.colision(this)) {
 				Juego.felix.setEstado(EstadoDeFelix.MUERTO);
+				System.out.println("Felix choco con un pajaro");
 				this.eliminar();
 			}
 		}
@@ -108,13 +135,88 @@ public class Pajaro extends Personaje {
 	}
 
 	public void eliminar() {
-		this.setEnJuego(false);
 		Juego.getInstance().listaPersonajes.remove(this);
 	}
 
 	@Override
 	public void reset() {
 		this.eliminar();
+	}
+
+	public DireccionPajaro getD() {
+		return d;
+	}
+
+	public void setD(DireccionPajaro d) {
+		this.d = d;
+	}
+
+	public EstadoDePajaro getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoDePajaro estado) {
+		this.estado = estado;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public double getXdouble() {
+		return xdouble;
+	}
+
+	public void setXdouble(double xdouble) {
+		this.xdouble = xdouble;
+	}
+
+	public double getYdouble() {
+		return ydouble;
+	}
+
+	public void setYdouble(double ydouble) {
+		this.ydouble = ydouble;
+	}
+
+	public boolean isE1() {
+		if (this.getEstado() == EstadoDePajaro.E1)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isE2() {
+		if (this.getEstado() == EstadoDePajaro.E2)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isDerecho() {
+		if (this.getD() == DireccionPajaro.DERECHA)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isIzquierdo() {
+		if (this.getD() == DireccionPajaro.IZQUIERDA)
+			return true;
+		else
+			return false;
 	}
 
 }

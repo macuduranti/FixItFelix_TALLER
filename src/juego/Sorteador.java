@@ -11,8 +11,8 @@ public class Sorteador {
 		Random random = new Random();
 		if (Juego.getInstance().getSeccion() != 0) { // En la primer seccion no
 														// salen pajaros
-			if (((int) random.nextDouble()) * 10 > 7) {
-				// Sortea que salga un pajaro (30% de posibilidades)
+			if (((int) (random.nextDouble() * 100)) > 98) {
+				// Sortea que salga un pajaro
 				Pajaro pajaro = new Pajaro();
 				Juego.getInstance().listaPersonajes.add(pajaro);
 			}
@@ -21,8 +21,8 @@ public class Sorteador {
 
 	public void sortearNicelander() {
 		Random random = new Random();
-		if (((int) random.nextDouble()) * 10 > 7) {
-			int rndx = ((int) random.nextDouble()) * 5;
+		if (((int) (random.nextDouble()) * 10) > 7) {
+			int rndx = ((int) (random.nextDouble()) * 5);
 			int rndy = ((int) random.nextDouble()) * (3 * Juego.getInstance().getSeccion())
 					+ ((3 * Juego.getInstance().getSeccion() + 1) - 1);
 			if (Niceland.getInstance().edificio[rndx][rndy].puedeAparecerNicelander()) {

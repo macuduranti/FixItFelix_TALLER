@@ -18,7 +18,7 @@ public class Juego {
 
 	public static FelixJR felix = new FelixJR();
 	public static Ralph ralph = new Ralph();
-	private static Sorteador sorteador = new Sorteador();
+	public static Sorteador sorteador = new Sorteador();
 
 	public int nivel;
 	public int seccion;

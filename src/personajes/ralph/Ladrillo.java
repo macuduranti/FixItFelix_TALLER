@@ -15,6 +15,9 @@ public class Ladrillo extends Personaje {
 	
 	//public int height = 13;
 	//public int width = 20;
+	protected enum EstadoDeLadrillo {
+		E1, E2
+	}
 	
 	public EstadoDeLadrillo estado;
 

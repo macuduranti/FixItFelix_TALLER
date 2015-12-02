@@ -3,6 +3,7 @@ package grafica;
 // Cambiar paneles si hay tiempo
 
 import java.awt.EventQueue;
+import personajes.Pajaro.DireccionPajaro;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +11,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import juego.Juego;
 import juego.Niceland;
+import personajes.Pajaro;
 import personajes.Personaje;
 import personajes.ralph.Ladrillo;
 import ventana.*;
@@ -41,6 +43,15 @@ public class JuegoGrafica {
 			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
 	public final ImageIcon pngLadrillo2 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice11_11.png"));
+	
+	public final ImageIcon pngPajaroI1 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice41_41.png"));
+	public final ImageIcon pngPajaroI2 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice61_61.png"));
+	public final ImageIcon pngPajaroD1 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice08_08.png"));
+	public final ImageIcon pngPajaroD2 = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice09_09.png"));
 	
 	public final ImageIcon pngRalphNormal = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice146_@.png"));
@@ -114,12 +125,6 @@ public class JuegoGrafica {
 	public static void main(String[] args) {		
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(3);
-		Juego.getInstance().setVidas(3);
-		Juego.getInstance().setSeccion(0);
-		Juego.felix.setX(2);
-		Juego.felix.setY(0);
-		
 		switch (Juego.getInstance().getSeccion()) {
 		case 0:
 			setDesp(0);
@@ -148,7 +153,7 @@ public class JuegoGrafica {
 					window.frame.setVisible(true);
 					controller.addListeners(window);
 					Timer timer = new Timer ("Jugando..");
-					TareaPrueba tarea = new TareaPrueba (window);
+					TareaPrueba tarea = new TareaPrueba (window,timer);
 					timer.schedule(tarea, 0 , 50);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -677,7 +682,7 @@ public class JuegoGrafica {
 			}
 			break;
 		case 2:
-			x=205;
+			x=200;
 			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)){
 				y= 83 - ((Juego.felix.getY() - 3) * 70 );
 			}else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)){
@@ -695,7 +700,6 @@ public class JuegoGrafica {
 					y = 259;
 					break;
 				case 2:
-					x = 200;
 					y = 176;
 					break;
 				}
@@ -795,7 +799,7 @@ public class JuegoGrafica {
 	}
 	
 	public void calcularPersonajes(JPanel panel){
-		for (Personaje personaje : Juego.getInstance().listaPersonajes) { // Falta implementar el de felix
+		for (Personaje personaje : Juego.getInstance().listaPersonajes) { 
 			JLabel lblPj = new JLabel("");
 			if (personaje instanceof Ladrillo){
 				if (((Ladrillo) personaje).isE1()){
@@ -809,8 +813,28 @@ public class JuegoGrafica {
 				
 				//////////////
 				controller.tomarPosReal(personaje, (int)(74+(((Ladrillo) personaje).getXdouble())*55), (int)(((Ladrillo) personaje).getYdouble()));
-			}		
+			}else if (personaje instanceof Pajaro){
+				if (((Pajaro) personaje).isDerecho()){
+				if (((Pajaro) personaje).isE1()){
+					lblPj.setIcon(this.pngPajaroD1);
+					lblPj.setBounds((int)((((Pajaro) personaje).getXdouble())*110),(int)(((Pajaro) personaje).getYdouble()),33,23);
+				}else if (((Pajaro) personaje).isE2()){
+					lblPj.setIcon(this.pngPajaroD2);
+					lblPj.setBounds((int)((((Pajaro) personaje).getXdouble())*110),(int)(((Pajaro) personaje).getYdouble()),33,22);
+				}
+				}else if (((Pajaro) personaje).isIzquierdo()){
+					if (((Pajaro) personaje).isE1()){
+						lblPj.setIcon(this.pngPajaroI1);
+						lblPj.setBounds((int)((((Pajaro) personaje).getXdouble())*110),(int)(((Pajaro) personaje).getYdouble()),34,21);
+					}else if (((Pajaro) personaje).isE2()){
+						lblPj.setIcon(this.pngPajaroI2);
+						lblPj.setBounds((int)((((Pajaro) personaje).getXdouble())*110),(int)(((Pajaro) personaje).getYdouble()),35,21);
+					}
+				}
+				controller.tomarPosReal(personaje, (int)((((Pajaro) personaje).getXdouble())*110), (int)(((Pajaro) personaje).getYdouble()));
+			}
 			panel.add(lblPj);
 		}
 	}
+	
 }

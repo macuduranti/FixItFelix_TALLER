@@ -2,6 +2,8 @@ package personajes.ralph;
 
 import java.util.TimerTask;
 
+import personajes.ralph.Ladrillo.EstadoDeLadrillo;
+
 public class TaskE1Ladrillo extends TimerTask{
 	private Ladrillo ladrillo;
 	

@@ -16,7 +16,10 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.Vector;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -80,17 +83,46 @@ public class PantallaPuntaje extends JFrame {
 		
 		
 		
-	
-		String[] columnas = {"NOMBRE", "PUNTAJE"};
+		Vector<Puntaje> vector = Juego.getInstance().getTopFive();
+		
+		
+		
+		String[] columnas = {"NOMBRE", "PUNTAJE"};;
 		Object[][] data = {
-				//{juego.Juego.v[0].getPuntaje(), juego.Juego.v[].getNombre()}   PREGUNTAR COMO HACER CON EL VECTOR
-				{"hola", "chau"}
+				{"prueba", "prueba2"}  
 		};
-		final JTable table = new JTable(data, columnas);
-		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		DefaultTableModel dtm= new DefaultTableModel(data, columnas);
+		
+		final JTable table = new JTable(dtm);
+		
+		
+		
+		table.setPreferredScrollableViewportSize(new Dimension(500, 80));
+
+		//Creamos un scrollpanel y se lo agregamos a la tabla 
+		JScrollPane scrollpane = new JScrollPane(table);
+
+		//Agregamos el scrollpanel al contenedor 
+		getContentPane().add(scrollpane, BorderLayout.CENTER);
+
+		//manejamos la salida 
+		addWindowListener(new WindowAdapter() {
+
+		public void windowClosing(WindowEvent e) { 
+		System.exit(0); 
+		} 
+		}); 
+		
+
+	
+		
+		
+		
+		
 		contentPane.add(table);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		table.setBounds(100,100,1,1);
 		
 
 
@@ -99,10 +131,10 @@ public class PantallaPuntaje extends JFrame {
 
 		
 		
-		/*JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
+		JLabel label = new JLabel("");
+		//label.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
 		label.setBounds(0, 0, 660, 423);
-		contentPane.add(label);*/
+		contentPane.add(label);
 		
 	}
 }

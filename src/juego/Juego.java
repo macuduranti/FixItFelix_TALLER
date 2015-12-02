@@ -25,6 +25,7 @@ public class Juego {
 	public Puntaje jugadorActual;
 	public int vidas;
 	public ArrayList<Puntaje> puntajesMax;
+	private Vector<Puntaje> topFive;
 
 	public CopyOnWriteArrayList<Personaje> listaPersonajes = new CopyOnWriteArrayList<Personaje>();
 	
@@ -66,14 +67,14 @@ public class Juego {
 		this.puntajesMax.add(getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
 		Arrays.sort(this.getPuntajesMax()); //LA ORDENA 
 		
-		Vector<Puntaje> v = new Vector<Puntaje>();
+		Vector<Puntaje> topFive = new Vector<Puntaje>();
 		for(Puntaje p: this.getPuntajesMax()) {
-			v.add(p);
+			topFive.add(p);
 		}
 		
 		ObjectOutputStream o = null;
 		try {
-			o.writeObject(v);
+			o.writeObject(topFive);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,6 +178,14 @@ public class Juego {
 
 	public void setPuntajesMax(Puntaje[] puntajesMax) {
 		this.puntajesMax = puntajesMax;
+	}
+
+	public Vector<Puntaje> getTopFive() {
+		return topFive;
+	}
+
+	public void setTopFive(Vector<Puntaje> topFive) {
+		this.topFive = topFive;
 	}
 
 }

@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.Controller;
+
 import javax.swing.JTextField;
 
 public class PantallaGameOver extends JFrame {
@@ -83,6 +86,7 @@ public class PantallaGameOver extends JFrame {
 				PantallaPrincipal JframePrincipal;
 				try {
 					JframePrincipal = new PantallaPrincipal();
+					Controller.getInstance().addListeners(JframePrincipal);
 					JframePrincipal.setVisible(true);
 					setVisible(false);
 				} 

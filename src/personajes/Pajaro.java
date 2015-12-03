@@ -35,14 +35,14 @@ public class Pajaro extends Personaje {
 		Random random = new Random(); // Sortea para ver si sale de la izquierda
 										// o la derecha
 
-		if (((int) (random.nextDouble()) * 10) > 5) {
-			this.setXdouble(0); // Pajaro empieza en la izquierda
+		if ((int) ((random.nextDouble() * 10)) > 5) {
+			this.setXdouble(0); // Pajaro empieza en la derecha
 			this.setD(DireccionPajaro.DERECHA);
-			System.out.print("Salio un pajaro desde la izquierda");
-		} else {
-			this.setXdouble(4); // Pajaro empieza en la derecha
-			this.setD(DireccionPajaro.IZQUIERDA);
 			System.out.print("Salio un pajaro desde la derecha");
+		} else {
+			this.setXdouble(4); // Pajaro empieza en la izquierda
+			this.setD(DireccionPajaro.IZQUIERDA);
+			System.out.print("Salio un pajaro desde la izquierda");
 		}
 
 		int rnd = (int) (random.nextDouble() * 3);// Sortea en que fila sale

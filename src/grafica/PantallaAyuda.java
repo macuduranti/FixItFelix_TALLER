@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,6 +54,7 @@ public class PantallaAyuda extends JFrame {
 				PantallaPrincipal JframePrincipal;
 				try {
 					JframePrincipal = new PantallaPrincipal();
+					Controller.getInstance().addListeners(JframePrincipal);
 					JframePrincipal.setVisible(true);
 					setVisible(false);
 				} 

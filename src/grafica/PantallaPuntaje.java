@@ -30,6 +30,7 @@ import juego.Juego;
 
 import com.sun.scenario.effect.Blend.Mode;
 
+import controller.Controller;
 import juego.Puntaje;
 public class PantallaPuntaje extends JFrame {
 
@@ -104,6 +105,7 @@ public class PantallaPuntaje extends JFrame {
 				PantallaPrincipal JframePrincipal;
 				try {
 					JframePrincipal = new PantallaPrincipal();
+					Controller.getInstance().addListeners(JframePrincipal);
 					JframePrincipal.setVisible(true);
 					setVisible(false);
 				} catch (IOException e1) {

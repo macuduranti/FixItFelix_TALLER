@@ -105,7 +105,7 @@ public class PantallaPrincipal extends JFrame {
 		label_3.setBounds(479, 336, 68, 63);
 		panel.add(label_3);
 		
-		label_2.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/?_final.png")));
+		label_2.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/pregunta_final.png")));
 		label_2.setBounds(46, 336, 60, 60);
 		panel.add(label_2);
 		

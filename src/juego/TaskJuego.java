@@ -75,6 +75,7 @@ public class TaskJuego extends TimerTask {
 				Juego.felix.setEstado(EstadoDeFelix.NORMAL);
 				Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
 				if (Juego.getInstance().getSeccion() != 4) {
+					Juego.getInstance().setJugadorActual(Juego.getInstance().getJugadorActual().getPuntos()+300);
 					CambioSeccion cs = new CambioSeccion();
 					cs.setVisible(true);
 					Timer t = new Timer("SacandoCambioSeccion");
@@ -118,23 +119,21 @@ public class TaskJuego extends TimerTask {
 			this.jg.frame.setVisible(false);
 			PantallaGameOver pgo = new PantallaGameOver();
 			pgo.setVisible(true);
-			/*String nombre = "Lo que lea";
-			Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE DEL JUGADOR
-			Juego.getInstance().puntajesMax.add(Juego.getInstance().getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
-			Arrays.sort(Juego.getInstance().getPuntajesMax()); //LA ORDENA 
-			
-			Vector<Puntaje> topFive = new Vector<Puntaje>();
-			for(Puntaje p: Juego.getInstance().getPuntajesMax()) {
-				topFive.add(p);
-			}
-			
-			ObjectOutputStream o = null;
-			try {
-				o.writeObject(topFive);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			/*
+			 * String nombre = "Lo que lea";
+			 * Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE
+			 * DEL JUGADOR
+			 * Juego.getInstance().puntajesMax.add(Juego.getInstance().
+			 * getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
+			 * Arrays.sort(Juego.getInstance().getPuntajesMax()); //LA ORDENA
+			 * 
+			 * Vector<Puntaje> topFive = new Vector<Puntaje>(); for(Puntaje p:
+			 * Juego.getInstance().getPuntajesMax()) { topFive.add(p); }
+			 * 
+			 * ObjectOutputStream o = null; try { o.writeObject(topFive); }
+			 * catch (IOException e) { // TODO Auto-generated catch block
+			 * e.printStackTrace(); }
+			 */
 		}
 
 	}

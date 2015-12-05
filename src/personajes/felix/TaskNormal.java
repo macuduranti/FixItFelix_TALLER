@@ -4,12 +4,13 @@ import java.util.TimerTask;
 
 import juego.Juego;
 
-public class TaskNormal extends TimerTask{
+public class TaskNormal extends TimerTask {
 
 	@Override
 	public void run() {
-		Juego.felix.setEstado(EstadoDeFelix.NORMAL);
-		
+		if (!Juego.felix.isMuerto()) {
+			Juego.felix.setEstado(EstadoDeFelix.NORMAL);
+		}
 	}
 
 }

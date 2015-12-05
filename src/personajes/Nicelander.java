@@ -6,12 +6,10 @@ import juego.Juego;
 import juego.Posicion;
 
 public class Nicelander extends Personaje {
-	private boolean enJuego;
 	private int oportunidades = 3;
 
 	public Nicelander(int x, int y) { 
-		this.setEnJuego(true);
-		this.posicion=new Posicion(x,y);
+		this.posicion=new Posicion(x,y);	
 	}
 
 	private boolean sortearPastel() {
@@ -39,7 +37,6 @@ public class Nicelander extends Personaje {
 	}
 	
 	public void eliminar(){
-		this.setEnJuego(false);
 		Juego.getInstance().listaPersonajes.remove(this);
 	}
 
@@ -54,14 +51,6 @@ public class Nicelander extends Personaje {
 
 	public void setOportunidades(int oportunidades) {
 		this.oportunidades = oportunidades;
-	}
-
-	public boolean isEnJuego() {
-		return enJuego;
-	}
-
-	public void setEnJuego(boolean enJuego) {
-		this.enJuego = enJuego;
 	}
 
 	@Override

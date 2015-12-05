@@ -11,6 +11,7 @@ import grafica.TaskSacarCambioSeccion;
 import juego.Juego;
 import juego.Niceland;
 import juego.TaskJuego;
+import personajes.Nicelander;
 
 public class ActionListenerJugar implements ActionListener{
 	private PantallaPrincipal pantallaprincipal;

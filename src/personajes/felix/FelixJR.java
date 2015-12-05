@@ -47,12 +47,12 @@ public class FelixJR extends Personaje {
 			Posicion prox = new Posicion(this.getX(), this.getY() + 1);
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverArriba();
-			}
 			Timer timer = new Timer("Moviendo");
 			TaskMoviendo m = new TaskMoviendo();
 			TaskNormal n = new TaskNormal();
 			timer.schedule(m, 0);
 			timer.schedule(n, 100);
+			}
 		}
 	}
 
@@ -62,12 +62,12 @@ public class FelixJR extends Personaje {
 		Posicion prox = new Posicion(this.getX(), this.getY() - 1);
 		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 			super.moverAbajo();
-		}
 		Timer timer = new Timer("Moviendo");
 		TaskMoviendo m = new TaskMoviendo();
 		TaskNormal n = new TaskNormal();
 		timer.schedule(m, 0);
 		timer.schedule(n, 100);
+		}
 		}
 	}
 
@@ -77,12 +77,12 @@ public class FelixJR extends Personaje {
 		Posicion prox = new Posicion(this.getX() + 1, this.getY());
 		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 			super.moverDerecha();
-		}
 		Timer timer = new Timer("Moviendo");
 		TaskMoviendo m = new TaskMoviendo();
 		TaskNormal n = new TaskNormal();
 		timer.schedule(m, 0);
 		timer.schedule(n, 100);
+		}
 		}
 	}
 
@@ -92,12 +92,14 @@ public class FelixJR extends Personaje {
 		Posicion prox = new Posicion(this.getX() - 1, this.getY());
 		if (Niceland.getInstance().mePuedoMover(this.getPosicion(), prox)) {
 			super.moverIzquierda();
-		}
 		Timer timer = new Timer("Moviendo");
 		TaskMoviendo m = new TaskMoviendo();
 		TaskNormal n = new TaskNormal();
 		timer.schedule(m, 0);
+		if (!Juego.felix.isMuerto()) {
 		timer.schedule(n, 100);
+		}
+		}
 		}
 	}
 

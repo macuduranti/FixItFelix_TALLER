@@ -8,7 +8,9 @@ public class TaskMoviendo extends TimerTask{
 
 	@Override
 	public void run() {
+		if (!Juego.felix.isMuerto()) {
 			Juego.felix.setEstado(EstadoDeFelix.MOVIENDO);
+		}
 	}
 
 }

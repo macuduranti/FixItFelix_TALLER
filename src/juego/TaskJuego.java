@@ -1,12 +1,7 @@
 package juego;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Vector;
-
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
 import grafica.PantallaGameOver;

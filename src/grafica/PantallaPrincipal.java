@@ -10,9 +10,12 @@ import javax.swing.border.TitledBorder;
 
 public class PantallaPrincipal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JButton btnJugar;
-	private final Action action = new SwingAction();
 
 
 	public static void main(String[] args) {
@@ -110,16 +113,5 @@ public class PantallaPrincipal extends JFrame {
 		label_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/fondo_principal.png")));
 		label_1.setBounds(6, 18, 590, 417);
 		panel.add(label_1);
-	}
-	
-	
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		
-		public void actionPerformed(ActionEvent e) {
-		}
 	}
 }

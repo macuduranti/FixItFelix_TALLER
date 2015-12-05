@@ -4,10 +4,7 @@ import java.util.Random;
 import java.util.Timer;
 
 import juego.Juego;
-import juego.Posicion;
 import personajes.felix.EstadoDeFelix;
-import personajes.ralph.TaskE1Ladrillo;
-import personajes.ralph.TaskE2Ladrillo;
 
 public class Pajaro extends Personaje {
 

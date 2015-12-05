@@ -16,6 +16,10 @@ import javax.swing.SwingConstants;
 
 public class PasasteNivel extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**

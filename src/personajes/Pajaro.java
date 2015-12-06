@@ -59,18 +59,6 @@ public class Pajaro extends Personaje {
 		}
 	}
 
-	// --------------SORTEAR-----------------
-	@Deprecated
-	public boolean sortear(int nivel, int seccion) {
-		Random random = new Random();
-		if (seccion != 0) { // En la primer seccion no salen pajaros
-			if (((int) random.nextDouble()) * 100 > 90)
-				;// Sortea que salga un pajaro (30% de posibilidades)
-			return true;
-		}
-		return false;
-	}
-
 	@Override
 	public void moverDerecha() {
 		this.setXdouble(this.getXdouble() + 0.04);
@@ -117,7 +105,7 @@ public class Pajaro extends Personaje {
 			}
 
 		}
-		if (!Juego.felix.isInmune() && !Juego.felix.isMuerto()) {
+		if (!Juego.felix.isInmune() && !Juego.felix.isMuerto() && !Juego.felix.isTomandoPastel()) {
 			if (Juego.felix.colision(this)) {
 				Juego.felix.setEstado(EstadoDeFelix.MUERTO);
 				System.out.println("Felix choco con un pajaro");

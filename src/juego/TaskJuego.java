@@ -23,6 +23,14 @@ public class TaskJuego extends TimerTask {
 		this.jg = juegografica;
 		this.timer = t;
 	}
+	
+	
+	/*
+	 * 
+	 * Arreglar que cuando pasas de nivel no te muestra la seccion
+	 * 
+	 * 
+	 */
 
 	@Override
 	public void run() {
@@ -32,6 +40,7 @@ public class TaskJuego extends TimerTask {
 			Juego.ralph.mover();
 			Juego.ralph.sortearLadrillo();
 			Juego.sorteador.sortearPajaro();
+			Juego.sorteador.sortearNicelander();
 			for (Personaje personaje : Juego.getInstance().listaPersonajes) {
 				personaje.atender();
 			}
@@ -99,6 +108,10 @@ public class TaskJuego extends TimerTask {
 
 				Juego.getInstance().setNivel(Juego.getInstance().getNivel() + 1);
 				Juego.getInstance().setSeccion(0);
+				CambioSeccion cs = new CambioSeccion();
+				cs.setVisible(true);
+				TaskSacarCambioSeccion tscs = new TaskSacarCambioSeccion(cs);
+				t.schedule(tscs, 2000);
 				JuegoGrafica.setDesp(0);
 				Juego.ralph = new Ralph();
 				Juego.felix = new FelixJR();

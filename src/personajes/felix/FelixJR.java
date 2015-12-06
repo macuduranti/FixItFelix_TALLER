@@ -11,7 +11,8 @@ import personajes.Personaje;
 public class FelixJR extends Personaje {
 	public EstadoDeFelix estado;
 	public int cantArreglado;
-	
+	public boolean inmune;
+
 	// public int height = 53;
 	// public int width = 24;
 
@@ -21,7 +22,8 @@ public class FelixJR extends Personaje {
 		this.posicion = new Posicion(2, 0);
 		this.setHeight(53);
 		this.setWidth(24);
-		this.cantArreglado=0;
+		this.cantArreglado = 0;
+		this.setInmune(false);
 
 	}
 
@@ -47,11 +49,11 @@ public class FelixJR extends Personaje {
 			Posicion prox = new Posicion(this.getX(), this.getY() + 1);
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverArriba();
-			Timer timer = new Timer("Moviendo");
-			TaskMoviendo m = new TaskMoviendo();
-			TaskNormal n = new TaskNormal();
-			timer.schedule(m, 0);
-			timer.schedule(n, 100);
+				Timer timer = new Timer("Moviendo");
+				TaskMoviendo m = new TaskMoviendo();
+				TaskNormal n = new TaskNormal();
+				timer.schedule(m, 0);
+				timer.schedule(n, 100);
 			}
 		}
 	}
@@ -59,47 +61,47 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverAbajo() {
 		if (!Juego.felix.isMuerto()) {
-		Posicion prox = new Posicion(this.getX(), this.getY() - 1);
-		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
-			super.moverAbajo();
-		Timer timer = new Timer("Moviendo");
-		TaskMoviendo m = new TaskMoviendo();
-		TaskNormal n = new TaskNormal();
-		timer.schedule(m, 0);
-		timer.schedule(n, 100);
-		}
+			Posicion prox = new Posicion(this.getX(), this.getY() - 1);
+			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
+				super.moverAbajo();
+				Timer timer = new Timer("Moviendo");
+				TaskMoviendo m = new TaskMoviendo();
+				TaskNormal n = new TaskNormal();
+				timer.schedule(m, 0);
+				timer.schedule(n, 100);
+			}
 		}
 	}
 
 	@Override
 	public void moverDerecha() {
 		if (!Juego.felix.isMuerto()) {
-		Posicion prox = new Posicion(this.getX() + 1, this.getY());
-		if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
-			super.moverDerecha();
-		Timer timer = new Timer("Moviendo");
-		TaskMoviendo m = new TaskMoviendo();
-		TaskNormal n = new TaskNormal();
-		timer.schedule(m, 0);
-		timer.schedule(n, 100);
-		}
+			Posicion prox = new Posicion(this.getX() + 1, this.getY());
+			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
+				super.moverDerecha();
+				Timer timer = new Timer("Moviendo");
+				TaskMoviendo m = new TaskMoviendo();
+				TaskNormal n = new TaskNormal();
+				timer.schedule(m, 0);
+				timer.schedule(n, 100);
+			}
 		}
 	}
 
 	@Override
 	public void moverIzquierda() {
 		if (!Juego.felix.isMuerto()) {
-		Posicion prox = new Posicion(this.getX() - 1, this.getY());
-		if (Niceland.getInstance().mePuedoMover(this.getPosicion(), prox)) {
-			super.moverIzquierda();
-		Timer timer = new Timer("Moviendo");
-		TaskMoviendo m = new TaskMoviendo();
-		TaskNormal n = new TaskNormal();
-		timer.schedule(m, 0);
-		if (!Juego.felix.isMuerto()) {
-		timer.schedule(n, 100);
-		}
-		}
+			Posicion prox = new Posicion(this.getX() - 1, this.getY());
+			if (Niceland.getInstance().mePuedoMover(this.getPosicion(), prox)) {
+				super.moverIzquierda();
+				Timer timer = new Timer("Moviendo");
+				TaskMoviendo m = new TaskMoviendo();
+				TaskNormal n = new TaskNormal();
+				timer.schedule(m, 0);
+				if (!Juego.felix.isMuerto()) {
+					timer.schedule(n, 100);
+				}
+			}
 		}
 	}
 
@@ -113,7 +115,7 @@ public class FelixJR extends Personaje {
 			timer.schedule(ta1, 0);
 			timer.schedule(ta2, 50);
 			timer.schedule(n, 150);
-			this.setCantArreglado(this.getCantArreglado()+1);
+			this.setCantArreglado(this.getCantArreglado() + 1);
 		}
 
 	}
@@ -135,13 +137,6 @@ public class FelixJR extends Personaje {
 
 	public boolean isNormal() {
 		if (this.getEstado() == EstadoDeFelix.NORMAL) {
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean isInmune() {
-		if (this.getEstado() == EstadoDeFelix.INMUNE) {
 			return true;
 		} else
 			return false;
@@ -183,5 +178,22 @@ public class FelixJR extends Personaje {
 
 	public void setCantArreglado(int cantArreglado) {
 		this.cantArreglado = cantArreglado;
+	}
+
+	public void setInmune(boolean inmune) {
+		this.inmune = inmune;
+	}
+
+	public boolean isInmune() {
+		if (this.inmune)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isTomandoPastel(){
+		if (this.getEstado() == EstadoDeFelix.TOMANDOPASTEL){
+			return true;
+		}else return false;
 	}
 }

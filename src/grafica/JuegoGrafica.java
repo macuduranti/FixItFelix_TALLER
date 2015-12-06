@@ -13,6 +13,7 @@ import juego.Niceland;
 import juego.TaskJuego;
 import personajes.Nicelander;
 import personajes.Pajaro;
+import personajes.Pastel;
 import personajes.Personaje;
 import personajes.ralph.Ladrillo;
 import ventana.*;
@@ -39,6 +40,10 @@ public class JuegoGrafica {
 			JuegoGrafica.class.getResource("/res/personajes/slice84_84.png"));
 	public final ImageIcon pngFelixMuerto = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice291_@.png"));
+	public final ImageIcon pngFelixPastel = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice600_@.png"));
+	public final ImageIcon pngFelixInmune = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice72_72.png"));
 
 	public final ImageIcon pngLadrillo1 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
@@ -47,6 +52,9 @@ public class JuegoGrafica {
 
 	public final ImageIcon pngNicelander = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice248_@.png"));
+
+	public final ImageIcon pngPastel1 = new ImageIcon(JuegoGrafica.class.getResource("/res/personajes/slice12_12.png"));
+	public final ImageIcon pngPastel2 = new ImageIcon(JuegoGrafica.class.getResource("/res/personajes/slice13_13.png"));
 
 	public final ImageIcon pngPajaroI1 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice41_41.png"));
@@ -104,6 +112,7 @@ public class JuegoGrafica {
 	public final ImageIcon pngMoldura = new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/slice22_22.png"));
 
 	private static int desp;
+	private static Font font = null;
 
 	public static Controller controller = new Controller();
 
@@ -129,6 +138,7 @@ public class JuegoGrafica {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
+		Juego.getInstance().setSeccion(0);
 		switch (Juego.getInstance().getSeccion()) {
 		case 0:
 			setDesp(0);
@@ -148,8 +158,13 @@ public class JuegoGrafica {
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
 		Juego.ralph.romper(Juego.getInstance().getNivel());
-		Nicelander nicelander = new Nicelander(0,0);
+		/*
+		Nicelander nicelander = new Nicelander(0, 0);
 		Juego.getInstance().listaPersonajes.add(nicelander);
+		
+		Pastel pastel = new Pastel(0,0);
+		Juego.getInstance().listaPersonajes.add(pastel);
+		 */
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -189,6 +204,19 @@ public class JuegoGrafica {
 		panel.setBackground(Color.BLACK);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT,
+					getClass().getResourceAsStream("/res/fuente/VCR_OSD_MONO_1.001.ttf"));
+
+			GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			genv.registerFont(font);
+			font = font.deriveFont(12f);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -213,26 +241,6 @@ public class JuegoGrafica {
 			super.paintComponent(g);
 			this.removeAll();
 
-			// Cada vez que repaintea setea la fuente - esta mal
-			Font font = null;
-			try {
-				font = Font.createFont(Font.TRUETYPE_FONT,
-						getClass().getResourceAsStream("/res/fuente/VCR_OSD_MONO_1.001.ttf"));
-
-				GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
-				genv.registerFont(font);
-				font = font.deriveFont(12f);
-			} catch (FontFormatException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			/*
-			JLabel lblPj = new JLabel ("");
-			lblPj.setIcon(pngNicelander);
-			lblPj.setBounds(114, 358 + desp, 20, 21);
-			this.add(lblPj);*/
-			
 			JLabel lblNivel = new JLabel("NIVEL " + Juego.getInstance().getNivel());
 			lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNivel.setFont(font.deriveFont(Font.PLAIN, 28f));
@@ -270,11 +278,11 @@ public class JuegoGrafica {
 			lblCuadroVidas.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/cuadro-vidas.png")));
 			lblCuadroVidas.setBounds(339, 34, 92, 35);
 			this.add(lblCuadroVidas);
-/*
+
 			JLabel lblForeground = new JLabel("");
 			lblForeground.setIcon(new ImageIcon(JuegoGrafica.class.getResource("/res/niceland/cover juego.png")));
 			lblForeground.setBounds(-70, -16, 587, 441);
-			this.add(lblForeground);*/
+			this.add(lblForeground);
 
 			/*
 			 * 
@@ -762,8 +770,13 @@ public class JuegoGrafica {
 		}
 		JLabel lblFelix = new JLabel("");
 		if (Juego.felix.isNormal()) {
-			lblFelix.setIcon(this.pngFelixNormal);
-			lblFelix.setBounds(x, y + desp, 24, 53);
+			if (Juego.felix.isInmune()) {
+				lblFelix.setIcon(this.pngFelixInmune);
+				lblFelix.setBounds(x, y + desp, 25, 54);
+			} else {
+				lblFelix.setIcon(this.pngFelixNormal);
+				lblFelix.setBounds(x, y + desp, 24, 53);
+			}
 		} else if (Juego.felix.isMoviendo()) {
 			lblFelix.setIcon(this.pngFelixMoviendo);
 			lblFelix.setBounds(x, y + desp, 31, 51);
@@ -773,14 +786,14 @@ public class JuegoGrafica {
 		} else if (Juego.felix.isArreglando2()) {
 			lblFelix.setIcon(this.pngFelixArreglando2);
 			lblFelix.setBounds(x, y + desp, 54, 51);
-		} else if (Juego.felix.isInmune()) {
-
+		} else if (Juego.felix.isTomandoPastel()) {
+			lblFelix.setIcon(this.pngFelixPastel);
+			lblFelix.setBounds(x, y + desp, 41, 52);
 		} else if (Juego.felix.isMuerto()) {
 			lblFelix.setIcon(this.pngFelixMuerto);
 			lblFelix.setBounds(x, y + desp + 24, 51, 29);
 		}
 		panel.add(lblFelix);
-		//////////////////
 		controller.tomarPosReal(Juego.felix, x, y + desp);
 
 	}
@@ -869,18 +882,18 @@ public class JuegoGrafica {
 					break;
 				}
 				if ((personaje.getY() >= 3) && (personaje.getY() <= 5)) {
-					y = 83 - ((personaje.getY() - 3) * 70) + 28;
+					y = 83 - ((personaje.getY() - 3) * 70) + 30;
 				} else if ((personaje.getY() >= 6) && (personaje.getY() <= 8)) {
-					y = -151 - ((personaje.getY() - 6) * 70) + 28;
+					y = -151 - ((personaje.getY() - 6) * 70) + 30;
 				} else if ((personaje.getY() >= 9) && (personaje.getY() <= 11)) {
-					y = -385 - ((personaje.getY() - 9) * 70) + 28;
+					y = -385 - ((personaje.getY() - 9) * 70) + 30;
 				} else {
 					switch (personaje.getY()) {
 					case 0:
 						y = 358;
 						break;
 					case 1:
-						y = 275;
+						y = 285;
 						break;
 					case 2:
 						y = 204;
@@ -888,9 +901,53 @@ public class JuegoGrafica {
 					}
 				}
 				lblPj.setIcon(this.pngNicelander);
-				System.out.println(x);
-				System.out.println(y);
 				lblPj.setBounds(x, y + desp, 20, 21);
+			} else if (personaje instanceof Pastel) {
+				int x = 0;
+				int y = 0;
+				switch (personaje.getX()) {
+				case 0:
+					x = 114;
+					break;
+				case 1:
+					x = 159;
+					break;
+				case 2:
+					x = 214;
+					break;
+				case 3:
+					x = 269;
+					break;
+				case 4:
+					x = 314;
+					break;
+				}
+				if ((personaje.getY() >= 3) && (personaje.getY() <= 5)) {
+					y = 83 - ((personaje.getY() - 3) * 70) + 30;
+				} else if ((personaje.getY() >= 6) && (personaje.getY() <= 8)) {
+					y = -151 - ((personaje.getY() - 6) * 70) + 30;
+				} else if ((personaje.getY() >= 9) && (personaje.getY() <= 11)) {
+					y = -385 - ((personaje.getY() - 9) * 70) + 30;
+				} else {
+					switch (personaje.getY()) {
+					case 0:
+						y = 358;
+						break;
+					case 1:
+						y = 285;
+						break;
+					case 2:
+						y = 204;
+						break;
+					}
+				}
+				if (((Pastel) personaje).isE1()) {
+					lblPj.setIcon(this.pngPastel1);
+				} else if (((Pastel) personaje).isE2()) {
+					lblPj.setIcon(this.pngPastel2);
+				}
+				lblPj.setBounds(x, y + desp, 20, 21);
+				controller.tomarPosReal(personaje, x, y + desp);
 			}
 			panel.add(lblPj);
 		}

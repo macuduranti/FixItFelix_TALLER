@@ -9,6 +9,7 @@ import ventana.panel.Panel;
 public class DosPaneles extends Ventana {
 	public boolean macetero;
 	public boolean moldura;
+	public boolean nicelander;
 
 	public DosPaneles() {
 		this.paneles = new Panel[2];
@@ -16,6 +17,7 @@ public class DosPaneles extends Ventana {
 		this.paneles[1] = new Panel();
 		this.setMacetero(false);
 		this.setMoldura(false);
+		this.setNicelander(false);
 	}
 
 	public boolean hasMacetero() {
@@ -90,7 +92,7 @@ public class DosPaneles extends Ventana {
 
 	@Override
 	public boolean puedeAparecerNicelander() {
-		if (this.paneles[1].isRoto())
+		if (this.paneles[1].isRoto() && !this.hasNicelander())
 			return true;
 		else
 			return false;
@@ -99,6 +101,14 @@ public class DosPaneles extends Ventana {
 	@Override
 	public String getSprite() {
 		return "/res/niceland/slice103_@.png";
+	}
+
+	public boolean hasNicelander() {
+		return nicelander;
+	}
+
+	public void setNicelander(boolean nicelander) {
+		this.nicelander = nicelander;
 	}
 
 }

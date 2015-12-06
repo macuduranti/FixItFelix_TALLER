@@ -1,38 +1,26 @@
 package personajes;
-
-import java.util.Random;
-
+import java.util.Timer;
+import ventana.DosPaneles;
 import juego.Juego;
+import juego.Niceland;
 import juego.Posicion;
 
 public class Nicelander extends Personaje {
-	private int oportunidades = 3;
-
+	private boolean flag;
+	
 	public Nicelander(int x, int y) { 
-		this.posicion=new Posicion(x,y);	
-	}
-
-	private boolean sortearPastel() {
-		Random random = new Random();
-		if (((int) random.nextDouble()) * 10 > 5) {
-			Pastel pastel = new Pastel(this.getX(), this.getY());
-			Juego.getInstance().listaPersonajes.add(pastel);
-			System.out.println("Y se porto el chabon, dejo un pastel!!");
-			return true;
-		} else
-			return false;
+		this.posicion=new Posicion(x,y);
+		((DosPaneles)Niceland.getInstance().edificio[x][y]).setNicelander(true);
+		this.flag = true;
 	}
 
 	@Override
 	public void atender() {
-		while (this.getOportunidades() > 0) {
-			if (this.sortearPastel())
-				this.eliminar();
-			else
-				this.setOportunidades(this.getOportunidades() - 1);
-		}
-		if (this.getOportunidades() == 0){
-			this.eliminar();
+		if (this.flag){
+			Timer t = new Timer("Nicelandereando");
+			TaskDejarPastel tdp = new TaskDejarPastel(this,t);
+			t.schedule(tdp, 3000);
+			this.flag=false;
 		}
 	}
 	
@@ -43,14 +31,6 @@ public class Nicelander extends Personaje {
 	@Override
 	public void proxSeccion() {
 		this.eliminar();
-	}
-
-	public int getOportunidades() {
-		return oportunidades;
-	}
-
-	public void setOportunidades(int oportunidades) {
-		this.oportunidades = oportunidades;
 	}
 
 	@Override

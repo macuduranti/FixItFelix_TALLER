@@ -74,7 +74,7 @@ public class CambioSeccion extends JFrame {
 		lblNewLabel_2.setBounds(148, 38, 498, 177);
 		contentPane.add(lblNewLabel_2);*/
 		
-		JLabel lblNewLabel_1 = new JLabel("¡SECCION " + Juego.getInstance().getSeccion() + "!");
+		JLabel lblNewLabel_1 = new JLabel("¡SECCION " + (Juego.getInstance().getSeccion()+1) + "!");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(font.deriveFont(Font.PLAIN, 22f));

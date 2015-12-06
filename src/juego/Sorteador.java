@@ -21,12 +21,13 @@ public class Sorteador {
 
 	public void sortearNicelander() {
 		Random random = new Random();
-		if (((int) (random.nextDouble()) * 10) > 7) {
-			int rndx = ((int) (random.nextDouble()) * 5);
-			int rndy = ((int) random.nextDouble()) * (3 * Juego.getInstance().getSeccion())
+		if (((int) (random.nextDouble() * 10)) > 7) {
+			int rndx = ((int) (random.nextDouble() * 5));
+			int rndy = ((int) (random.nextDouble() * 3))
 					+ ((3 * Juego.getInstance().getSeccion() + 1) - 1);
+			System.out.println(rndx +","+ rndy);
 			if (Niceland.getInstance().edificio[rndx][rndy].puedeAparecerNicelander()) {
-				if (((int) random.nextDouble()) * 5 == 1) {
+				if ((int) (random.nextDouble() * 3) == 1) {
 					Nicelander nicelander = new Nicelander(rndx,rndy);
 					Juego.getInstance().listaPersonajes.add(nicelander);
 					System.out.println("Aparecio un nicelander en la ventana [" + rndx + "][" + rndy + "]");

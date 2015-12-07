@@ -42,8 +42,14 @@ public class JuegoGrafica {
 			JuegoGrafica.class.getResource("/res/personajes/slice291_@.png"));
 	public final ImageIcon pngFelixPastel = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice600_@.png"));
-	public final ImageIcon pngFelixInmune = new ImageIcon(
+	public final ImageIcon pngFelixNormalI = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice72_72.png"));
+	public final ImageIcon pngFelixMoviendoI = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice67_67I.png"));
+	public final ImageIcon pngFelixArreglando1I = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice76_76I.png"));
+	public final ImageIcon pngFelixArreglando2I = new ImageIcon(
+			JuegoGrafica.class.getResource("/res/personajes/slice84_84I.png"));
 
 	public final ImageIcon pngLadrillo1 = new ImageIcon(
 			JuegoGrafica.class.getResource("/res/personajes/slice10_10.png"));
@@ -159,11 +165,11 @@ public class JuegoGrafica {
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
 		Juego.ralph.romper(Juego.getInstance().getNivel());
 		/*
-		Nicelander nicelander = new Nicelander(0, 0);
-		Juego.getInstance().listaPersonajes.add(nicelander);
-		
-		Pastel pastel = new Pastel(0,0);
-		Juego.getInstance().listaPersonajes.add(pastel);
+		 * Nicelander nicelander = new Nicelander(0, 0);
+		 * Juego.getInstance().listaPersonajes.add(nicelander);
+		 * 
+		 * Pastel pastel = new Pastel(0,0);
+		 * Juego.getInstance().listaPersonajes.add(pastel);
 		 */
 
 		EventQueue.invokeLater(new Runnable() {
@@ -245,8 +251,35 @@ public class JuegoGrafica {
 			lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNivel.setFont(font.deriveFont(Font.PLAIN, 28f));
 			lblNivel.setForeground(Color.WHITE);
-			lblNivel.setBounds(0, 17, 451, 21);
+			lblNivel.setBounds(0, 5, 451, 21);
 			this.add(lblNivel);
+			
+			int minutes = TaskJuego.tiempo/60000;
+			int seconds = ((TaskJuego.tiempo/1000)-(60*minutes));
+			String minutos = "00";
+			String segundos = "00";
+			//System.out.println(minutes+" Minutos, "+seconds+" Segundos");
+			if (minutes <= 0){
+				minutos="00";
+			}else {
+				minutos="0"+minutes;
+			}
+			if (seconds <= 0){
+				segundos="00";
+			}else if (seconds / 10 < 1){
+				segundos="0"+seconds;
+			}else {
+				segundos=(((Integer)seconds).toString());
+			}
+			JLabel lblTiempo = new JLabel(minutos+":"+segundos);
+			lblTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTiempo.setFont(font.deriveFont(Font.PLAIN, 24f));
+			if (TaskJuego.tiempo <= 10000)
+				lblTiempo.setForeground(Color.YELLOW);
+			else 
+				lblTiempo.setForeground(Color.WHITE);
+			lblTiempo.setBounds(0, 30, 451, 21);
+			this.add(lblTiempo);
 
 			JLabel lblPuntaje = new JLabel("PUNTAJE");
 			lblPuntaje.setForeground(Color.WHITE);
@@ -771,21 +804,36 @@ public class JuegoGrafica {
 		JLabel lblFelix = new JLabel("");
 		if (Juego.felix.isNormal()) {
 			if (Juego.felix.isInmune()) {
-				lblFelix.setIcon(this.pngFelixInmune);
+				lblFelix.setIcon(this.pngFelixNormalI);
 				lblFelix.setBounds(x, y + desp, 25, 54);
 			} else {
 				lblFelix.setIcon(this.pngFelixNormal);
 				lblFelix.setBounds(x, y + desp, 24, 53);
 			}
 		} else if (Juego.felix.isMoviendo()) {
-			lblFelix.setIcon(this.pngFelixMoviendo);
-			lblFelix.setBounds(x, y + desp, 31, 51);
+			if (Juego.felix.isInmune()) {
+				lblFelix.setIcon(this.pngFelixMoviendoI);
+				lblFelix.setBounds(x, y + desp, 31, 51);
+			} else {
+				lblFelix.setIcon(this.pngFelixMoviendo);
+				lblFelix.setBounds(x, y + desp, 31, 51);
+			}
 		} else if (Juego.felix.isArreglando1()) {
-			lblFelix.setIcon(this.pngFelixArreglando1);
-			lblFelix.setBounds(x, y + desp, 39, 54);
+			if (Juego.felix.isInmune()) {
+				lblFelix.setIcon(this.pngFelixArreglando1I);
+				lblFelix.setBounds(x, y + desp, 39, 54);
+			} else {
+				lblFelix.setIcon(this.pngFelixArreglando1);
+				lblFelix.setBounds(x, y + desp, 39, 54);
+			}
 		} else if (Juego.felix.isArreglando2()) {
-			lblFelix.setIcon(this.pngFelixArreglando2);
-			lblFelix.setBounds(x, y + desp, 54, 51);
+			if (Juego.felix.isInmune()) {
+				lblFelix.setIcon(this.pngFelixArreglando2I);
+				lblFelix.setBounds(x, y + desp, 54, 51);
+			} else {
+				lblFelix.setIcon(this.pngFelixArreglando2);
+				lblFelix.setBounds(x, y + desp, 54, 51);
+			}
 		} else if (Juego.felix.isTomandoPastel()) {
 			lblFelix.setIcon(this.pngFelixPastel);
 			lblFelix.setBounds(x, y + desp, 41, 52);

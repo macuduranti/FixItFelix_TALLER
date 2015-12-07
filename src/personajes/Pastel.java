@@ -4,6 +4,7 @@ import java.util.Timer;
 import juego.Juego;
 import juego.Niceland;
 import juego.Posicion;
+import juego.TaskJuego;
 import personajes.Personaje;
 import personajes.felix.EstadoDeFelix;
 import personajes.felix.TaskNormal;
@@ -39,18 +40,17 @@ public class Pastel extends Personaje {
 		}
 		if (!Juego.felix.isMuerto()) {
 			if (Juego.felix.colision(this)) {
-				// FALTA VER SI AGARRAS OTRO PASTEL ESTANDO INMUNE
-				// FALTA VER BIEN EL BUG CUANDO SALEN MAS DE DOS NICELANDERS
+				// FALTA VER BIEN EL BUG CUANDO SALEN MAS DE DOS NICELANDERS ( En teoria esta solucionado )
+				if (Juego.felix.isInmune()){
+					TaskJuego.setTimesInmune(0);
+				}
 				Juego.felix.setEstado(EstadoDeFelix.TOMANDOPASTEL);
 				Timer t = new Timer("Inmunizando");
-				TaskSetInmune s = new TaskSetInmune();
-				TaskUnsetInmune u = new TaskUnsetInmune();
+				Juego.felix.setInmune(true);
 				TaskNormal n = new TaskNormal();
-				t.schedule(s, 500);
 				t.schedule(n, 500);
-				t.schedule(u, 10000);
 				this.eliminar();
-				((DosPaneles)Niceland.getInstance().edificio[this.getX()][this.getY()]).setNicelander(true);
+				((DosPaneles)Niceland.getInstance().edificio[this.getX()][this.getY()]).setNicelander(false);
 			}
 		}
 

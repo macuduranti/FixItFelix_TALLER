@@ -16,27 +16,26 @@ import personajes.ralph.Ralph;
 
 public class TaskJuego extends TimerTask {
 	public JuegoGrafica jg;
-	public int timesMuerto;
+	public static int timesMuerto=0;
+	public static int timesInmune=0;
 	public Timer timer;
+	private int times = 0;
+	public static int tiempo = 120000;
 
 	public TaskJuego(JuegoGrafica juegografica, Timer t) {
 		this.jg = juegografica;
 		this.timer = t;
 	}
-	
-	
-	/*
-	 * 
-	 * Arreglar que cuando pasas de nivel no te muestra la seccion
-	 * 
-	 * 
-	 */
 
 	@Override
 	public void run() {
 		this.jg.frame.repaint();
-
-		if (Juego.getInstance().getVidas() != 0 && Juego.getInstance().getNivel() < 11) {
+		times ++;
+		if (Juego.getInstance().getVidas() != 0 && Juego.getInstance().getNivel() < 11 && tiempo > 0) {
+			if (times == 20){
+				tiempo-=1000;
+				times = 0;
+			}
 			Juego.ralph.mover();
 			Juego.ralph.sortearLadrillo();
 			Juego.sorteador.sortearPajaro();
@@ -44,13 +43,21 @@ public class TaskJuego extends TimerTask {
 			for (Personaje personaje : Juego.getInstance().listaPersonajes) {
 				personaje.atender();
 			}
+			if (Juego.felix.isInmune()){
+				TaskJuego.setTimesInmune(TaskJuego.getTimesInmune()+1);
+				if (TaskJuego.getTimesInmune() == 200) {
+					Juego.felix.setInmune(false);
+					TaskJuego.setTimesInmune(0);
+				}
+				
+			}
 			if (Juego.felix.isMuerto()) {
-				if (timesMuerto == 0)
+				if (TaskJuego.getTimesMuerto() == 0)
 					Juego.getInstance().setVidas(Juego.getInstance().getVidas() - 1);
-				timesMuerto++;
-				if (timesMuerto == 40) {
+				TaskJuego.setTimesMuerto(TaskJuego.getTimesMuerto()+1);
+				if (TaskJuego.getTimesMuerto() == 40) {
 					Juego.felix.setEstado(EstadoDeFelix.NORMAL);
-					timesMuerto = 0;
+					TaskJuego.setTimesMuerto(0);
 				}
 			}
 			if (Juego.felix.getCantArreglado() == Juego.ralph.getCantSeccion()) {
@@ -105,7 +112,8 @@ public class TaskJuego extends TimerTask {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				times = 0;
+				tiempo = 120000 - (10000 * Juego.getInstance().getNivel()/2);
 				Juego.getInstance().setNivel(Juego.getInstance().getNivel() + 1);
 				Juego.getInstance().setSeccion(0);
 				CambioSeccion cs = new CambioSeccion();
@@ -144,6 +152,26 @@ public class TaskJuego extends TimerTask {
 			 */
 		}
 
+	}
+
+
+	public static int getTimesMuerto() {
+		return timesMuerto;
+	}
+
+
+	public static void setTimesMuerto(int timesMuerto) {
+		TaskJuego.timesMuerto = timesMuerto;
+	}
+
+
+	public static int getTimesInmune() {
+		return timesInmune;
+	}
+
+
+	public static void setTimesInmune(int timesInmune) {
+		TaskJuego.timesInmune = timesInmune;
 	}
 
 }

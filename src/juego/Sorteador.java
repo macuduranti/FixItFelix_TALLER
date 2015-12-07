@@ -25,7 +25,6 @@ public class Sorteador {
 			int rndx = ((int) (random.nextDouble() * 5));
 			int rndy = ((int) (random.nextDouble() * 3))
 					+ ((3 * Juego.getInstance().getSeccion() + 1) - 1);
-			System.out.println(rndx +","+ rndy);
 			if (Niceland.getInstance().edificio[rndx][rndy].puedeAparecerNicelander()) {
 				if ((int) (random.nextDouble() * 3) == 1) {
 					Nicelander nicelander = new Nicelander(rndx,rndy);

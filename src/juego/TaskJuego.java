@@ -20,7 +20,7 @@ public class TaskJuego extends TimerTask {
 	public static int timesInmune=0;
 	public Timer timer;
 	private int times = 0;
-	public static int tiempo = 120000;
+	public static int tiempo = 120000 - (10000 * Juego.getInstance().getNivel()/2);
 
 	public TaskJuego(JuegoGrafica juegografica, Timer t) {
 		this.jg = juegografica;

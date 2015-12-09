@@ -144,6 +144,7 @@ public class JuegoGrafica {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
+		Juego.getInstance().setNivel(10);
 		Juego.getInstance().setSeccion(0);
 		switch (Juego.getInstance().getSeccion()) {
 		case 0:
@@ -164,13 +165,6 @@ public class JuegoGrafica {
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
 		Juego.ralph.romper(Juego.getInstance().getNivel());
-		/*
-		 * Nicelander nicelander = new Nicelander(0, 0);
-		 * Juego.getInstance().listaPersonajes.add(nicelander);
-		 * 
-		 * Pastel pastel = new Pastel(0,0);
-		 * Juego.getInstance().listaPersonajes.add(pastel);
-		 */
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

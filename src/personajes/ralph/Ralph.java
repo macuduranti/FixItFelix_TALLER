@@ -40,48 +40,6 @@ public class Ralph extends Personaje {
 
 	}
 
-	@Deprecated
-	public void mover1() {
-		Random random = new Random();
-		if (this.getCantMov() == 0) {
-			this.setCantMov((int) (random.nextDouble() * 10 + 3));
-			int rnd = (int) (random.nextDouble() * 3);
-			if (rnd == 0) {
-				if (this.getXdouble() > 0) {
-					this.moverIzquierda();
-					this.setUltDir(Direccion.IZQUIERDA);
-				}
-			} else if (rnd == 1) {
-				if (this.getXdouble() < 4) {
-					this.moverDerecha();
-					this.setUltDir(Direccion.DERECHA);
-				}
-			} else if (rnd == 2) {
-				try {
-					Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} else {
-			if (this.ultDir == Direccion.IZQUIERDA) {
-				if (this.getXdouble() > 0)
-					this.moverIzquierda();
-				else if (this.getXdouble() == 0)
-					this.setUltDir(Direccion.DERECHA);
-			} else if (this.ultDir == Direccion.DERECHA) {
-				if (this.getXdouble() < 4)
-					this.moverDerecha();
-				else if (this.getXdouble() == 4)
-					this.setUltDir(Direccion.IZQUIERDA);
-			}
-			this.setCantMov(this.getCantMov() - 1);
-		}
-
-	}
-
 	public void mover() {
 		Random random = new Random();
 		if (this.cantMovs == 3) {
@@ -197,14 +155,17 @@ public class Ralph extends Personaje {
 		this.setEstado(EstadoDeRalph.TIRANDO);
 	}
 
-	public void romper(int nivel) {
+	public boolean romper(int nivel) {
 		this.setEstado(EstadoDeRalph.ROMPIENDO);
 		Random random = new Random();
+		//this.setCantSeccion(Integer.MAX_VALUE);
 		this.setCantSeccion((int) (10 * Math.pow(1.15, nivel - 1)));
+		if (this.getCantSeccion() > Niceland.getInstance().cantMin)
+			this.setCantSeccion(Niceland.getInstance().cantMin);
 		int cantAux = this.getCantSeccion();
 		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion
-				int rndx = (int) (random.nextDouble() * 4);
+				int rndx = (int) (random.nextDouble() * 5);
 				int rndy = (int) (random.nextDouble() * 3 + (3 * i));
 				if (Niceland.getInstance().edificio[rndx][rndy].romperVentana()) {
 					cantAux--;
@@ -214,6 +175,7 @@ public class Ralph extends Personaje {
 		}
 		System.out.println("Ralph ha roto niceland");
 		this.setEstado(EstadoDeRalph.NORMAL);
+		return true;
 	}
 
 	public int getCantidadLadrillos() {

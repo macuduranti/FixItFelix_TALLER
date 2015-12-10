@@ -1,6 +1,5 @@
 package juego;
 
-import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -137,7 +136,7 @@ public class TaskJuego extends TimerTask {
 			this.jg.frame.setVisible(false);
 			PantallaGameOver pgo = new PantallaGameOver();
 			pgo.setVisible(true);
-			
+			/*
 			  String nombre = "Lo que lea";
 			  Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE
 			  Juego.getInstance().puntajesMax.add(Juego.getInstance().getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
@@ -149,7 +148,7 @@ public class TaskJuego extends TimerTask {
 			  ObjectOutputStream o = null; try { o.writeObject(topFive); }
 			  catch (IOException e) { // TODO Auto-generated catch block
 			  e.printStackTrace(); }
-			 
+			 */
 		}
 
 	}

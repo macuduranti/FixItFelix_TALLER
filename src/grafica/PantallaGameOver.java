@@ -20,6 +20,8 @@ import controller.Controller;
 
 import javax.swing.JTextField;
 
+import juego.Juego;
+
 public class PantallaGameOver extends JFrame {
 
 	private JPanel contentPane;
@@ -76,19 +78,16 @@ public class PantallaGameOver extends JFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		textField = new JTextField();
-		textField.setBounds(176, 203, 230, 38);
+		textField.setBounds(128, 200, 230, 38);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel label_1 = new JLabel(""); //Boton atras
+		JLabel label_1 = new JLabel(""); //BOTON PUNTAJE Y ORDENA LISTA
 		label_1.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				PantallaPrincipal JframePrincipal;
+			public void mouseClicked(MouseEvent e) { //ESTE EVENTO DEBE ORDENAR LA LISTA Y MANDAR A PUNTAJE
 				try {
-					JframePrincipal = new PantallaPrincipal();
-					Controller.getInstance().addListeners(JframePrincipal);
-					JframePrincipal.setVisible(true);
-					setVisible(false);
+					Controller.ActualizarLista(textField.getText(), Juego.getInstance().getPuntosJugadorActual());
+					//ACA HAY QUE MANDAR AL PUNTAJE
 				} 
 				catch (IOException e1) {
 					e1.printStackTrace();
@@ -97,7 +96,7 @@ public class PantallaGameOver extends JFrame {
 			}
 		});
 		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
-		label_1.setBounds(16, 17, 52, 52);
+		label_1.setBounds(390, 200, 52, 52);
 		contentPane.add(label_1);
 		
 		
@@ -118,8 +117,7 @@ public class PantallaGameOver extends JFrame {
 					JframePrincipal = new PantallaPrincipal();
 					JframePrincipal.setVisible(true);
 					setVisible(false);
-					String nombreTextField = textField.getText();
-					System.out.println(nombreTextField);
+					
 				} 
 				catch (IOException e1) {
 					e1.printStackTrace();

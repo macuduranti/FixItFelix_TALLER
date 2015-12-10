@@ -56,17 +56,26 @@ public class PantallaPuntaje extends JFrame {
 	}
 	
 	public PantallaPuntaje() {
+		setBounds(100, 100, 590, 432);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		getContentPane().setLayout(null);
-		Arrays<Puntaje>[] v = Juego.getInstance().getTopFive();
+		Vector<Puntaje> v = Juego.getInstance().getTopFive();
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 33, 328, 197);
+		scrollPane.setBounds(65, 99, 448, 197);
 		getContentPane().add(scrollPane);
 		Object[][] datos = {};
 		String[] columnas = {"Nombre", "Puntaje"};
 		DefaultTableModel dtm = new DefaultTableModel(datos, columnas);
 		table = new JTable(dtm);
 		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(PantallaPuntaje.class.getResource("/res/fondo puntaje.jpg")));
+		lblNewLabel.setBounds(0, 0, 590, 410);
+		getContentPane().add(lblNewLabel);
 		this.setVisible(true);
+		this.setResizable(false);
 		
 	}
 	

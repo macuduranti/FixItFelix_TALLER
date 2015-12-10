@@ -2,6 +2,7 @@ package juego;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
@@ -134,8 +135,16 @@ public class TaskJuego extends TimerTask {
 			this.timer.cancel();
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
-			PantallaGameOver pgo = new PantallaGameOver();
-			pgo.setVisible(true);
+			
+			Vector<Puntaje> v = Juego.getInstance().getTopFive();
+			if (Juego.getInstance().jugadorActual.getPuntos() > v.lastElement().puntos) {
+				PantallaGameOver pgo = new PantallaGameOver();
+				pgo.setVisible(true);
+			}
+			else{
+				//MANDA A PANTALLA GAME OVER LOSE
+			}
+			
 			/*
 			  String nombre = "Lo que lea";
 			  Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE

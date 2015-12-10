@@ -1,8 +1,9 @@
 package juego;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class Puntaje implements Comparable<Puntaje>, Serializable{
+public class Puntaje implements Comparator<Puntaje>, Serializable{
 	public int puntos;
 	public String nombre;
 	
@@ -24,7 +25,7 @@ public class Puntaje implements Comparable<Puntaje>, Serializable{
 		this.nombre = nombre;
 	}
 	
-    @Override
+	/* @Override
     public int compareTo(Puntaje p) {
         if (puntos < p.puntos) {
             return -1;
@@ -34,4 +35,11 @@ public class Puntaje implements Comparable<Puntaje>, Serializable{
         }
         return 0;
     }
+    */
+    
+    @Override
+	public int compare(Puntaje p1, Puntaje p2) {
+		
+		return new Integer(p2.getPuntos()).compareTo(new Integer(p1.getPuntos()));
+	}
 }

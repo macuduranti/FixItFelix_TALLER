@@ -1,5 +1,14 @@
 package controller;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Vector;
+
+import juego.Juego;
+import juego.Puntaje;
 import grafica.JuegoGrafica;
 import grafica.PantallaPrincipal;
 import personajes.Personaje;
@@ -34,5 +43,25 @@ public class Controller {
 
 	public static void setInstance(Controller instance) {
 		Controller.instance = instance;
+	}
+	
+	public static void ActualizarLista(String n, int p){
+		Puntaje nuevo = new Puntaje();
+		nuevo.setNombre(n);
+		nuevo.setPuntos(p);
+		Juego.getInstance().puntajesMax.add(nuevo); //AGREGA A UNA LISTA EL NUEVO
+		
+		Collections.sort(Juego.getInstance().puntajesMax, Puntaje.compare(nuevo, nuevo); //MAÑANA PEDIR AYUDA CON EL COMPARADOR
+		
+		Juego.getInstance().puntajesMax.remove(5); //BORRA EL ULTIMO ELEMENTO DE LA LISTA
+		Vector<Puntaje> topFive = new Vector<Puntaje>(); 
+		for(Puntaje p1:  Juego.getInstance().getPuntajesMax()) { topFive.add(p1); }
+		  
+		ObjectOutputStream o = null; 
+		
+		try { o.writeObject(topFive); }
+		catch (IOException e) { // TODO Auto-generated catch block
+		e.printStackTrace(); }
+		
 	}
 }

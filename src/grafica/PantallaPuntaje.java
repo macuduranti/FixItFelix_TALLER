@@ -57,7 +57,7 @@ public class PantallaPuntaje extends JFrame {
 	
 	public PantallaPuntaje() {
 		getContentPane().setLayout(null);
-		
+		Arrays<Puntaje>[] v = Juego.getInstance().getTopFive();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(57, 33, 328, 197);
 		getContentPane().add(scrollPane);

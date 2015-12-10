@@ -1,7 +1,9 @@
 package juego;
 
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
 import grafica.PantallaGameOver;
@@ -135,21 +137,19 @@ public class TaskJuego extends TimerTask {
 			this.jg.frame.setVisible(false);
 			PantallaGameOver pgo = new PantallaGameOver();
 			pgo.setVisible(true);
-			/*
-			 * String nombre = "Lo que lea";
-			 * Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE
-			 * DEL JUGADOR
-			 * Juego.getInstance().puntajesMax.add(Juego.getInstance().
-			 * getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
-			 * Arrays.sort(Juego.getInstance().getPuntajesMax()); //LA ORDENA
-			 * 
-			 * Vector<Puntaje> topFive = new Vector<Puntaje>(); for(Puntaje p:
-			 * Juego.getInstance().getPuntajesMax()) { topFive.add(p); }
-			 * 
-			 * ObjectOutputStream o = null; try { o.writeObject(topFive); }
-			 * catch (IOException e) { // TODO Auto-generated catch block
-			 * e.printStackTrace(); }
-			 */
+			
+			  String nombre = "Lo que lea";
+			  Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE
+			  Juego.getInstance().puntajesMax.add(Juego.getInstance().getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
+			  Arrays.sort(); //LA ORDENA
+			  
+			  Vector<Puntaje> topFive = new Vector<Puntaje>(); for(Puntaje p:
+			  Juego.getInstance().getPuntajesMax()) { topFive.add(p); }
+			  
+			  ObjectOutputStream o = null; try { o.writeObject(topFive); }
+			  catch (IOException e) { // TODO Auto-generated catch block
+			  e.printStackTrace(); }
+			 
 		}
 
 	}

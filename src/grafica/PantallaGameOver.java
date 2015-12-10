@@ -118,6 +118,8 @@ public class PantallaGameOver extends JFrame {
 					JframePrincipal = new PantallaPrincipal();
 					JframePrincipal.setVisible(true);
 					setVisible(false);
+					String nombreTextField = textField.getText();
+					System.out.println(nombreTextField);
 				} 
 				catch (IOException e1) {
 					e1.printStackTrace();

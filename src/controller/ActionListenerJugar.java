@@ -23,6 +23,7 @@ public class ActionListenerJugar implements ActionListener{
 		this.pantallaprincipal.setVisible(false);	
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
+		juego.setNivel(PantallaPrincipal.getNivelInicial());
 		switch (Juego.getInstance().getSeccion()) {
 		case 0:
 			JuegoGrafica.setDesp(0);
@@ -48,6 +49,7 @@ public class ActionListenerJugar implements ActionListener{
 		TaskJuego tarea = new TaskJuego (juegoGrafica,timer);
 		timer.schedule(tarea, 0 , 50);
 		CambioSeccion cs = new CambioSeccion();
+		cs.setLocationRelativeTo(juegoGrafica.frame);
 		cs.setVisible(true);
 		cs.setFocusable(false);
 		Timer t = new Timer("SacandoCambioSeccion");

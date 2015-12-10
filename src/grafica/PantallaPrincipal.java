@@ -15,6 +15,15 @@ public class PantallaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public static int nivelInicial = 0;
+	public static int getNivelInicial() {
+		return nivelInicial;
+	}
+	public static void setNivelInicial(int nivelInicial) {
+		PantallaPrincipal.nivelInicial = nivelInicial;
+	}
+
+
 	public JButton btnJugar;
 
 
@@ -81,7 +90,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_2 = new JLabel(""); //Creacion boton ayuda
 		label_2.addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent e) {
-				PantallaAyuda JframeAyuda = new PantallaAyuda();
+				PantallaAyuda JframeAyuda = new PantallaAyuda(PantallaPrincipal.this);
 				JframeAyuda.setVisible(true);
 				setVisible(false); //Pone visible la pantalla ayuda y no visible la principal
 			}
@@ -91,12 +100,19 @@ public class PantallaPrincipal extends JFrame {
 		label_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				PantallaPuntaje JframePuntaje = new PantallaPuntaje();
+				JframePuntaje.setLocationRelativeTo(getContentPane());
 				JframePuntaje.setVisible(true);
 				setVisible(false); //Pone visible y saca la principal
 			}
 		});
 		
-		JLabel label = new JLabel("");
+		JLabel label = new JLabel(""); // Boton configuracion
+		label.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				PantallaConfiguracion JframeConfiguracion = new PantallaConfiguracion(PantallaPrincipal.this);
+				JframeConfiguracion.setVisible(true);
+			}
+		});
 		label.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/configuracion.png")));
 		label.setBounds(482, 40, 68, 75);
 		panel.add(label);

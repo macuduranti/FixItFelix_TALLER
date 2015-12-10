@@ -160,8 +160,8 @@ public class Ralph extends Personaje {
 		Random random = new Random();
 		//this.setCantSeccion(Integer.MAX_VALUE);
 		this.setCantSeccion((int) (10 * Math.pow(1.15, nivel - 1)));
-		if (this.getCantSeccion() > Niceland.getInstance().cantMin)
-			this.setCantSeccion(Niceland.getInstance().cantMin);
+		if (this.getCantSeccion() > Niceland.getInstance().getCantMin())
+			this.setCantSeccion(Niceland.getInstance().getCantMin());
 		int cantAux = this.getCantSeccion();
 		for (int i = 0; i <= 3; i++) {
 			while (cantAux != 0) { // Rompe cada seccion

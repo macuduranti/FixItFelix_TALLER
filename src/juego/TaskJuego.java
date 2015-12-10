@@ -1,5 +1,7 @@
 package juego;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -136,28 +138,18 @@ public class TaskJuego extends TimerTask {
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
 			
-			Vector<Puntaje> v = Juego.getInstance().getTopFive();
+			
+			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
+			Vector<Puntaje> v = (Vector) entrada.readObject();
 			if (Juego.getInstance().jugadorActual.getPuntos() > v.lastElement().puntos) {
-				PantallaGameOver pgo = new PantallaGameOver();
+				PantallaGameOver pgo = new PantallaGameOver(true);
 				pgo.setVisible(true);
 			}
 			else{
-				//MANDA A PANTALLA GAME OVER LOSE
+				PantallaGameOver pgo = new PantallaGameOver(false);
+				pgo.setVisible(false);
 			}
 			
-			/*
-			  String nombre = "Lo que lea";
-			  Juego.getInstance().setJugadorActual(nombre); //PONE EL NOMBRE
-			  Juego.getInstance().puntajesMax.add(Juego.getInstance().getJugadorActual()) ; //AGREGA A UNA LISTA EL JUGADOR
-			  Arrays.sort(); //LA ORDENA
-			  
-			  Vector<Puntaje> topFive = new Vector<Puntaje>(); for(Puntaje p:
-			  Juego.getInstance().getPuntajesMax()) { topFive.add(p); }
-			  
-			  ObjectOutputStream o = null; try { o.writeObject(topFive); }
-			  catch (IOException e) { // TODO Auto-generated catch block
-			  e.printStackTrace(); }
-			 */
 		}
 
 	}

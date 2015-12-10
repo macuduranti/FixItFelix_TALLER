@@ -1,10 +1,15 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Vector;
 
 import juego.Juego;
@@ -45,21 +50,21 @@ public class Controller {
 		Controller.instance = instance;
 	}
 	
-	public static void ActualizarLista(String n, int p){
+	public static void ActualizarLista(String n, int p) throws FileNotFoundException, IOException{
 		Puntaje nuevo = new Puntaje();
 		nuevo.setNombre(n);
 		nuevo.setPuntos(p);
 		Juego.getInstance().puntajesMax.add(nuevo); //AGREGA A UNA LISTA EL NUEVO
 		
-		Collections.sort(Juego.getInstance().puntajesMax, Puntaje.compare(nuevo, nuevo); //MAÑANA PEDIR AYUDA CON EL COMPARADOR
+		Collections.sort(Juego.getInstance().puntajesMax, Puntaje.getCompartor());
 		
 		Juego.getInstance().puntajesMax.remove(5); //BORRA EL ULTIMO ELEMENTO DE LA LISTA
 		Vector<Puntaje> topFive = new Vector<Puntaje>(); 
-		for(Puntaje p1:  Juego.getInstance().getPuntajesMax()) { topFive.add(p1); }
-		  
-		ObjectOutputStream o = null; 
+		for(Puntaje p1:  Juego.getInstance().puntajesMax) { topFive.add(p1); }
 		
-		try { o.writeObject(topFive); }
+		ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("puntajes.dat")); 
+		
+		try {archivo.writeObject(topFive); }
 		catch (IOException e) { // TODO Auto-generated catch block
 		e.printStackTrace(); }
 		

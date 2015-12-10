@@ -60,11 +60,15 @@ public class PantallaPuntaje extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		getContentPane().setLayout(null);
-		Vector<Puntaje> v = Juego.getInstance().getTopFive();
+		Vector<Puntaje> v = Juego.getInstance().getTopFive();//ACA
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(65, 99, 448, 197);
 		getContentPane().add(scrollPane);
-		Object[][] datos = {};
+		Object[][] datos = new Object[5][2];
+		for(int i=0; i<5; i++){
+			datos[i][0] = v.get(i).getNombre();
+			datos[i][1]	= v.get(i).getPuntos();
+		}
 		String[] columnas = {"Nombre", "Puntaje"};
 		DefaultTableModel dtm = new DefaultTableModel(datos, columnas);
 		table = new JTable(dtm);

@@ -48,7 +48,7 @@ public class PasasteNivel extends JFrame {
 		contentPane.setBorder(BorderFactory.createMatteBorder( 5, 5, 5, 5, Color.YELLOW ));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(null);
+		//this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
 	    this.setUndecorated(true);	
 		

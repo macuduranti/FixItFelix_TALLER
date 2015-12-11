@@ -69,4 +69,8 @@ public class Controller {
 		e.printStackTrace(); }
 		
 	}
+	
+	public void tomarNivelLista(int n){
+		Juego.getInstance().setNivel(n);
+	}
 }

@@ -49,10 +49,10 @@ public class Niceland {
 		System.out.println("Hay "+cantPaneles[2]+" paneles rompibles en seccion 2.");
 		System.out.println("Hay "+cantPaneles[3]+" paneles rompibles en seccion 3.");
 		*/
-		cantMin=Integer.MAX_VALUE;
+		setCantMin(Integer.MAX_VALUE);
 		for (int i = 0; i < cantPaneles.length; i++) {
-			if (cantPaneles[i] < cantMin){
-				cantMin=cantPaneles[i];
+			if (cantPaneles[i] < getCantMin()){
+				setCantMin(cantPaneles[i]);
 			}
 		}
 		//System.out.println("La cantidad minima de paneles rompibles es "+cantMin);
@@ -95,5 +95,29 @@ public class Niceland {
 
 	public static void setInstance(Niceland instance) {
 		Niceland.instance = instance;
+	}
+
+	public Ventana[][] getEdificio() {
+		return edificio;
+	}
+
+	public void setEdificio(Ventana[][] edificio) {
+		this.edificio = edificio;
+	}
+
+	public int[] getCantPaneles() {
+		return cantPaneles;
+	}
+
+	public void setCantPaneles(int[] cantPaneles) {
+		this.cantPaneles = cantPaneles;
+	}
+
+	public int getCantMin() {
+		return cantMin;
+	}
+
+	public void setCantMin(int cantMin) {
+		this.cantMin = cantMin;
 	}
 }

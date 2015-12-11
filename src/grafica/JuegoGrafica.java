@@ -194,7 +194,7 @@ public class JuegoGrafica {
 	 */
 	public void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 432);
+		frame.setBounds(0, 0, 451, 432);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);

@@ -94,6 +94,7 @@ public class TaskJuego extends TimerTask {
 				if (Juego.getInstance().getSeccion() != 4) {
 					Juego.getInstance().setJugadorActual(Juego.getInstance().getJugadorActual().getPuntos()+300);
 					CambioSeccion cs = new CambioSeccion();
+					cs.setLocationRelativeTo(jg.frame);
 					cs.setVisible(true);
 					Timer t = new Timer("SacandoCambioSeccion");
 					TaskSacarCambioSeccion tscs = new TaskSacarCambioSeccion(cs);
@@ -108,6 +109,7 @@ public class TaskJuego extends TimerTask {
 			}
 			if (Juego.getInstance().getSeccion() == 4) {
 				PasasteNivel pn = new PasasteNivel();
+				pn.setLocationRelativeTo(jg.frame);
 				pn.setVisible(true);
 				Timer t = new Timer("SacandoPasasteNivel");
 				TaskSacarPasasteNivel tspn = new TaskSacarPasasteNivel(pn);
@@ -140,6 +142,7 @@ public class TaskJuego extends TimerTask {
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
 			
+<<<<<<< HEAD
 			Vector<Puntaje> v = new Vector<Puntaje>();
 			ObjectInputStream entrada;
 			try {
@@ -174,6 +177,10 @@ public class TaskJuego extends TimerTask {
 				e.printStackTrace();
 			}
 			
+=======
+			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
+			Vector<Puntaje> v = (Vector) entrada.readObject();
+>>>>>>> origin/master
 			if (Juego.getInstance().jugadorActual.getPuntos() > v.lastElement().puntos) {
 				PantallaGameOver pgo = new PantallaGameOver(true);
 				pgo.setVisible(true);

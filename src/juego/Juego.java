@@ -36,6 +36,7 @@ public class Juego {
 		this.setSeccion(0);
 		this.setVidas(3);
 		this.jugadorActual = new Puntaje(); //CREA UN NUEVO OBJETO PUNJATE
+		ArrayList<Puntaje> puntajesMax = new ArrayList();
 	}
 	
 

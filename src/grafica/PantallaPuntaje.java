@@ -2,6 +2,9 @@ package grafica;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
 import java.util.Date;
 
 import javax.swing.table.AbstractTableModel;
@@ -60,7 +63,42 @@ public class PantallaPuntaje extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		getContentPane().setLayout(null);
-		Vector<Puntaje> v = Juego.getInstance().getTopFive();//ACA
+		Vector<Puntaje> v = new Vector<Puntaje>();
+		
+		ObjectInputStream entrada;
+		try {
+			entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
+			v = (Vector) entrada.readObject();
+		} catch (FileNotFoundException e) {
+			Puntaje p1 = new Puntaje();
+			v.addElement(p1);
+			v.elementAt(0).setPuntos(100);
+			v.elementAt(0).setNombre("Santi Pellegrino");
+			Puntaje p2 = new Puntaje();
+			v.addElement(p2);
+			v.elementAt(1).setPuntos(80);
+			v.elementAt(1).setNombre("Agus Galizia");
+			Puntaje p5 = new Puntaje();
+			v.addElement(p5);
+			v.elementAt(2).setPuntos(70);
+			v.elementAt(2).setNombre("Macu Duranti");
+			Puntaje p3 = new Puntaje();
+			v.addElement(p3);
+			v.elementAt(3).setPuntos(50);
+			v.elementAt(3).setNombre("Steve Jobs");
+			Puntaje p4 = new Puntaje();
+			v.addElement(p4);
+			v.elementAt(4).setPuntos(35);
+			v.elementAt(4).setNombre("DIOS");  // ;)
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(65, 99, 448, 197);
 		getContentPane().add(scrollPane);
@@ -69,6 +107,7 @@ public class PantallaPuntaje extends JFrame {
 			datos[i][0] = v.get(i).getNombre();
 			datos[i][1]	= v.get(i).getPuntos();
 		}
+		
 		String[] columnas = {"Nombre", "Puntaje"};
 		DefaultTableModel dtm = new DefaultTableModel(datos, columnas);
 		table = new JTable(dtm);

@@ -55,7 +55,7 @@ public class Controller {
 		nuevo.setNombre(n);
 		nuevo.setPuntos(p);
 		Juego.getInstance().puntajesMax.add(nuevo); //AGREGA A UNA LISTA EL NUEVO
-		
+		for(Puntaje p2: Juego.getInstance().getTopFive()) {Juego.getInstance().puntajesMax.add(p2);}
 		Collections.sort(Juego.getInstance().puntajesMax, Puntaje.getCompartor());
 		
 		Juego.getInstance().puntajesMax.remove(5); //BORRA EL ULTIMO ELEMENTO DE LA LISTA

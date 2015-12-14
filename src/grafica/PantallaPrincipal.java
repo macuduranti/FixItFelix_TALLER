@@ -17,7 +17,7 @@ public class PantallaPrincipal extends JFrame {
 	public static PantallaPrincipal instance;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static int nivelInicial = 0;
+	public static int nivelInicial = 1;
 	public static int getNivelInicial() {
 		return nivelInicial;
 	}

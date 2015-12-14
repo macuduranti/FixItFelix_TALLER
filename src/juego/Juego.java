@@ -3,6 +3,8 @@ package juego;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import grafica.PantallaPrincipal;
 import personajes.Personaje;
 import personajes.felix.FelixJR;
 import personajes.ralph.Ralph;
@@ -10,8 +12,8 @@ import personajes.ralph.Ralph;
 public class Juego {
 	private static Juego instance = new Juego();
 
-	public static FelixJR felix = new FelixJR();
-	public static Ralph ralph = new Ralph();
+	public FelixJR felix = new FelixJR();
+	public Ralph ralph = new Ralph();
 	public static Sorteador sorteador = new Sorteador();
 
 	public int nivel;
@@ -31,7 +33,7 @@ public class Juego {
 	}
 	
 	public Juego(){
-		this.setNivel(1);
+		this.setNivel(PantallaPrincipal.getNivelInicial());
 		this.setSeccion(0);
 		this.setVidas(3);
 		this.jugadorActual = new Puntaje(); //CREA UN NUEVO OBJETO PUNJATE

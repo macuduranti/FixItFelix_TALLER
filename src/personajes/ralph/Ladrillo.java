@@ -49,9 +49,9 @@ public class Ladrillo extends Personaje {
 				timer.cancel();
 			}
 		}
-		if (!Juego.felix.isInmune() && !Juego.felix.isMuerto() && !Juego.felix.isTomandoPastel()) {
-			if (Juego.felix.colision(this)) {
-				Juego.felix.setEstado(EstadoDeFelix.MUERTO);
+		if (!Juego.getInstance().felix.isInmune() && !Juego.getInstance().felix.isMuerto() && !Juego.getInstance().felix.isTomandoPastel()) {
+			if (Juego.getInstance().felix.colision(this)) {
+				Juego.getInstance().felix.setEstado(EstadoDeFelix.MUERTO);
 				System.out.println("Felix ha muerto");
 				this.eliminar();
 			}

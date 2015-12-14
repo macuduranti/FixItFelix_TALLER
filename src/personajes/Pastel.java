@@ -38,15 +38,15 @@ public class Pastel extends Personaje {
 		} else if (this.isE2()) {
 			timer.schedule(e1, 500);
 		}
-		if (!Juego.felix.isMuerto()) {
-			if (Juego.felix.colision(this)) {
+		if (!Juego.getInstance().felix.isMuerto()) {
+			if (Juego.getInstance().felix.colision(this)) {
 				// FALTA VER BIEN EL BUG CUANDO SALEN MAS DE DOS NICELANDERS ( En teoria esta solucionado )
-				if (Juego.felix.isInmune()){
+				if (Juego.getInstance().felix.isInmune()){
 					TaskJuego.setTimesInmune(0);
 				}
-				Juego.felix.setEstado(EstadoDeFelix.TOMANDOPASTEL);
+				Juego.getInstance().felix.setEstado(EstadoDeFelix.TOMANDOPASTEL);
 				Timer t = new Timer("Inmunizando");
-				Juego.felix.setInmune(true);
+				Juego.getInstance().felix.setInmune(true);
 				TaskNormal n = new TaskNormal();
 				t.schedule(n, 500);
 				this.eliminar();

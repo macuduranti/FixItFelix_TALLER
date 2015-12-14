@@ -6,6 +6,6 @@ import juego.Juego;
 
 public class TaskMoviendoD1 extends TimerTask{
 	public void run(){
-		Juego.ralph.setEstado(EstadoDeRalph.MOVIENDOD1);
+		Juego.getInstance().ralph.setEstado(EstadoDeRalph.MOVIENDOD1);
 	}
 }

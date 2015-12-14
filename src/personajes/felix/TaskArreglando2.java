@@ -7,7 +7,7 @@ import juego.Juego;
 public class TaskArreglando2 extends TimerTask{
 	@Override
 	public void run() {
-		Juego.felix.setEstado(EstadoDeFelix.ARREGLANDO2);
+		Juego.getInstance().felix.setEstado(EstadoDeFelix.ARREGLANDO2);
 		
 	}
 

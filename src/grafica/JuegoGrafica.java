@@ -164,7 +164,7 @@ public class JuegoGrafica {
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.ralph.romper(Juego.getInstance().getNivel());
+		Juego.getInstance().ralph.romper(Juego.getInstance().getNivel());
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -680,17 +680,17 @@ public class JuegoGrafica {
 	public void calcularFelix(JPanel panel) {
 		int x = 0;
 		int y = 0;
-		switch (Juego.felix.getX()) {
+		switch (Juego.getInstance().felix.getX()) {
 		case 0:
 			x = 100;
-			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)) {
-				y = 83 - ((Juego.felix.getY() - 3) * 70);
-			} else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)) {
-				y = -151 - ((Juego.felix.getY() - 6) * 70);
-			} else if ((Juego.felix.getY() >= 9) && (Juego.felix.getY() <= 11)) {
-				y = -385 - ((Juego.felix.getY() - 9) * 70);
+			if ((Juego.getInstance().felix.getY() >= 3) && (Juego.getInstance().felix.getY() <= 5)) {
+				y = 83 - ((Juego.getInstance().felix.getY() - 3) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 6) && (Juego.getInstance().felix.getY() <= 8)) {
+				y = -151 - ((Juego.getInstance().felix.getY() - 6) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 9) && (Juego.getInstance().felix.getY() <= 11)) {
+				y = -385 - ((Juego.getInstance().felix.getY() - 9) * 70);
 			} else {
-				switch (Juego.felix.getY()) {
+				switch (Juego.getInstance().felix.getY()) {
 				case 0:
 					y = 330;
 					break;
@@ -706,14 +706,14 @@ public class JuegoGrafica {
 			break;
 		case 1:
 			x = 145;
-			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)) {
-				y = 83 - ((Juego.felix.getY() - 3) * 70);
-			} else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)) {
-				y = -151 - ((Juego.felix.getY() - 6) * 70);
-			} else if ((Juego.felix.getY() >= 9) && (Juego.felix.getY() <= 11)) {
-				y = -385 - ((Juego.felix.getY() - 9) * 70);
+			if ((Juego.getInstance().felix.getY() >= 3) && (Juego.getInstance().felix.getY() <= 5)) {
+				y = 83 - ((Juego.getInstance().felix.getY() - 3) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 6) && (Juego.getInstance().felix.getY() <= 8)) {
+				y = -151 - ((Juego.getInstance().felix.getY() - 6) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 9) && (Juego.getInstance().felix.getY() <= 11)) {
+				y = -385 - ((Juego.getInstance().felix.getY() - 9) * 70);
 			} else {
-				switch (Juego.felix.getY()) {
+				switch (Juego.getInstance().felix.getY()) {
 				case 0:
 					y = 330;
 					break;
@@ -728,14 +728,14 @@ public class JuegoGrafica {
 			break;
 		case 2:
 			x = 200;
-			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)) {
-				y = 83 - ((Juego.felix.getY() - 3) * 70);
-			} else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)) {
-				y = -151 - ((Juego.felix.getY() - 6) * 70);
-			} else if ((Juego.felix.getY() >= 9) && (Juego.felix.getY() <= 11)) {
-				y = -385 - ((Juego.felix.getY() - 9) * 70);
+			if ((Juego.getInstance().felix.getY() >= 3) && (Juego.getInstance().felix.getY() <= 5)) {
+				y = 83 - ((Juego.getInstance().felix.getY() - 3) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 6) && (Juego.getInstance().felix.getY() <= 8)) {
+				y = -151 - ((Juego.getInstance().felix.getY() - 6) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 9) && (Juego.getInstance().felix.getY() <= 11)) {
+				y = -385 - ((Juego.getInstance().felix.getY() - 9) * 70);
 			} else {
-				switch (Juego.felix.getY()) {
+				switch (Juego.getInstance().felix.getY()) {
 				case 0:
 					x = 190;
 					y = 358;
@@ -752,14 +752,14 @@ public class JuegoGrafica {
 			break;
 		case 3:
 			x = 255;
-			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)) {
-				y = 83 - ((Juego.felix.getY() - 3) * 70);
-			} else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)) {
-				y = -151 - ((Juego.felix.getY() - 6) * 70);
-			} else if ((Juego.felix.getY() >= 9) && (Juego.felix.getY() <= 11)) {
-				y = -385 - ((Juego.felix.getY() - 9) * 70);
+			if ((Juego.getInstance().felix.getY() >= 3) && (Juego.getInstance().felix.getY() <= 5)) {
+				y = 83 - ((Juego.getInstance().felix.getY() - 3) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 6) && (Juego.getInstance().felix.getY() <= 8)) {
+				y = -151 - ((Juego.getInstance().felix.getY() - 6) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 9) && (Juego.getInstance().felix.getY() <= 11)) {
+				y = -385 - ((Juego.getInstance().felix.getY() - 9) * 70);
 			} else {
-				switch (Juego.felix.getY()) {
+				switch (Juego.getInstance().felix.getY()) {
 				case 0:
 					y = 330;
 					break;
@@ -774,14 +774,14 @@ public class JuegoGrafica {
 			break;
 		case 4:
 			x = 300;
-			if ((Juego.felix.getY() >= 3) && (Juego.felix.getY() <= 5)) {
-				y = 83 - ((Juego.felix.getY() - 3) * 70);
-			} else if ((Juego.felix.getY() >= 6) && (Juego.felix.getY() <= 8)) {
-				y = -151 - ((Juego.felix.getY() - 6) * 70);
-			} else if ((Juego.felix.getY() >= 9) && (Juego.felix.getY() <= 11)) {
-				y = -385 - ((Juego.felix.getY() - 9) * 70);
+			if ((Juego.getInstance().felix.getY() >= 3) && (Juego.getInstance().felix.getY() <= 5)) {
+				y = 83 - ((Juego.getInstance().felix.getY() - 3) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 6) && (Juego.getInstance().felix.getY() <= 8)) {
+				y = -151 - ((Juego.getInstance().felix.getY() - 6) * 70);
+			} else if ((Juego.getInstance().felix.getY() >= 9) && (Juego.getInstance().felix.getY() <= 11)) {
+				y = -385 - ((Juego.getInstance().felix.getY() - 9) * 70);
 			} else {
-				switch (Juego.felix.getY()) {
+				switch (Juego.getInstance().felix.getY()) {
 				case 0:
 					y = 330;
 					break;
@@ -796,67 +796,67 @@ public class JuegoGrafica {
 			break;
 		}
 		JLabel lblFelix = new JLabel("");
-		if (Juego.felix.isNormal()) {
-			if (Juego.felix.isInmune()) {
+		if (Juego.getInstance().felix.isNormal()) {
+			if (Juego.getInstance().felix.isInmune()) {
 				lblFelix.setIcon(this.pngFelixNormalI);
 				lblFelix.setBounds(x, y + desp, 25, 54);
 			} else {
 				lblFelix.setIcon(this.pngFelixNormal);
 				lblFelix.setBounds(x, y + desp, 24, 53);
 			}
-		} else if (Juego.felix.isMoviendo()) {
-			if (Juego.felix.isInmune()) {
+		} else if (Juego.getInstance().felix.isMoviendo()) {
+			if (Juego.getInstance().felix.isInmune()) {
 				lblFelix.setIcon(this.pngFelixMoviendoI);
 				lblFelix.setBounds(x, y + desp, 31, 51);
 			} else {
 				lblFelix.setIcon(this.pngFelixMoviendo);
 				lblFelix.setBounds(x, y + desp, 31, 51);
 			}
-		} else if (Juego.felix.isArreglando1()) {
-			if (Juego.felix.isInmune()) {
+		} else if (Juego.getInstance().felix.isArreglando1()) {
+			if (Juego.getInstance().felix.isInmune()) {
 				lblFelix.setIcon(this.pngFelixArreglando1I);
 				lblFelix.setBounds(x, y + desp, 39, 54);
 			} else {
 				lblFelix.setIcon(this.pngFelixArreglando1);
 				lblFelix.setBounds(x, y + desp, 39, 54);
 			}
-		} else if (Juego.felix.isArreglando2()) {
-			if (Juego.felix.isInmune()) {
+		} else if (Juego.getInstance().felix.isArreglando2()) {
+			if (Juego.getInstance().felix.isInmune()) {
 				lblFelix.setIcon(this.pngFelixArreglando2I);
 				lblFelix.setBounds(x, y + desp, 54, 51);
 			} else {
 				lblFelix.setIcon(this.pngFelixArreglando2);
 				lblFelix.setBounds(x, y + desp, 54, 51);
 			}
-		} else if (Juego.felix.isTomandoPastel()) {
+		} else if (Juego.getInstance().felix.isTomandoPastel()) {
 			lblFelix.setIcon(this.pngFelixPastel);
 			lblFelix.setBounds(x, y + desp, 41, 52);
-		} else if (Juego.felix.isMuerto()) {
+		} else if (Juego.getInstance().felix.isMuerto()) {
 			lblFelix.setIcon(this.pngFelixMuerto);
 			lblFelix.setBounds(x, y + desp + 24, 51, 29);
 		}
 		panel.add(lblFelix);
-		controller.tomarPosReal(Juego.felix, x, y + desp);
+		controller.tomarPosReal(Juego.getInstance().felix, x, y + desp);
 
 	}
 
 	public void calcularRalph(JPanel panel) {
 		JLabel lblRalph = new JLabel("");
-		if (Juego.ralph.isNormal()) {
+		if (Juego.getInstance().ralph.isNormal()) {
 			lblRalph.setIcon(this.pngRalphNormal);
-			lblRalph.setBounds((int) (74 + (Juego.ralph.getXdouble()) * 55), Juego.ralph.getyReal(), 70, 84);
-		} else if (Juego.ralph.isMoviendoD1()) {
+			lblRalph.setBounds((int) (74 + (Juego.getInstance().ralph.getXdouble()) * 55), Juego.getInstance().ralph.getyReal(), 70, 84);
+		} else if (Juego.getInstance().ralph.isMoviendoD1()) {
 			lblRalph.setIcon(this.pngRalphMovD1);
-			lblRalph.setBounds((int) (74 + (Juego.ralph.getXdouble()) * 55), Juego.ralph.getyReal(), 68, 85);
-		} else if (Juego.ralph.isMoviendoD2()) {
+			lblRalph.setBounds((int) (74 + (Juego.getInstance().ralph.getXdouble()) * 55), Juego.getInstance().ralph.getyReal(), 68, 85);
+		} else if (Juego.getInstance().ralph.isMoviendoD2()) {
 			lblRalph.setIcon(this.pngRalphMovD2);
-			lblRalph.setBounds((int) (74 + (Juego.ralph.getXdouble()) * 55), Juego.ralph.getyReal(), 66, 87);
-		} else if (Juego.ralph.isMoviendoI1()) {
+			lblRalph.setBounds((int) (74 + (Juego.getInstance().ralph.getXdouble()) * 55), Juego.getInstance().ralph.getyReal(), 66, 87);
+		} else if (Juego.getInstance().ralph.isMoviendoI1()) {
 			lblRalph.setIcon(this.pngRalphMovI1);
-			lblRalph.setBounds((int) (74 + (Juego.ralph.getXdouble()) * 55), Juego.ralph.getyReal(), 68, 85);
-		} else if (Juego.ralph.isMoviendoI2()) {
+			lblRalph.setBounds((int) (74 + (Juego.getInstance().ralph.getXdouble()) * 55), Juego.getInstance().ralph.getyReal(), 68, 85);
+		} else if (Juego.getInstance().ralph.isMoviendoI2()) {
 			lblRalph.setIcon(this.pngRalphMovI2);
-			lblRalph.setBounds((int) (74 + (Juego.ralph.getXdouble()) * 55), Juego.ralph.getyReal(), 66, 87);
+			lblRalph.setBounds((int) (74 + (Juego.getInstance().ralph.getXdouble()) * 55), Juego.getInstance().ralph.getyReal(), 66, 87);
 		}
 
 		panel.add(lblRalph);

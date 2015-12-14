@@ -48,7 +48,7 @@ public class Ralph extends Personaje {
 			TaskQuietoStop q = new TaskQuietoStop();
 			timer.schedule(q, 2000);
 			this.cantMovs = 0;
-			Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
+			Juego.getInstance().ralph.setEstado(EstadoDeRalph.NORMAL);
 		}
 		if (!this.isQuieto()) {
 			if (this.getCantMov() == 0) {
@@ -146,7 +146,7 @@ public class Ralph extends Personaje {
 				Ladrillo ladrillo3 = new Ladrillo(this.getXdouble(), this.getyReal());
 				Juego.getInstance().listaPersonajes.add(ladrillo3);*/
 				this.setCantidadLadrillos(this.getCantidadLadrillos() - 1);
-				System.out.println("Ralph ha tirado un ladrillo, le quedan "+Juego.ralph.getCantidadLadrillos());
+				System.out.println("Ralph ha tirado un ladrillo, le quedan "+Juego.getInstance().ralph.getCantidadLadrillos());
 			}
 		}
 	}

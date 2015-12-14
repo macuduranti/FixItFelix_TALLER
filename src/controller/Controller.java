@@ -55,9 +55,9 @@ public class Controller {
 		Juego.getInstance().setJugadorActual(n);
 		MainJuego.getTopFive().add(Juego.getInstance().jugadorActual);
 		MainJuego.getTopFive().sort(Puntaje.getCompartor());
-		if (MainJuego.getTopFive().size() <= 5)
+		if (MainJuego.getTopFive().size() == 5)
 			MainJuego.getTopFive().remove(MainJuego.getTopFive().size()-1);
-		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("/Users/macuduranti/Desktop/personajes.dat"));
+		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 		output.writeObject(MainJuego.getTopFive());
 		
 	}

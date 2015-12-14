@@ -8,8 +8,8 @@ public class TaskNormal extends TimerTask {
 
 	@Override
 	public void run() {
-		if (!Juego.felix.isMuerto()) {
-			Juego.felix.setEstado(EstadoDeFelix.NORMAL);
+		if (!Juego.getInstance().felix.isMuerto()) {
+			Juego.getInstance().felix.setEstado(EstadoDeFelix.NORMAL);
 		}
 	}
 

@@ -24,7 +24,7 @@ public class PrimerPiso extends Ventana {
 		// arreglar (generada cuando ralph
 		// rompe) para ver si se paso el nivel o
 		// no
-		if (!Juego.felix.isMuerto()) {
+		if (!Juego.getInstance().felix.isMuerto()) {
 			boolean arregle = this.paneles[0].arreglar();
 			if (arregle)
 				return arregle;

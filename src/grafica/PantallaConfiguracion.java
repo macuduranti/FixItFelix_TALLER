@@ -80,7 +80,6 @@ public class PantallaConfiguracion extends JFrame {
 		lblAceptar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal.setNivelInicial(listaNivel.getSelectedIndex()+1);
-				System.out.println(listaNivel.getSelectedIndex()+1);
 				setVisible(false);
 			}
 		});

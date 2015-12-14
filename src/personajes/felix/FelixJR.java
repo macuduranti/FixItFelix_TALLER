@@ -45,7 +45,7 @@ public class FelixJR extends Personaje {
 
 	@Override
 	public void moverArriba() {
-		if (!Juego.felix.isMuerto()) {
+		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX(), this.getY() + 1);
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverArriba();
@@ -60,7 +60,7 @@ public class FelixJR extends Personaje {
 
 	@Override
 	public void moverAbajo() {
-		if (!Juego.felix.isMuerto()) {
+		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX(), this.getY() - 1);
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverAbajo();
@@ -75,7 +75,7 @@ public class FelixJR extends Personaje {
 
 	@Override
 	public void moverDerecha() {
-		if (!Juego.felix.isMuerto()) {
+		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX() + 1, this.getY());
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverDerecha();
@@ -90,7 +90,7 @@ public class FelixJR extends Personaje {
 
 	@Override
 	public void moverIzquierda() {
-		if (!Juego.felix.isMuerto()) {
+		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX() - 1, this.getY());
 			if (Niceland.getInstance().mePuedoMover(this.getPosicion(), prox)) {
 				super.moverIzquierda();
@@ -98,7 +98,7 @@ public class FelixJR extends Personaje {
 				TaskMoviendo m = new TaskMoviendo();
 				TaskNormal n = new TaskNormal();
 				timer.schedule(m, 0);
-				if (!Juego.felix.isMuerto()) {
+				if (!this.isMuerto()) {
 					timer.schedule(n, 100);
 				}
 			}
@@ -106,7 +106,7 @@ public class FelixJR extends Personaje {
 	}
 
 	public void arreglar() {
-		if (Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana() && !Juego.felix.isMuerto()) {
+		if (Niceland.getInstance().edificio[this.getX()][this.getY()].arreglarVentana() && !this.isMuerto()) {
 			Juego.getInstance().setJugadorActual(Juego.getInstance().getPuntosJugadorActual() + 100);
 			Timer timer = new Timer("Arreglando");
 			TaskArreglando1 ta1 = new TaskArreglando1();

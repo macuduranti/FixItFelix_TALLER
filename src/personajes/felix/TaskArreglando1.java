@@ -8,7 +8,7 @@ public class TaskArreglando1 extends TimerTask{
 
 	@Override
 	public void run() {
-		Juego.felix.setEstado(EstadoDeFelix.ARREGLANDO1);
+		Juego.getInstance().felix.setEstado(EstadoDeFelix.ARREGLANDO1);
 		
 	}
 

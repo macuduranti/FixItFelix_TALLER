@@ -11,6 +11,7 @@ import grafica.TaskSacarCambioSeccion;
 import juego.Juego;
 import juego.Niceland;
 import juego.TaskJuego;
+import personajes.felix.EstadoDeFelix;
 
 public class ActionListenerJugar implements ActionListener{
 	private PantallaPrincipal pantallaprincipal;
@@ -41,7 +42,11 @@ public class ActionListenerJugar implements ActionListener{
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.ralph.romper(Juego.getInstance().getNivel());
+		Juego.getInstance().ralph.romper(Juego.getInstance().getNivel());
+		/*Juego.getInstance().felix.setInmune(false);
+		Juego.felix.setEstado(EstadoDeFelix.NORMAL);
+		Juego.felix.setX(2);
+		Juego.felix.setY((Juego.getInstance().getNivel()-1)*3);*/
 		JuegoGrafica juegoGrafica = new JuegoGrafica();
 		juegoGrafica.frame.setVisible(true);
 		Controller.getInstance().addListeners(juegoGrafica);

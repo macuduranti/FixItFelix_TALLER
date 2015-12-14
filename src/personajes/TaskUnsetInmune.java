@@ -8,7 +8,7 @@ public class TaskUnsetInmune extends TimerTask{
 
 	@Override
 	public void run() {
-		Juego.felix.setInmune(false);
+		Juego.getInstance().felix.setInmune(false);
 	}
 
 }

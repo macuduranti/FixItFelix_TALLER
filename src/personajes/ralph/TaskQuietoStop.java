@@ -8,7 +8,7 @@ public class TaskQuietoStop extends TimerTask{
 
 	@Override
 	public void run() {
-		Juego.ralph.setQuieto(false);
+		Juego.getInstance().ralph.setQuieto(false);
 	}
 
 }

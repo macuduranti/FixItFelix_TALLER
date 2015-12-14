@@ -21,19 +21,19 @@ public class ListenerTeclas implements KeyListener{
 		int ckey= e.getKeyCode(); 
 		switch (ckey) {
 		case 37:
-			Juego.felix.moverIzquierda();
+			Juego.getInstance().felix.moverIzquierda();
 			break;
 		case 38: // Arriba
-			Juego.felix.moverArriba();
+			Juego.getInstance().felix.moverArriba();
 			break;
 		case 39:
-			Juego.felix.moverDerecha();
+			Juego.getInstance().felix.moverDerecha();
 			break;
 		case 40: // Abajo
-			Juego.felix.moverAbajo();
+			Juego.getInstance().felix.moverAbajo();
 			break;
 		case 32: // Barra
-			Juego.felix.arreglar();
+			Juego.getInstance().felix.arreglar();
 			break;
 		}
 		

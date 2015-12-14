@@ -8,6 +8,6 @@ public class Test {
 		Niceland niceland = new Niceland();
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		return Juego.ralph.romper(Juego.getInstance().getNivel());
+		return Juego.getInstance().ralph.romper(Juego.getInstance().getNivel());
 	}
 }

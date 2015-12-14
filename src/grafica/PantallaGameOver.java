@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import controller.Controller;
 
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import juego.Juego;
 
@@ -91,17 +92,26 @@ public class PantallaGameOver extends JFrame {
 		
 			
 		if (!record) {
-			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon(PantallaGameOver.class.getResource("/res/flecha_final.png")));
-			label.setBounds(25, 30, 61, 52);
-			contentPane.add(label);
+			JLabel label_1 = new JLabel(""); // Boton atras
+			label_1.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					PantallaPrincipal.getInstance().setLocationRelativeTo(PantallaGameOver.this);
+					setVisible(false);
+					PantallaPrincipal.getInstance().setVisible(true);
+
+				}
+			});
+			label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
+			label_1.setBounds(16, 17, 52, 52);
+			getContentPane().add(label_1);
 			
 			JLabel lblNewLabel_1 = new JLabel("GAME OVER");
 			lblNewLabel_1.setForeground(Color.WHITE);
 			lblNewLabel_1.setFont(font.deriveFont(Font.PLAIN, 50f));
-			lblNewLabel_1.setBounds(59, 70, 480, 177);
+			lblNewLabel_1.setBounds(59, 70, 490, 432);
+			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_1.setVerticalAlignment(SwingConstants.CENTER);
 			getContentPane().add(lblNewLabel_1);
-			
 		}
 		
 		

@@ -6,6 +6,6 @@ import juego.Juego;
 
 public class TaskNormal extends TimerTask{
 	public void run(){
-		Juego.ralph.setEstado(EstadoDeRalph.NORMAL);
+		Juego.getInstance().ralph.setEstado(EstadoDeRalph.NORMAL);
 	}
 }

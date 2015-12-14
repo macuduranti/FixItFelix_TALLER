@@ -142,12 +142,12 @@ public class TaskJuego extends TimerTask {
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
 			
-<<<<<<< HEAD
+
 			Vector<Puntaje> v = new Vector<Puntaje>();
 			ObjectInputStream entrada;
 			try {
 				entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
-				v = (Vector) entrada.readObject();
+				v = (Vector<Puntaje>) entrada.readObject();
 			} catch (FileNotFoundException e) {
 				Puntaje p1 = new Puntaje();
 				v.addElement(p1);
@@ -177,10 +177,10 @@ public class TaskJuego extends TimerTask {
 				e.printStackTrace();
 			}
 			
-=======
+
 			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
 			Vector<Puntaje> v = (Vector) entrada.readObject();
->>>>>>> origin/master
+
 			if (Juego.getInstance().jugadorActual.getPuntos() > v.lastElement().puntos) {
 				PantallaGameOver pgo = new PantallaGameOver(true);
 				pgo.setVisible(true);

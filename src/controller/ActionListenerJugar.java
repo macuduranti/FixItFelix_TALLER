@@ -24,6 +24,7 @@ public class ActionListenerJugar implements ActionListener{
 		this.pantallaprincipal.setVisible(false);	
 		Juego juego = new Juego();
 		Juego.setInstance(juego);
+		TaskJuego.tiempo = 120000 - (10000 * Juego.getInstance().getNivel() / 2);
 		juego.setNivel(PantallaPrincipal.getNivelInicial());
 		switch (Juego.getInstance().getSeccion()) {
 		case 0:

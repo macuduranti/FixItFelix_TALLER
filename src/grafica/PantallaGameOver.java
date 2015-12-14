@@ -50,8 +50,7 @@ public class PantallaGameOver extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		GraphicsEnvironment genv = GraphicsEnvironment
-				.getLocalGraphicsEnvironment();
+		GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		genv.registerFont(font);
 		font = font.deriveFont(12f);
 		contentPane.setLayout(null);

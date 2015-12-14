@@ -99,7 +99,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_3 = new JLabel(""); //Creacion boton puntaje
 		label_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaPuntaje JframePuntaje = new PantallaPuntaje();
+				PantallaPuntaje JframePuntaje = new PantallaPuntaje(PantallaPrincipal.this);
 				JframePuntaje.setLocationRelativeTo(getContentPane());
 				JframePuntaje.setVisible(true);
 				setVisible(false); //Pone visible y saca la principal

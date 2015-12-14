@@ -19,7 +19,6 @@ public class Juego {
 	public Puntaje jugadorActual;
 	public int vidas;
 	public ArrayList<Puntaje> puntajesMax;
-	private Vector<Puntaje> topFive;
 
 	public CopyOnWriteArrayList<Personaje> listaPersonajes = new CopyOnWriteArrayList<Personaje>();
 	
@@ -36,7 +35,6 @@ public class Juego {
 		this.setSeccion(0);
 		this.setVidas(3);
 		this.jugadorActual = new Puntaje(); //CREA UN NUEVO OBJETO PUNJATE
-		ArrayList<Puntaje> puntajesMax = new ArrayList();
 	}
 	
 
@@ -82,22 +80,6 @@ public class Juego {
 
 	public void setSeccion(int seccion) {
 		this.seccion = seccion;
-	}
-/*
-	public Puntaje[] getPuntajesMax() {
-		return puntajesMax;
-	}
-
-	public void setPuntajesMax(Puntaje[] puntajesMax) {
-		this.puntajesMax = puntajesMax;
-	}
-*/
-	public Vector<Puntaje> getTopFive() {
-		return topFive;
-	}
-
-	public void setTopFive(Vector<Puntaje> topFive) {
-		this.topFive = topFive;
 	}
 
 }

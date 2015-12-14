@@ -12,6 +12,12 @@ public class Puntaje implements Serializable{
 		this.setNombre(null);
 	}
 	
+	public Puntaje(int n, String s){
+		this.setNombre(s);
+		this.setPuntos(n);
+	}
+	
+	
 	public int getPuntos() {
 		return puntos;
 	}

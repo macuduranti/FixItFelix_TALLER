@@ -36,6 +36,7 @@ import javax.swing.JTable;
 
 import juego.Puntaje;
 import juego.Juego;
+import juego.MainJuego;
 
 import com.sun.scenario.effect.Blend.Mode;
 
@@ -45,67 +46,33 @@ import juego.Puntaje;
 public class PantallaPuntaje extends JFrame {
 	private JTable table;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaPuntaje frame = new PantallaPuntaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	public PantallaPuntaje() {
+	public PantallaPuntaje(PantallaPrincipal pp) {
 		setBounds(100, 100, 590, 432);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		Vector<Puntaje> v = new Vector<Puntaje>();
-		
-		ObjectInputStream entrada;
-		try {
-			entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
-			v = (Vector) entrada.readObject();
-		} catch (FileNotFoundException e) {
-			Puntaje p1 = new Puntaje();
-			v.addElement(p1);
-			v.elementAt(0).setPuntos(100);
-			v.elementAt(0).setNombre("Santi Pellegrino");
-			Puntaje p2 = new Puntaje();
-			v.addElement(p2);
-			v.elementAt(1).setPuntos(80);
-			v.elementAt(1).setNombre("Agus Galizia");
-			Puntaje p5 = new Puntaje();
-			v.addElement(p5);
-			v.elementAt(2).setPuntos(70);
-			v.elementAt(2).setNombre("Macu Duranti");
-			Puntaje p3 = new Puntaje();
-			v.addElement(p3);
-			v.elementAt(3).setPuntos(50);
-			v.elementAt(3).setNombre("Steve Jobs");
-			Puntaje p4 = new Puntaje();
-			v.addElement(p4);
-			v.elementAt(4).setPuntos(35);
-			v.elementAt(4).setNombre("DIOS");  // ;)
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		JLabel label_1 = new JLabel(""); // Boton atras
+		label_1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				pp.setLocationRelativeTo(PantallaPuntaje.this);
+				setVisible(false);
+				pp.setVisible(true);
+
+			}
+		});
+		label_1.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
+		label_1.setBounds(16, 17, 52, 52);
+		getContentPane().add(label_1);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(65, 99, 448, 197);
 		getContentPane().add(scrollPane);
-		Object[][] datos = new Object[5][2];
-		for(int i=0; i<5; i++){
-			datos[i][0] = v.get(i).getNombre();
-			datos[i][1]	= v.get(i).getPuntos();
+		Object[][] datos = new Object[MainJuego.getTopFive().size()][2];
+		for(int i=0; i<MainJuego.getTopFive().size(); i++){
+			datos[i][0] = MainJuego.getTopFive().get(i).getNombre();
+			datos[i][1]	= MainJuego.getTopFive().get(i).getPuntos();
 		}
 		
 		String[] columnas = {"Nombre", "Puntaje"};

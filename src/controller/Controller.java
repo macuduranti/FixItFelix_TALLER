@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 
 import juego.Juego;
+import juego.MainJuego;
 import juego.Puntaje;
 import grafica.JuegoGrafica;
 import grafica.PantallaPrincipal;
@@ -50,23 +51,14 @@ public class Controller {
 		Controller.instance = instance;
 	}
 	
-	public static void ActualizarLista(String n, int p) throws FileNotFoundException, IOException{
-		Puntaje nuevo = new Puntaje();
-		nuevo.setNombre(n);
-		nuevo.setPuntos(p);
-		Juego.getInstance().puntajesMax.add(nuevo); //AGREGA A UNA LISTA EL NUEVO
-		for(Puntaje p2: Juego.getInstance().getTopFive()) {Juego.getInstance().puntajesMax.add(p2);}
-		Collections.sort(Juego.getInstance().puntajesMax, Puntaje.getCompartor());
-		
-		Juego.getInstance().puntajesMax.remove(5); //BORRA EL ULTIMO ELEMENTO DE LA LISTA
-		Vector<Puntaje> topFive = new Vector<Puntaje>(); 
-		for(Puntaje p1:  Juego.getInstance().puntajesMax) { topFive.add(p1); }
-		
-		ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("puntajes.dat")); 
-		
-		try {archivo.writeObject(topFive); }
-		catch (IOException e) { // TODO Auto-generated catch block
-		e.printStackTrace(); }
+	public void ActualizarLista(String n, int p) throws FileNotFoundException, IOException{
+		Juego.getInstance().setJugadorActual(n);
+		MainJuego.getTopFive().add(Juego.getInstance().jugadorActual);
+		MainJuego.getTopFive().sort(Puntaje.getCompartor());
+		if (MainJuego.getTopFive().size() <= 5)
+			MainJuego.getTopFive().remove(MainJuego.getTopFive().size()-1);
+		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("/Users/macuduranti/Desktop/personajes.dat"));
+		output.writeObject(MainJuego.getTopFive());
 		
 	}
 	

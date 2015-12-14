@@ -89,8 +89,8 @@ public class PantallaGameOver extends JFrame {
 				public void mouseClicked(MouseEvent e) { 
 					try {
 						Controller.getInstance().ActualizarLista(textField.getText(), Juego.getInstance().getPuntosJugadorActual());
-						PantallaPuntaje JframePuntaje = new PantallaPuntaje();
-						JframePuntaje.setVisible(true);
+						PantallaPrincipal pp = new PantallaPrincipal();
+						pp.setVisible(true);
 						setVisible(false); //Pone visible y saca la principal
 						//pasar a puntaje
 					} catch (IOException e1) {

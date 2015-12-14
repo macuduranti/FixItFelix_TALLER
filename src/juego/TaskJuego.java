@@ -141,47 +141,7 @@ public class TaskJuego extends TimerTask {
 			this.timer.cancel();
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
-			
-
-			Vector<Puntaje> v = new Vector<Puntaje>();
-			ObjectInputStream entrada;
-			try {
-				entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
-				v = (Vector<Puntaje>) entrada.readObject();
-			} catch (FileNotFoundException e) {
-				Puntaje p1 = new Puntaje();
-				v.addElement(p1);
-				v.elementAt(0).setPuntos(100);
-				v.elementAt(0).setNombre("Santi Pellegrino");
-				Puntaje p2 = new Puntaje();
-				v.addElement(p2);
-				v.elementAt(1).setPuntos(80);
-				v.elementAt(1).setNombre("Agus Galizia");
-				Puntaje p5 = new Puntaje();
-				v.addElement(p5);
-				v.elementAt(2).setPuntos(70);
-				v.elementAt(2).setNombre("Macu Duranti");
-				Puntaje p3 = new Puntaje();
-				v.addElement(p3);
-				v.elementAt(3).setPuntos(50);
-				v.elementAt(3).setNombre("Steve Jobs");
-				Puntaje p4 = new Puntaje();
-				v.addElement(p4);
-				v.elementAt(4).setPuntos(35);
-				v.elementAt(4).setNombre("DIOS");  // ;)
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-
-			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("puntajes.dat"));
-			Vector<Puntaje> v = (Vector) entrada.readObject();
-
-			if (Juego.getInstance().jugadorActual.getPuntos() > v.lastElement().puntos) {
+			if (Juego.getInstance().jugadorActual.getPuntos() > MainJuego.getTopFive().get(MainJuego.getTopFive().size()-1).getPuntos() /*&& MainJuego.getTopFive().size() <= 5*/) {
 				PantallaGameOver pgo = new PantallaGameOver(true);
 				pgo.setVisible(true);
 			}

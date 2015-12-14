@@ -22,7 +22,7 @@ public class PantallaConfiguracion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JList<String> listaNivel;
 	
-	public PantallaConfiguracion(PantallaPrincipal pp) {
+	public PantallaConfiguracion() {
 		Font font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT,
@@ -41,7 +41,7 @@ public class PantallaConfiguracion extends JFrame {
 		getContentPane().setLayout(null);
 		//this.setLocationRelativeTo(null);
 		this.setBackground(Color.BLACK);
-		this.setLocationRelativeTo(pp.getContentPane());
+		this.setLocationRelativeTo(PantallaPrincipal.getInstance().getContentPane());
 		this.setLocation((int)this.getLocation().getX() + 295, (int)this.getLocation().getY()-205);
 		
 		this.setSize( 290 , 210);

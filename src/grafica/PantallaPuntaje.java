@@ -46,18 +46,18 @@ import juego.Puntaje;
 public class PantallaPuntaje extends JFrame {
 	private JTable table;
 	
-	public PantallaPuntaje(PantallaPrincipal pp) {
+	public PantallaPuntaje() {
 		setBounds(100, 100, 590, 432);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(PantallaPrincipal.getInstance());
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		JLabel label_1 = new JLabel(""); // Boton atras
 		label_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				pp.setLocationRelativeTo(PantallaPuntaje.this);
+				PantallaPrincipal.getInstance().setLocationRelativeTo(PantallaPuntaje.this);
 				setVisible(false);
-				pp.setVisible(true);
+				PantallaPrincipal.getInstance().setVisible(true);
 
 			}
 		});

@@ -13,6 +13,8 @@ public class PantallaPrincipal extends JFrame {
 	/**
 	 * 
 	 */
+	
+	public static PantallaPrincipal instance;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static int nivelInicial = 0;
@@ -90,7 +92,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_2 = new JLabel(""); //Creacion boton ayuda
 		label_2.addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent e) {
-				PantallaAyuda JframeAyuda = new PantallaAyuda(PantallaPrincipal.this);
+				PantallaAyuda JframeAyuda = new PantallaAyuda();
 				JframeAyuda.setVisible(true);
 				setVisible(false); //Pone visible la pantalla ayuda y no visible la principal
 			}
@@ -99,7 +101,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_3 = new JLabel(""); //Creacion boton puntaje
 		label_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaPuntaje JframePuntaje = new PantallaPuntaje(PantallaPrincipal.this);
+				PantallaPuntaje JframePuntaje = new PantallaPuntaje();
 				JframePuntaje.setLocationRelativeTo(getContentPane());
 				JframePuntaje.setVisible(true);
 				setVisible(false); //Pone visible y saca la principal
@@ -109,7 +111,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label = new JLabel(""); // Boton configuracion
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaConfiguracion JframeConfiguracion = new PantallaConfiguracion(PantallaPrincipal.this);
+				PantallaConfiguracion JframeConfiguracion = new PantallaConfiguracion();
 				JframeConfiguracion.setVisible(true);
 			}
 		});
@@ -129,5 +131,11 @@ public class PantallaPrincipal extends JFrame {
 		label_1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/fondo_principal.png")));
 		label_1.setBounds(6, 18, 590, 417);
 		panel.add(label_1);
+	}
+	public static PantallaPrincipal getInstance() {
+		return instance;
+	}
+	public static void setInstance(PantallaPrincipal instance) {
+		PantallaPrincipal.instance = instance;
 	}
 }

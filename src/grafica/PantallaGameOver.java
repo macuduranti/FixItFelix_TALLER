@@ -29,31 +29,15 @@ public class PantallaGameOver extends JFrame {
 	private JLabel lblNewLabel_2;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaGameOver frame = new PantallaGameOver(true);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public PantallaGameOver(boolean record) {
+	public PantallaGameOver(boolean record, JuegoGrafica jg) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(jg.frame);
 		Font font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass()
@@ -89,10 +73,9 @@ public class PantallaGameOver extends JFrame {
 				public void mouseClicked(MouseEvent e) { 
 					try {
 						Controller.getInstance().ActualizarLista(textField.getText(), Juego.getInstance().getPuntosJugadorActual());
-						PantallaPrincipal pp = new PantallaPrincipal();
-						pp.setVisible(true);
-						setVisible(false); //Pone visible y saca la principal
-						//pasar a puntaje
+						PantallaPrincipal.getInstance().setLocationRelativeTo(PantallaGameOver.this);
+						setVisible(false);
+						PantallaPrincipal.getInstance().setVisible(true);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}

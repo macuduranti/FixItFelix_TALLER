@@ -18,7 +18,8 @@ import grafica.PantallaPrincipal;
 
 public class MainJuego {
 	public static ArrayList<Puntaje> topFive = new ArrayList<Puntaje>();
-	
+	public static ObjectInputStream input = null;
+	public static ObjectOutputStream output = null;
 	public static ArrayList<Puntaje> getTopFive() {
 		return topFive;
 	}
@@ -30,10 +31,10 @@ public class MainJuego {
 
 
 	public static void main(String[] args) {
-		ObjectInputStream input = null;
-		ObjectOutputStream output = null;
+
+		
 		try {
-			input = new ObjectInputStream(new FileInputStream("/Users/macuduranti/Desktop/personajes.dat"));
+			input = new ObjectInputStream(new FileInputStream("save.dat"));
 
 		} catch (FileNotFoundException e1) {
 			topFive.add(new Puntaje(1500,"Santi"));
@@ -43,7 +44,7 @@ public class MainJuego {
 			topFive.add(new Puntaje(1500,"Viru"));
 			topFive.sort(Puntaje.getCompartor());
 			try {
-				output = new ObjectOutputStream(new FileOutputStream("/Users/macuduranti/Desktop/personajes.dat"));
+				output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 				output.writeObject(topFive);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -58,8 +59,7 @@ public class MainJuego {
 			e1.printStackTrace();
 		} finally {
 				try {
-					ArrayList<Puntaje> arrayList = (ArrayList<Puntaje>)input.readObject();
-					topFive=arrayList;
+					topFive = (ArrayList<Puntaje>)input.readObject();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,6 +73,7 @@ public class MainJuego {
 		Controller.setInstance(controller);
 		try {
 			PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+			PantallaPrincipal.setInstance(pantallaPrincipal);
 			controller.addListeners(pantallaPrincipal);
 			pantallaPrincipal.setVisible(true);
 		} catch (IOException e) {

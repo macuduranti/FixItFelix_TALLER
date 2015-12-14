@@ -142,11 +142,11 @@ public class TaskJuego extends TimerTask {
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
 			if (Juego.getInstance().jugadorActual.getPuntos() > MainJuego.getTopFive().get(MainJuego.getTopFive().size()-1).getPuntos() /*&& MainJuego.getTopFive().size() <= 5*/) {
-				PantallaGameOver pgo = new PantallaGameOver(true);
+				PantallaGameOver pgo = new PantallaGameOver(true,this.jg);
 				pgo.setVisible(true);
 			}
 			else{
-				PantallaGameOver pgo = new PantallaGameOver(false);
+				PantallaGameOver pgo = new PantallaGameOver(false,this.jg);
 				pgo.setVisible(false);
 			}
 			

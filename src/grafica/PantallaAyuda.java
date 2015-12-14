@@ -16,7 +16,7 @@ public class PantallaAyuda extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public PantallaAyuda(PantallaPrincipal pp) { // Constructor de Ayuda
+	public PantallaAyuda() { // Constructor de Ayuda
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
 
@@ -24,14 +24,14 @@ public class PantallaAyuda extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(pp);
+		this.setLocationRelativeTo(PantallaPrincipal.getInstance());
 
 		JLabel label_1 = new JLabel(""); // Boton atras
 		label_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				pp.setLocationRelativeTo(PantallaAyuda.this);
+				PantallaPrincipal.getInstance().setLocationRelativeTo(PantallaAyuda.this);
 				setVisible(false);
-				pp.setVisible(true);
+				PantallaPrincipal.getInstance().setVisible(true);
 
 			}
 		});

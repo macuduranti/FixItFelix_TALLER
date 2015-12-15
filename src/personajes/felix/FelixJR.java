@@ -130,7 +130,7 @@ public class FelixJR extends Personaje {
 			
 			try {
 			Clip clip = AudioSystem.getClip();
-	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/arreglar.wav"));
+	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/arreglar.wav"));
 	        clip.open(ais);
 	        clip.loop(0);
 			} catch (Exception e) {

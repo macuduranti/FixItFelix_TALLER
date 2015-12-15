@@ -112,7 +112,7 @@ public class TaskJuego extends TimerTask {
 				try {
 					Clip clip = AudioSystem.getClip();
 					AudioInputStream ais = AudioSystem
-							.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/pasastenivel.wav"));
+							.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/pasastenivel.wav"));
 					clip.open(ais);
 					clip.loop(0);
 				} catch (Exception e3) {
@@ -163,7 +163,7 @@ public class TaskJuego extends TimerTask {
 					try {
 						Clip clip = AudioSystem.getClip();
 						AudioInputStream ais = AudioSystem
-								.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/ganaste.wav"));
+								.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/ganaste.wav"));
 						clip.open(ais);
 						clip.loop(0);
 					} catch (Exception e3) {
@@ -175,7 +175,7 @@ public class TaskJuego extends TimerTask {
 					try {
 						Clip clip = AudioSystem.getClip();
 						AudioInputStream ais = AudioSystem
-								.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/perdiste.wav"));
+								.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/perdiste.wav"));
 						clip.open(ais);
 						clip.loop(0);
 					} catch (Exception e3) {

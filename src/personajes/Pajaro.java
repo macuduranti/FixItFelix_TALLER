@@ -114,7 +114,7 @@ public class Pajaro extends Personaje {
 			if (Juego.getInstance().felix.colision(this)) {
 				try {
 					Clip clip = AudioSystem.getClip();
-			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/moriste.wav"));
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/moriste.wav"));
 			        clip.open(ais);
 			        clip.loop(0);
 					} catch (Exception e3) {

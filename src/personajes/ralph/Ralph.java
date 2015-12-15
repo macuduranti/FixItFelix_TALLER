@@ -146,7 +146,7 @@ public class Ralph extends Personaje {
 				this.setCantidadLadrillos(this.getCantidadLadrillos() - 1);
 				try {
 					Clip clip = AudioSystem.getClip();
-			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/ralphrompe.wav"));
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/ralphrompe.wav"));
 			        clip.open(ais);
 			        clip.loop(0);
 					} catch (Exception e3) {

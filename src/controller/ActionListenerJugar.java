@@ -29,7 +29,7 @@ public class ActionListenerJugar implements ActionListener{
 		MainJuego.clipmain.close();
 		try {
 			MainJuego.clipjuego = AudioSystem.getClip();
-	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/cancionjugando.wav"));
+	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/cancionjugando.wav"));
 	        MainJuego.clipjuego.open(ais);
 	        MainJuego.clipjuego.loop(Clip.LOOP_CONTINUOUSLY);
 			} catch (Exception e3) {

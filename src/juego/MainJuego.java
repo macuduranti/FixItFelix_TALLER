@@ -92,7 +92,7 @@ public class MainJuego {
 			pantallaPrincipal.setVisible(true);
 			try {
 				clipmain = AudioSystem.getClip();
-		        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/cancionmain.wav"));
+		        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/cancionmain.wav"));
 		        clipmain.open(ais);
 		        clipmain.loop(0);
 				} catch (Exception e3) {

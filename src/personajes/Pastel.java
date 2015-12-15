@@ -49,7 +49,7 @@ public class Pastel extends Personaje {
 			if (Juego.getInstance().felix.colision(this)) {
 				try {
 					Clip clip = AudioSystem.getClip();
-			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/agarrapastel.wav"));
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/agarrapastel.wav"));
 			        clip.open(ais);
 			        clip.loop(0);
 					} catch (Exception e3) {
@@ -57,7 +57,7 @@ public class Pastel extends Personaje {
 					}
 				try {
 					MainJuego.clipinmunidad.close();
-			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/inmunidad.wav"));
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/inmunidad.wav"));
 			        MainJuego.clipinmunidad.open(ais);
 			        MainJuego.clipinmunidad.loop(0);
 					} catch (Exception e4) {
@@ -67,7 +67,7 @@ public class Pastel extends Personaje {
 					TaskJuego.setTimesInmune(0);
 					try {
 						MainJuego.clipinmunidad.close();
-				        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/inmunidad.wav"));
+				        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResource("/res/sonidos/inmunidad.wav"));
 				        MainJuego.clipinmunidad.open(ais);
 				        MainJuego.clipinmunidad.loop(0);
 						} catch (Exception e4) {

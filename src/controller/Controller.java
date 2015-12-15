@@ -59,6 +59,28 @@ public class Controller {
 			MainJuego.getTopFive().remove(MainJuego.getTopFive().size()-1);
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 		output.writeObject(MainJuego.getTopFive());
+	}
+	
+	public void ActualizarListaReemplazando(String n, int p, int index) throws FileNotFoundException, IOException{
+		System.out.println("Reemplazando la posicion "+index);
+		Juego.getInstance().setJugadorActual(n);
+		MainJuego.getTopFive().remove(index);
+		MainJuego.getTopFive().add(Juego.getInstance().jugadorActual);
+		MainJuego.getTopFive().sort(Puntaje.getCompartor());
+		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
+		output.writeObject(MainJuego.getTopFive());
+	}
+	
+	public boolean BuscarCoincidencia (String n, int[] i){
+		System.out.println("Chequeando coincidencias");
+		for (Puntaje puntaje : MainJuego.getTopFive()) {
+			if (puntaje.getNombre().compareTo(n) == 0){
+				i[0] = MainJuego.getTopFive().indexOf(puntaje);
+				System.out.println(i[0]);
+				return true;
+			}
+		}
+		return false;
 		
 	}
 	

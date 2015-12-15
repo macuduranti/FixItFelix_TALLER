@@ -119,6 +119,7 @@ public class TaskJuego extends TimerTask {
 				Juego.getInstance().setNivel(Juego.getInstance().getNivel() + 1);
 				Juego.getInstance().setSeccion(0);
 				CambioSeccion cs = new CambioSeccion();
+				cs.setLocationRelativeTo(jg.frame);
 				cs.setVisible(true);
 				TaskSacarCambioSeccion tscs = new TaskSacarCambioSeccion(cs);
 				t.schedule(tscs, 2000);

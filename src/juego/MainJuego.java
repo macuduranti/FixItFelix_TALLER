@@ -35,7 +35,7 @@ public class MainJuego {
 		
 		try {
 			input = new ObjectInputStream(new FileInputStream("save.dat"));
-
+			
 		} catch (FileNotFoundException e1) {
 			topFive.add(new Puntaje(1500,"Santi"));
 			topFive.add(new Puntaje(1400,"Macu"));
@@ -46,6 +46,7 @@ public class MainJuego {
 			try {
 				output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 				output.writeObject(topFive);
+				input = new ObjectInputStream(new FileInputStream("save.dat"));
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -53,7 +54,6 @@ public class MainJuego {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			e1.printStackTrace();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

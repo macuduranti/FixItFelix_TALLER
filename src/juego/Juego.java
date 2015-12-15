@@ -1,7 +1,6 @@
 package juego;
 
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import grafica.PantallaPrincipal;

@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
-
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
 import grafica.PantallaPrincipal;
@@ -11,7 +10,6 @@ import grafica.TaskSacarCambioSeccion;
 import juego.Juego;
 import juego.Niceland;
 import juego.TaskJuego;
-import personajes.felix.EstadoDeFelix;
 
 public class ActionListenerJugar implements ActionListener{
 	private PantallaPrincipal pantallaprincipal;
@@ -44,10 +42,6 @@ public class ActionListenerJugar implements ActionListener{
 		Niceland.setInstance(niceland);
 		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
 		Juego.getInstance().ralph.romper(Juego.getInstance().getNivel());
-		/*Juego.getInstance().felix.setInmune(false);
-		Juego.felix.setEstado(EstadoDeFelix.NORMAL);
-		Juego.felix.setX(2);
-		Juego.felix.setY((Juego.getInstance().getNivel()-1)*3);*/
 		JuegoGrafica juegoGrafica = new JuegoGrafica();
 		juegoGrafica.frame.setVisible(true);
 		Controller.getInstance().addListeners(juegoGrafica);

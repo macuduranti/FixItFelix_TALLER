@@ -30,6 +30,7 @@ public class MainJuego {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 
 		
@@ -73,7 +74,6 @@ public class MainJuego {
 		Controller.setInstance(controller);
 		try {
 			PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-			PantallaPrincipal.setInstance(pantallaPrincipal);
 			controller.addListeners(pantallaPrincipal);
 			pantallaPrincipal.setVisible(true);
 		} catch (IOException e) {

@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 public class Puntaje implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public int puntos;
 	public String nombre;
 	

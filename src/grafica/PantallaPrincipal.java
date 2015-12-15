@@ -1,6 +1,5 @@
 package grafica;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
@@ -13,6 +12,11 @@ public class PantallaPrincipal extends JFrame {
 	/**
 	 * 
 	 */
+	public PantallaAyuda pAyuda;
+	public PantallaPuntaje pPuntajes;
+	public PantallaConfiguracion pConfiguracion;
+	
+	
 	
 	public static PantallaPrincipal instance;
 	private static final long serialVersionUID = 1L;
@@ -28,40 +32,18 @@ public class PantallaPrincipal extends JFrame {
 
 	public JButton btnJugar;
 
-
-	public static void main(String[] args) {
-		/*Juego juego = new Juego();
-		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(1);
-		Juego.getInstance().setVidas(3);
-		Niceland niceland = new Niceland();
-		Niceland.setInstance(niceland);
-		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.ralph.romper(Juego.getInstance().getNivel());*/
-		
-		EventQueue.invokeLater(new Runnable() {		
-			public void run() {
-				try {
-					PantallaPrincipal frame = new PantallaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
 	public PantallaPrincipal() throws IOException { //Constructor pantalla principal
+		PantallaPrincipal.setInstance(this);
 		setResizable(false);
-		//this.setMinimumSize(new Dimension(590, 440)); 
+		this.setpAyuda(new PantallaAyuda());
+		this.setpConfiguracion(new PantallaConfiguracion());
+		this.setpPuntajes(new PantallaPuntaje());
 		setTitle("Fixit Felix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
 		this.setLocationRelativeTo(null);
 	
-		contentPane = new JPanel(); //Creacion de un nuevo panel
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JPanel panel = new JPanel();
@@ -92,8 +74,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_2 = new JLabel(""); //Creacion boton ayuda
 		label_2.addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent e) {
-				PantallaAyuda JframeAyuda = new PantallaAyuda();
-				JframeAyuda.setVisible(true);
+				PantallaPrincipal.this.getpAyuda().setVisible(true);
 				setVisible(false); //Pone visible la pantalla ayuda y no visible la principal
 			}
 		});
@@ -101,9 +82,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_3 = new JLabel(""); //Creacion boton puntaje
 		label_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaPuntaje JframePuntaje = new PantallaPuntaje();
-				JframePuntaje.setLocationRelativeTo(getContentPane());
-				JframePuntaje.setVisible(true);
+				PantallaPrincipal.this.getpPuntajes().setVisible(true);
 				setVisible(false); //Pone visible y saca la principal
 			}
 		});
@@ -111,8 +90,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label = new JLabel(""); // Boton configuracion
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaConfiguracion JframeConfiguracion = new PantallaConfiguracion();
-				JframeConfiguracion.setVisible(true);
+				PantallaPrincipal.this.getpConfiguracion().setVisible(true);
 			}
 		});
 		label.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/res/configuracion.png")));
@@ -137,5 +115,23 @@ public class PantallaPrincipal extends JFrame {
 	}
 	public static void setInstance(PantallaPrincipal instance) {
 		PantallaPrincipal.instance = instance;
+	}
+	public PantallaAyuda getpAyuda() {
+		return pAyuda;
+	}
+	public void setpAyuda(PantallaAyuda pAyuda) {
+		this.pAyuda = pAyuda;
+	}
+	public PantallaPuntaje getpPuntajes() {
+		return pPuntajes;
+	}
+	public void setpPuntajes(PantallaPuntaje pPuntajes) {
+		this.pPuntajes = pPuntajes;
+	}
+	public PantallaConfiguracion getpConfiguracion() {
+		return pConfiguracion;
+	}
+	public void setpConfiguracion(PantallaConfiguracion pConfiguracion) {
+		this.pConfiguracion = pConfiguracion;
 	}
 }

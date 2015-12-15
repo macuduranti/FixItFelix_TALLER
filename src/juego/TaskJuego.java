@@ -138,6 +138,7 @@ public class TaskJuego extends TimerTask {
 			this.jg.frame.setVisible(false);
 			System.out.println(MainJuego.getTopFive().size());
 			if (MainJuego.getTopFive().size() >= 5) {
+				// ESTO NO ESTARIA FUNCIONANDO TE PREGUNTA IGUAL EL NOMBRE
 				if (Juego.getInstance().jugadorActual.getPuntos() > MainJuego.getTopFive().get(4).getPuntos()) {
 					PantallaGameOver pgo = new PantallaGameOver(true, this.jg);
 					pgo.setVisible(true);

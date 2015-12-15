@@ -4,14 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Vector;
-
 import juego.Juego;
 import juego.MainJuego;
 import juego.Puntaje;
@@ -59,6 +51,7 @@ public class Controller {
 			MainJuego.getTopFive().remove(MainJuego.getTopFive().size()-1);
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 		output.writeObject(MainJuego.getTopFive());
+		output.close();
 	}
 	
 	public void ActualizarListaReemplazando(String n, int p, int index) throws FileNotFoundException, IOException{
@@ -69,6 +62,7 @@ public class Controller {
 		MainJuego.getTopFive().sort(Puntaje.getCompartor());
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 		output.writeObject(MainJuego.getTopFive());
+		output.close();
 	}
 	
 	public boolean BuscarCoincidencia (String n, int[] i){

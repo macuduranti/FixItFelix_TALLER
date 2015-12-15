@@ -13,10 +13,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import controller.Controller;
 import grafica.PantallaPrincipal;
+import personajes.felix.FelixJR;
 
 public class MainJuego {
+	public static Clip clipinmunidad;
+	public static Clip clipmain;
+	public static Clip clipjuego;
 	public static ArrayList<Puntaje> topFive = new ArrayList<Puntaje>();
 	public static ObjectInputStream input = null;
 	public static ObjectOutputStream output = null;
@@ -32,7 +41,12 @@ public class MainJuego {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-
+		try {
+			MainJuego.clipinmunidad = AudioSystem.getClip();
+		} catch (LineUnavailableException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
 		try {
 			input = new ObjectInputStream(new FileInputStream("save.dat"));
@@ -41,7 +55,7 @@ public class MainJuego {
 			topFive.add(new Puntaje(1500,"Santi"));
 			topFive.add(new Puntaje(1400,"Macu"));
 			topFive.add(new Puntaje(1300,"Gali"));
-			topFive.add(new Puntaje(1600,"Carlos"));
+			topFive.add(new Puntaje(1600,"Felix"));
 			topFive.add(new Puntaje(1500,"Viru"));
 			topFive.sort(Puntaje.getCompartor());
 			try {
@@ -76,6 +90,14 @@ public class MainJuego {
 			PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
 			controller.addListeners(pantallaPrincipal);
 			pantallaPrincipal.setVisible(true);
+			try {
+				clipmain = AudioSystem.getClip();
+		        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/cancionmain.wav"));
+		        clipmain.open(ais);
+		        clipmain.loop(0);
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

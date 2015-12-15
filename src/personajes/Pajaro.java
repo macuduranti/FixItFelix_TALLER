@@ -3,8 +3,13 @@ package personajes;
 import java.util.Random;
 import java.util.Timer;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import juego.Juego;
 import personajes.felix.EstadoDeFelix;
+import personajes.felix.FelixJR;
 
 public class Pajaro extends Personaje {
 
@@ -107,6 +112,14 @@ public class Pajaro extends Personaje {
 		}
 		if (!Juego.getInstance().felix.isInmune() && !Juego.getInstance().felix.isMuerto() && !Juego.getInstance().felix.isTomandoPastel()) {
 			if (Juego.getInstance().felix.colision(this)) {
+				try {
+					Clip clip = AudioSystem.getClip();
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/moriste.wav"));
+			        clip.open(ais);
+			        clip.loop(0);
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
 				Juego.getInstance().felix.setEstado(EstadoDeFelix.MUERTO);
 				System.out.println("Felix choco con un pajaro");
 				this.eliminar();

@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import juego.Juego;
 import juego.MainJuego;
 import juego.Puntaje;
@@ -45,7 +48,7 @@ public class Controller {
 	
 	public void ActualizarLista(String n, int p) throws FileNotFoundException, IOException{
 		Juego.getInstance().setJugadorActual(n);
-		MainJuego.getTopFive().add(Juego.getInstance().jugadorActual);
+		MainJuego.getTopFive().add(Juego.getInstance().getJugadorActual());
 		MainJuego.getTopFive().sort(Puntaje.getCompartor());
 		if (MainJuego.getTopFive().size() >= 5)
 			MainJuego.getTopFive().remove(MainJuego.getTopFive().size()-1);
@@ -58,7 +61,7 @@ public class Controller {
 		System.out.println("Reemplazando la posicion "+index);
 		Juego.getInstance().setJugadorActual(n);
 		MainJuego.getTopFive().remove(index);
-		MainJuego.getTopFive().add(Juego.getInstance().jugadorActual);
+		MainJuego.getTopFive().add(Juego.getInstance().getJugadorActual());
 		MainJuego.getTopFive().sort(Puntaje.getCompartor());
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("save.dat"));
 		output.writeObject(MainJuego.getTopFive());
@@ -75,7 +78,12 @@ public class Controller {
 			}
 		}
 		return false;
-		
+	}
+	
+	public boolean BuscarEspacios (String n){
+		Pattern pattern = Pattern.compile("\\s");
+		Matcher matcher = pattern.matcher(n);
+		return matcher.find();
 	}
 	
 	public void tomarNivelLista(int n){

@@ -24,7 +24,7 @@ public class PantallaAyuda extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(PantallaPrincipal.getInstance());
+		//this.setLocationRelativeTo(PantallaPrincipal.getInstance());
 
 		JLabel label_1 = new JLabel(""); // Boton atras
 		label_1.addMouseListener(new MouseAdapter() {

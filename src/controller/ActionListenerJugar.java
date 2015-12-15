@@ -3,13 +3,20 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
 import grafica.PantallaPrincipal;
 import grafica.TaskSacarCambioSeccion;
 import juego.Juego;
+import juego.MainJuego;
 import juego.Niceland;
 import juego.TaskJuego;
+import personajes.felix.FelixJR;
 
 public class ActionListenerJugar implements ActionListener{
 	private PantallaPrincipal pantallaprincipal;
@@ -19,6 +26,15 @@ public class ActionListenerJugar implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		MainJuego.clipmain.close();
+		try {
+			MainJuego.clipjuego = AudioSystem.getClip();
+	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/cancionjugando.wav"));
+	        MainJuego.clipjuego.open(ais);
+	        MainJuego.clipjuego.loop(Clip.LOOP_CONTINUOUSLY);
+			} catch (Exception e3) {
+				e3.printStackTrace();
+			}
 		this.pantallaprincipal.setVisible(false);	
 		Juego juego = new Juego();
 		Juego.setInstance(juego);

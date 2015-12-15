@@ -3,6 +3,10 @@ package personajes.felix;
 import java.awt.Rectangle;
 import java.util.Timer;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import juego.Juego;
 import juego.Niceland;
 import juego.Posicion;
@@ -47,13 +51,15 @@ public class FelixJR extends Personaje {
 	public void moverArriba() {
 		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX(), this.getY() + 1);
+			Timer timer = new Timer("Moviendo");
+			TaskMoviendo m = new TaskMoviendo();
+			TaskNormal n = new TaskNormal();
+			timer.schedule(m, 0);
+			if (!this.isMuerto()) {
+				timer.schedule(n, 100);
+			}
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverArriba();
-				Timer timer = new Timer("Moviendo");
-				TaskMoviendo m = new TaskMoviendo();
-				TaskNormal n = new TaskNormal();
-				timer.schedule(m, 0);
-				timer.schedule(n, 100);
 			}
 		}
 	}
@@ -62,13 +68,15 @@ public class FelixJR extends Personaje {
 	public void moverAbajo() {
 		if (!this.isMuerto()) {
 			Posicion prox = new Posicion(this.getX(), this.getY() - 1);
+			Timer timer = new Timer("Moviendo");
+			TaskMoviendo m = new TaskMoviendo();
+			TaskNormal n = new TaskNormal();
+			timer.schedule(m, 0);
+			if (!this.isMuerto()) {
+				timer.schedule(n, 100);
+			}
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverAbajo();
-				Timer timer = new Timer("Moviendo");
-				TaskMoviendo m = new TaskMoviendo();
-				TaskNormal n = new TaskNormal();
-				timer.schedule(m, 0);
-				timer.schedule(n, 100);
 			}
 		}
 	}
@@ -76,14 +84,16 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverDerecha() {
 		if (!this.isMuerto()) {
+			Timer timer = new Timer("Moviendo");
+			TaskMoviendo m = new TaskMoviendo();
+			TaskNormal n = new TaskNormal();
+			timer.schedule(m, 0);
+			if (!this.isMuerto()) {
+				timer.schedule(n, 100);
+			}
 			Posicion prox = new Posicion(this.getX() + 1, this.getY());
 			if ((Niceland.getInstance().mePuedoMover(this.getPosicion(), prox))) {
 				super.moverDerecha();
-				Timer timer = new Timer("Moviendo");
-				TaskMoviendo m = new TaskMoviendo();
-				TaskNormal n = new TaskNormal();
-				timer.schedule(m, 0);
-				timer.schedule(n, 100);
 			}
 		}
 	}
@@ -91,16 +101,16 @@ public class FelixJR extends Personaje {
 	@Override
 	public void moverIzquierda() {
 		if (!this.isMuerto()) {
+			Timer timer = new Timer("Moviendo");
+			TaskMoviendo m = new TaskMoviendo();
+			TaskNormal n = new TaskNormal();
+			timer.schedule(m, 0);
+			if (!this.isMuerto()) {
+				timer.schedule(n, 100);
+			}
 			Posicion prox = new Posicion(this.getX() - 1, this.getY());
 			if (Niceland.getInstance().mePuedoMover(this.getPosicion(), prox)) {
 				super.moverIzquierda();
-				Timer timer = new Timer("Moviendo");
-				TaskMoviendo m = new TaskMoviendo();
-				TaskNormal n = new TaskNormal();
-				timer.schedule(m, 0);
-				if (!this.isMuerto()) {
-					timer.schedule(n, 100);
-				}
 			}
 		}
 	}
@@ -116,6 +126,16 @@ public class FelixJR extends Personaje {
 			timer.schedule(ta2, 50);
 			timer.schedule(n, 150);
 			this.setCantArreglado(this.getCantArreglado() + 1);
+
+			
+			try {
+			Clip clip = AudioSystem.getClip();
+	        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/arreglar.wav"));
+	        clip.open(ais);
+	        clip.loop(0);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

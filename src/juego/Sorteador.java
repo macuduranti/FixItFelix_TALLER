@@ -26,7 +26,7 @@ public class Sorteador {
 			int rndy = ((int) (random.nextDouble() * 3))
 					+ ((3 * Juego.getInstance().getSeccion() + 1) - 1);
 			if (Niceland.getInstance().edificio[rndx][rndy].puedeAparecerNicelander()) {
-				if ((int) (random.nextDouble() * 3) == 1) {
+				if ((int) (random.nextDouble() * 5) == 1) {
 					Nicelander nicelander = new Nicelander(rndx,rndy);
 					Juego.getInstance().listaPersonajes.add(nicelander);
 					System.out.println("Aparecio un nicelander en la ventana [" + rndx + "][" + rndy + "]");

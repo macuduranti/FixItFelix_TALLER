@@ -41,8 +41,6 @@ public class PantallaConfiguracion extends JFrame {
 		getContentPane().setLayout(null);
 		//this.setLocationRelativeTo(null);
 		this.setBackground(Color.BLACK);
-		this.setLocationRelativeTo(PantallaPrincipal.getInstance().getContentPane());
-		this.setLocation((int)this.getLocation().getX() + 295, (int)this.getLocation().getY()-205);
 		
 		this.setSize( 290 , 210);
 		JLabel lblElegir = new JLabel("Elegir Nivel");
@@ -72,7 +70,7 @@ public class PantallaConfiguracion extends JFrame {
 				setVisible(false);
 			}
 		});
-		lblAtras.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
+		lblAtras.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/cruz.png")));
 		lblAtras.setBounds(20, 130, 52, 52);
 		getContentPane().add(lblAtras);
 		
@@ -83,7 +81,7 @@ public class PantallaConfiguracion extends JFrame {
 				setVisible(false);
 			}
 		});
-		lblAceptar.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/flecha_final.png")));
+		lblAceptar.setIcon(new ImageIcon(PantallaAyuda.class.getResource("/res/tick.png")));
 		lblAceptar.setBounds(218, 130, 52, 52);
 		getContentPane().add(lblAceptar);
 		

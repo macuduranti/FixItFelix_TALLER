@@ -2,6 +2,11 @@ package juego;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import grafica.CambioSeccion;
 import grafica.JuegoGrafica;
 import grafica.PantallaGameOver;
@@ -45,7 +50,7 @@ public class TaskJuego extends TimerTask {
 			}
 			if (Juego.getInstance().felix.isInmune()) {
 				TaskJuego.setTimesInmune(TaskJuego.getTimesInmune() + 1);
-				if (TaskJuego.getTimesInmune() == 200) {
+				if (TaskJuego.getTimesInmune() == 160) {
 					Juego.getInstance().felix.setInmune(false);
 					TaskJuego.setTimesInmune(0);
 				}
@@ -76,7 +81,9 @@ public class TaskJuego extends TimerTask {
 					JuegoGrafica.setDesp(715);
 					break;
 				}
+				MainJuego.clipinmunidad.close();
 				Juego.getInstance().felix.setX(2);
+				Juego.getInstance().felix.setInmune(false);
 				Juego.getInstance().felix.setY(Juego.getInstance().getSeccion() * 3);
 				Juego.getInstance().ralph.setyReal(88);
 				for (Personaje personaje : Juego.getInstance().listaPersonajes) {
@@ -102,27 +109,40 @@ public class TaskJuego extends TimerTask {
 				}
 			}
 			if (Juego.getInstance().getSeccion() == 4) {
-				PasasteNivel pn = new PasasteNivel();
-				pn.setLocationRelativeTo(jg.frame);
-				pn.setVisible(true);
-				Timer t = new Timer("SacandoPasasteNivel");
-				TaskSacarPasasteNivel tspn = new TaskSacarPasasteNivel(pn);
-				t.schedule(tspn, 3000);
 				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Clip clip = AudioSystem.getClip();
+					AudioInputStream ais = AudioSystem
+							.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/pasastenivel.wav"));
+					clip.open(ais);
+					clip.loop(0);
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+				Timer t = new Timer("SacandoPasasteNivel");
+				if (Juego.getInstance().getNivel() != 10) {
+					PasasteNivel pn = new PasasteNivel();
+					pn.setLocationRelativeTo(jg.frame);
+					pn.setVisible(true);
+					TaskSacarPasasteNivel tspn = new TaskSacarPasasteNivel(pn);
+					t.schedule(tspn, 3000);
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				times = 0;
 				tiempo = 120000 - (10000 * Juego.getInstance().getNivel() / 2);
 				Juego.getInstance().setNivel(Juego.getInstance().getNivel() + 1);
 				Juego.getInstance().setSeccion(0);
-				CambioSeccion cs = new CambioSeccion();
-				cs.setLocationRelativeTo(jg.frame);
-				cs.setVisible(true);
-				TaskSacarCambioSeccion tscs = new TaskSacarCambioSeccion(cs);
-				t.schedule(tscs, 2000);
+				if (Juego.getInstance().getNivel() != 10){
+					CambioSeccion cs = new CambioSeccion();
+					cs.setLocationRelativeTo(jg.frame);
+					cs.setVisible(true);
+					TaskSacarCambioSeccion tscs = new TaskSacarCambioSeccion(cs);
+					t.schedule(tscs, 2000);
+				}
 				JuegoGrafica.setDesp(0);
 				Juego.getInstance().ralph = new Ralph();
 				Juego.getInstance().felix = new FelixJR();
@@ -133,16 +153,34 @@ public class TaskJuego extends TimerTask {
 
 			}
 		} else {
+			MainJuego.clipjuego.close();
 			this.timer.cancel();
 			System.err.println("GAME OVER");
 			this.jg.frame.setVisible(false);
 			System.out.println(MainJuego.getTopFive().size());
 			if (MainJuego.getTopFive().size() >= 5) {
-				// ESTO NO ESTARIA FUNCIONANDO TE PREGUNTA IGUAL EL NOMBRE
 				if (Juego.getInstance().jugadorActual.getPuntos() > MainJuego.getTopFive().get(4).getPuntos()) {
+					try {
+						Clip clip = AudioSystem.getClip();
+						AudioInputStream ais = AudioSystem
+								.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/ganaste.wav"));
+						clip.open(ais);
+						clip.loop(0);
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
 					PantallaGameOver pgo = new PantallaGameOver(true, this.jg);
 					pgo.setVisible(true);
 				} else {
+					try {
+						Clip clip = AudioSystem.getClip();
+						AudioInputStream ais = AudioSystem
+								.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/perdiste.wav"));
+						clip.open(ais);
+						clip.loop(0);
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
 					PantallaGameOver pgo = new PantallaGameOver(false, this.jg);
 					pgo.setVisible(true);
 				}

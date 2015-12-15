@@ -2,7 +2,6 @@ package grafica;
 
 // Cambiar paneles si hay tiempo
 
-import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +22,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
-import java.util.Timer;
 import javax.swing.SwingConstants;
 import controller.Controller;
 
@@ -137,50 +135,6 @@ public class JuegoGrafica {
 
 	public JFrame frame;
 	public JuegoPanel panel;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Juego juego = new Juego();
-		Juego.setInstance(juego);
-		Juego.getInstance().setNivel(10);
-		Juego.getInstance().setSeccion(0);
-		switch (Juego.getInstance().getSeccion()) {
-		case 0:
-			setDesp(0);
-			break;
-		case 1:
-			setDesp(245);
-			break;
-		case 2:
-			setDesp(480);
-			break;
-		case 3:
-			setDesp(715);
-			break;
-		}
-
-		Niceland niceland = new Niceland();
-		Niceland.setInstance(niceland);
-		Niceland.getInstance().generarNiceland(Juego.getInstance().getNivel());
-		Juego.getInstance().ralph.romper(Juego.getInstance().getNivel());
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JuegoGrafica window = new JuegoGrafica();
-					window.frame.setVisible(true);
-					controller.addListeners(window);
-					Timer timer = new Timer("Jugando..");
-					TaskJuego tarea = new TaskJuego(window, timer);
-					timer.schedule(tarea, 0, 50);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.

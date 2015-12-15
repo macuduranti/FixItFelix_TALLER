@@ -3,10 +3,15 @@ package personajes.ralph;
 import java.util.Random;
 import java.util.Timer;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import juego.Direccion;
 import juego.Juego;
 import juego.Niceland;
 import personajes.Personaje;
+import personajes.felix.FelixJR;
 
 public class Ralph extends Personaje {
 
@@ -79,9 +84,6 @@ public class Ralph extends Personaje {
 						this.setUltDir(Direccion.IZQUIERDA);
 				}
 				this.setCantMov(this.getCantMov() - 1);
-				//if (this.getCantMov() == 0){
-				//	this.setEstado(EstadoDeRalph.NORMAL);
-				//}
 			}
 		}
 	}
@@ -141,11 +143,15 @@ public class Ralph extends Personaje {
 			if ((int) (random.nextDouble() * 100) < 2 * (Math.pow(1.15, Juego.getInstance().getNivel() - 1))) {
 				Ladrillo ladrillo = new Ladrillo(this.getXdouble() + random.nextDouble() , this.getyReal() + 80);
 				Juego.getInstance().listaPersonajes.add(ladrillo);
-				/*Ladrillo ladrillo2 = new Ladrillo(this.getXdouble()-0.5, this.getyReal());
-				Juego.getInstance().listaPersonajes.add(ladrillo2);
-				Ladrillo ladrillo3 = new Ladrillo(this.getXdouble(), this.getyReal());
-				Juego.getInstance().listaPersonajes.add(ladrillo3);*/
 				this.setCantidadLadrillos(this.getCantidadLadrillos() - 1);
+				try {
+					Clip clip = AudioSystem.getClip();
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/ralphrompe.wav"));
+			        clip.open(ais);
+			        clip.loop(0);
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
 				System.out.println("Ralph ha tirado un ladrillo, le quedan "+Juego.getInstance().ralph.getCantidadLadrillos());
 			}
 		}

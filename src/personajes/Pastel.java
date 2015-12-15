@@ -1,12 +1,19 @@
 package personajes;
 
 import java.util.Timer;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import juego.Juego;
+import juego.MainJuego;
 import juego.Niceland;
 import juego.Posicion;
 import juego.TaskJuego;
 import personajes.Personaje;
 import personajes.felix.EstadoDeFelix;
+import personajes.felix.FelixJR;
 import personajes.felix.TaskNormal;
 import ventana.DosPaneles;
 
@@ -40,9 +47,32 @@ public class Pastel extends Personaje {
 		}
 		if (!Juego.getInstance().felix.isMuerto()) {
 			if (Juego.getInstance().felix.colision(this)) {
-				// FALTA VER BIEN EL BUG CUANDO SALEN MAS DE DOS NICELANDERS ( En teoria esta solucionado )
+				try {
+					Clip clip = AudioSystem.getClip();
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/agarrapastel.wav"));
+			        clip.open(ais);
+			        clip.loop(0);
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+				try {
+					MainJuego.clipinmunidad.close();
+			        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/inmunidad.wav"));
+			        MainJuego.clipinmunidad.open(ais);
+			        MainJuego.clipinmunidad.loop(0);
+					} catch (Exception e4) {
+						e4.printStackTrace();
+					}
 				if (Juego.getInstance().felix.isInmune()){
 					TaskJuego.setTimesInmune(0);
+					try {
+						MainJuego.clipinmunidad.close();
+				        AudioInputStream ais = AudioSystem.getAudioInputStream(FelixJR.class.getResourceAsStream("/res/sonidos/inmunidad.wav"));
+				        MainJuego.clipinmunidad.open(ais);
+				        MainJuego.clipinmunidad.loop(0);
+						} catch (Exception e4) {
+							e4.printStackTrace();
+						}
 				}
 				Juego.getInstance().felix.setEstado(EstadoDeFelix.TOMANDOPASTEL);
 				Timer t = new Timer("Inmunizando");

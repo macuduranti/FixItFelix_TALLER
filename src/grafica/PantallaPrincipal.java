@@ -13,7 +13,6 @@ public class PantallaPrincipal extends JFrame {
 	 * 
 	 */
 	public PantallaAyuda pAyuda;
-	public PantallaPuntaje pPuntajes;
 	public PantallaConfiguracion pConfiguracion;
 	
 	
@@ -37,7 +36,6 @@ public class PantallaPrincipal extends JFrame {
 		setResizable(false);
 		this.setpAyuda(new PantallaAyuda());
 		this.setpConfiguracion(new PantallaConfiguracion());
-		this.setpPuntajes(new PantallaPuntaje());
 		setTitle("Fixit Felix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 432);
@@ -74,6 +72,7 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_2 = new JLabel(""); //Creacion boton ayuda
 		label_2.addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal.this.getpAyuda().setLocationRelativeTo(PantallaPrincipal.this);
 				PantallaPrincipal.this.getpAyuda().setVisible(true);
 				setVisible(false); //Pone visible la pantalla ayuda y no visible la principal
 			}
@@ -82,7 +81,8 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label_3 = new JLabel(""); //Creacion boton puntaje
 		label_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				PantallaPrincipal.this.getpPuntajes().setVisible(true);
+				PantallaPuntaje pPuntaje = new PantallaPuntaje();
+				pPuntaje.setVisible(true);
 				setVisible(false); //Pone visible y saca la principal
 			}
 		});
@@ -90,6 +90,8 @@ public class PantallaPrincipal extends JFrame {
 		JLabel label = new JLabel(""); // Boton configuracion
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal.this.getpConfiguracion().setLocationRelativeTo(PantallaPrincipal.this);
+				PantallaPrincipal.this.getpConfiguracion().setLocation((int)PantallaPrincipal.this.getpConfiguracion().getLocation().getX()+440, (int)PantallaPrincipal.this.getpConfiguracion().getLocation().getY()-90);
 				PantallaPrincipal.this.getpConfiguracion().setVisible(true);
 			}
 		});
@@ -121,12 +123,6 @@ public class PantallaPrincipal extends JFrame {
 	}
 	public void setpAyuda(PantallaAyuda pAyuda) {
 		this.pAyuda = pAyuda;
-	}
-	public PantallaPuntaje getpPuntajes() {
-		return pPuntajes;
-	}
-	public void setpPuntajes(PantallaPuntaje pPuntajes) {
-		this.pPuntajes = pPuntajes;
 	}
 	public PantallaConfiguracion getpConfiguracion() {
 		return pConfiguracion;
